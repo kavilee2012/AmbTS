@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 顶部BAR -->
+    <RelativeLayout
+        android:id="@+id/homeTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#99dd66">
+        <TextView
+            android:id="@+id/tvHomeTop"
+            android:text="阿米巴"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!-- 下划线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <!-- 中部CONTENT -->
+    <FrameLayout
+        android:id="@+id/homeContent"
+        android:background="#eee"
+        android:layout_above="@+id/homeTabBar"
+        android:layout_below="@+id/homeTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <!-- 底部BAR -->
+    <RadioGroup
+        android:id="@+id/homeTabBar"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <RadioButton
+            android:id="@+id/itemDAO"
+            style="@style/homeTabItem"
+            android:drawableTop="@drawable/tab_menu_dao"
+            android:text="@string/dao"/>
+
+        <RadioButton
+            android:id="@+id/itemFA"
+            style="@style/homeTabItem"
+            android:drawableTop="@drawable/tab_menu_fa"
+            android:text="@string/fa"/>
+
+        <RadioButton
+            android:id="@+id/itemSHU"
+            style="@style/homeTabItem"
+            android:drawableTop="@drawable/tab_menu_shu"
+            android:text="@string/shu"/>
+
+        <RadioButton
+            android:id="@+id/itemWO"
+            style="@style/homeTabItem"
+            android:drawableTop="@drawable/tab_menu_qi"
+            android:text="@string/wo"/>
+
+
+    </RadioGroup>
+
+
+
+
+</RelativeLayout>

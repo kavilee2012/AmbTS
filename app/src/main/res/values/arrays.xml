@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sbu">
+        <item>市场巴</item>
+        <item>销售巴</item>
+        <item>客服巴</item>
+        <item>生产A巴</item>
+        <item>生产B巴</item>
+    </string-array>
+</resources>
