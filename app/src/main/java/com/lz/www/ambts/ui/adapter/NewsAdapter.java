@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 
 import com.lz.www.ambts.R;
-import com.lz.www.ambts.model.News;
+import com.lz.www.ambts.model.bean.News;
 
 import java.util.ArrayList;
 
