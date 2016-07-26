@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import com.lz.www.ambts.model.bean.News;
 import com.lz.www.ambts.model.jk.INewsModel;
 import com.lz.www.ambts.net.HttpService;
+import com.lz.www.ambts.presenter.jk.INewsPresenter;
 import com.lz.www.ambts.util.Config;
 
 import org.json.JSONArray;

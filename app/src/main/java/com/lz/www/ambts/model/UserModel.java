@@ -12,14 +12,15 @@ import com.lz.www.ambts.util.Config;
  */
 public class UserModel implements IUserModel {
 
+
     @Override
     public void getOneUser(String name, String pwd, final GetOneUserCallback callback) {
-        final String url = Config.AMB_API + "act=login&name=" + name + "&pwd=" + pwd;
+        final String url = Config.UserAPI + "/login/?code=" + name + "&pwd=" + pwd;
 
         final Handler handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                if(msg.obj.toString().equals("1")){
+                if(msg.obj.toString().contains("成功")){
                     callback.onSuccess();
                 }else{
                     callback.onFail();

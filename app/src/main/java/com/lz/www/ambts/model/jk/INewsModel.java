@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/7/23.
  */
 public interface INewsModel {
+
     void getNewsList(LoadNewsListCallback callback);
 
     ArrayList<Bitmap> getTopImages();

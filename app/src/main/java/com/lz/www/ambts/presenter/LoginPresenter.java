@@ -1,5 +1,6 @@
 package com.lz.www.ambts.presenter;
 
+import com.lz.www.ambts.model.UserModel;
 import com.lz.www.ambts.model.jk.IUserModel;
 import com.lz.www.ambts.presenter.jk.ILoginPresenter;
 import com.lz.www.ambts.ui.jk.ILoginView;
@@ -14,6 +15,8 @@ public class LoginPresenter implements ILoginPresenter {
     public LoginPresenter(ILoginView loginView) {
         mLoginView=loginView;
         mLoginView.setPresenter(this);
+
+        mUserModel=new UserModel();
     }
 
     @Override
