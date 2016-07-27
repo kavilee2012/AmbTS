@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RequestQueue mQueue= Volley.newRequestQueue(MainActivity.this);
-                StringRequest stringRequest=new StringRequest("", new Response.Listener<String>() {
+                StringRequest stringRequest=new StringRequest("http://www.baidu.com", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
                         Log.d("baidu",s);
