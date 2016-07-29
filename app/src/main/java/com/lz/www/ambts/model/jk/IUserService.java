@@ -1,5 +1,7 @@
 package com.lz.www.ambts.model.jk;
 
+import com.lz.www.ambts.model.bean.MyResponse;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -14,8 +16,8 @@ public interface IUserService {
     @GET("users/{user}/repos")
     Call<String> getOne(@Path("user") String user);
 
-    @GET("user/getlist")
-    Call<String> getList();
+    @GET("news/getlist")
+    Call<MyResponse> getList();
 
     @GET("user/login")
     Call<String> login(@Query("code") String code,@Query("pwd") String pwd);
