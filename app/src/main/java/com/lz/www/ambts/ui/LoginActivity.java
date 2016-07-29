@@ -28,9 +28,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lz.www.ambts.R;
+import com.lz.www.ambts.presenter.LoginPresenter;
+import com.lz.www.ambts.presenter.jk.ILoginPresenter;
+import com.lz.www.ambts.ui.jk.ILoginView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,13 +45,57 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity implements ILoginView {
+    ILoginPresenter mLoginPresenter;
+    ProgressBar mProgressBar;
+    Button btnLogin;
+    EditText etName;
+    EditText etPwd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
+        mLoginPresenter=new LoginPresenter(this);
+        mProgressBar =(ProgressBar)findViewById(R.id.login_progress);
+        btnLogin=(Button)findViewById(R.id.btnLogin);
+        etName=(AutoCompleteTextView)findViewById(R.id.etName);
+        etPwd=(EditText)findViewById(R.id.etPwd);
 
+        btnLogin.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLoginPresenter.login(etName.getText().toString(),etPwd.getText().toString());
+            }
+        });
+
+    }
+
+    @Override
+    public void showSuccess() {
+        Toast.makeText(this,"success",Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void showFail() {
+        Toast.makeText(this,"fail",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        mProgressBar.setVisibility(ProgressBar.GONE);
+    }
+
+    @Override
+    public void setPresenter(Object presenter) {
+        mLoginPresenter=(ILoginPresenter) presenter;
     }
 }
 
