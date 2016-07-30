@@ -9,7 +9,7 @@ public interface IUserModel {
 
     void getOneUser(String name, String pwd, GetOneUserCallback callback);
 
-    void addUser(User user);
+    void addUser(String name, String pwd,String mobile,GetOneUserCallback callback);
 
     void getUserList(GetUserListCallback callback);
 

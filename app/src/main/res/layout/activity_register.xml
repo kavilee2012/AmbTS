@@ -79,6 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/pbRegister"
+        android:visibility="invisible"
         android:layout_gravity="center_horizontal" />
 
 
