@@ -18,8 +18,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.MyResponse;
+import com.lz.www.ambts.model.bean.News;
+import com.lz.www.ambts.model.bean.User;
 import com.lz.www.ambts.model.jk.IUserService;
 import com.lz.www.ambts.util.Config;
+
+import java.util.List;
+import java.util.Objects;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -47,21 +52,25 @@ public class MainActivity extends AppCompatActivity {
     void OnClick(View view){
         switch (view.getId()){
             case R.id.btnOpenLogin:
-                Intent it = new Intent(MainActivity.this, LoginActivity.class);
+                Intent it = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(it);
                 break;
             case R.id.btnTestQuery:
                 tvTest.setText("i am query");
                 //构建retrofit实例
-                Retrofit retrofit=new Retrofit.Builder().baseUrl(Config.AMB_API).addConverterFactory(ScalarsConverterFactory.create()).build();
+                Retrofit retrofit=new Retrofit.Builder()
+                        .baseUrl(Config.AMB_API)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
                 IUserService userService=retrofit.create(IUserService.class);
-                Call<String> call=userService.getList();
-                call.enqueue(new Callback<String>() {
+                Call<MyResponse> call=userService.getList();
+                call.enqueue(new Callback<MyResponse>() {
                     @Override
-                    public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                    public void onResponse(Call<MyResponse> call, retrofit2.Response<MyResponse> response) {
                         if(response.isSuccess()){
+                            List<News> users=response.body().getData();
                             Toast.makeText(MainActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
-                            tvTest.setText(response.body().toString());
+                            tvTest.setText(response.body().getMsg().toString());
                         }else {
                             Toast.makeText(MainActivity.this,"获取失败",Toast.LENGTH_SHORT).show();
 
@@ -69,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
+                    public void onFailure(Call<MyResponse> call, Throwable t) {
                         Toast.makeText(MainActivity.this,"发生异常",Toast.LENGTH_SHORT).show();
                     }
                 });

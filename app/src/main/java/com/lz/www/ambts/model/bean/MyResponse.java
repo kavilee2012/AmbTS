@@ -1,17 +1,23 @@
 package com.lz.www.ambts.model.bean;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/7/29.
  */
 public class MyResponse {
 
+    @SerializedName("code")
     private String Code;
-
+    @SerializedName("msg")
     private String Msg;
-
+    @SerializedName("count")
     private String Count;
-
-    private String Data;
+    @SerializedName("data")
+    private List<News> List;
 
     public String getCode() {
         return Code;
@@ -37,11 +43,11 @@ public class MyResponse {
         Count = count;
     }
 
-    public String getData() {
-        return Data;
+    public List<News> getData() {
+        return List;
     }
 
-    public void setData(String data) {
-        Data = data;
+    public void setData(List<News> data) {
+        this.List = data;
     }
 }
