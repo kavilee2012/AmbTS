@@ -7,6 +7,6 @@ import com.lz.www.ambts.model.User;
  */
 public interface IRegisterPresenter extends IBasePresenter {
 
-    void register(User user);
+    void register(String code,String pwd,String mobile);
 
 }

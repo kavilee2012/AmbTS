@@ -42,7 +42,7 @@
         <activity android:name=".ui.NewsDetailActivity" />
         <!--<activity android:name=".ui.ServiceActivity" />-->
         <!--<activity android:name=".ui.NewsIndexActivity" />-->
-        <!--<activity android:name=".ui.RegisterActivity" />-->
+        <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.ContractsActivity"/>
         <activity android:name=".ui.AmbLogActivity"/>
         <!--<activity android:name=".ui.ShakeActivity"/>-->

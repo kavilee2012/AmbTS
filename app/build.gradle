@@ -39,4 +39,7 @@ android {
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'//ConverterFactory的Gson依赖包
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0-beta4'//ConverterFactory的String依赖包
 
-}
+    //因为Dagger 2 中会用到@Generated注解，而javax.anotation.generated在Java 6及以上的版本中都有，在Android API 中是没有的，所以在Android项目中一定要加此句
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+
+    }

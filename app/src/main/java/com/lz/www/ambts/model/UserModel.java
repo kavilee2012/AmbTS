@@ -46,8 +46,9 @@ public class UserModel implements IUserModel {
 
 
     @Override
-    public void addUser(User user) {
-
+    public void addUser(String name, String pwd,String mobile,final GetOneUserCallback callback) {
+        String result = "model层处理：" + name + pwd + mobile;
+        callback.onSuccess();
     }
 
     @Override
