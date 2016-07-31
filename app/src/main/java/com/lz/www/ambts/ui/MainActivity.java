@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnTestQuery:
                 tvTest.setText("i am query");
                 //构建retrofit实例
-                Retrofit retrofit=new Retrofit.Builder().baseUrl(Config.AMB_API).addConverterFactory(GsonConverterFactory.create()).build();
+                Retrofit retrofit=new Retrofit.Builder().baseUrl(Config.AMB_API).addConverterFactory(ScalarsConverterFactory.create()).build();
                 IUserService userService=retrofit.create(IUserService.class);
-                Call<MyResponse> call=userService.getList();
-                call.enqueue(new Callback<MyResponse>() {
+                Call<String> call=userService.getList();
+                call.enqueue(new Callback<String>() {
                     @Override
-                    public void onResponse(Call<MyResponse> call, retrofit2.Response<MyResponse> response) {
+                    public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                         if(response.isSuccess()){
                             Toast.makeText(MainActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
                             tvTest.setText(response.body().toString());
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<MyResponse> call, Throwable t) {
+                    public void onFailure(Call<String> call, Throwable t) {
                         Toast.makeText(MainActivity.this,"发生异常",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnTestAA:
                 tvTest.setText("i am AA");
+                Intent itx =new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(itx);
                 break;
             default:
                 tvTest.setText("null");
