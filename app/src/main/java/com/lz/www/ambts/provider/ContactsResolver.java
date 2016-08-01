@@ -9,7 +9,7 @@ import android.os.RemoteException;
 import android.provider.ContactsContract;
 
 
-import com.lz.www.ambts.model.Contacts;
+import com.lz.www.ambts.model.bean.Contacts;
 
 import java.util.ArrayList;
 
