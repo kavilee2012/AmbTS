@@ -1,5 +1,6 @@
 package com.lz.www.ambts.ui.component;
 
+import com.lz.www.ambts.AppComponent;
 import com.lz.www.ambts.ui.RegisterActivity;
 import com.lz.www.ambts.ui.module.RegisterModule;
 

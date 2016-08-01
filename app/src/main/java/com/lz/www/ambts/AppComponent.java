@@ -1,6 +1,7 @@
 package com.lz.www.ambts;
 
 import android.app.Application;
+import android.content.Context;
 
 import javax.inject.Singleton;
 
@@ -13,7 +14,7 @@ import dagger.Component;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
-    Application getApplication();
+    Context getApplicationContext();
 
 
 

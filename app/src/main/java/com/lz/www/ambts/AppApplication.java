@@ -12,7 +12,7 @@ import com.lz.www.ambts.ui.module.RegisterModule;
  */
 public class AppApplication extends Application {
     private AppComponent appComponent;
-    private RegisterComponent registerComponent;
+    private static Context context;
 
     public static AppApplication get(Context context){
         return (AppApplication)context.getApplicationContext();
@@ -21,10 +21,15 @@ public class AppApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        context = getApplicationContext();
     }
 
-    public RegisterComponent getRegisterComponent(){
-        return registerComponent;
+    public AppComponent getAppComponent(){
+        return appComponent;
+    }
+
+    //返回
+    public static Context getContextObject(){
+        return context;
     }
 }

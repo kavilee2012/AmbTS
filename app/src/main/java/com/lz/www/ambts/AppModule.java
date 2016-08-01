@@ -1,6 +1,7 @@
 package com.lz.www.ambts;
 
 import android.app.Application;
+import android.content.Context;
 
 import javax.inject.Singleton;
 
@@ -20,7 +21,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public Application provideApplication(){
+    Context provideApplicationContext(){
         return application;
     }
 }

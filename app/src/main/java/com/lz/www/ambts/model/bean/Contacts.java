@@ -1,4 +1,4 @@
-package com.lz.www.ambts.model;
+package com.lz.www.ambts.model.bean;
 
 /**
  * Created by Administrator on 2016/5/27.
