@@ -16,8 +16,8 @@ public interface IUserService {
     @GET("users/{user}/repos")
     Call<String> getOne(@Path("user") String user);
 
-    @GET("news/getlist")
-    Call<String> getList();
+    @GET("user/getlist")
+    Call<MyResponse> getList();
 
     @GET("user/login")
     Call<String> login(@Query("code") String code,@Query("pwd") String pwd);

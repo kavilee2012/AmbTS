@@ -1,16 +1,26 @@
 package com.lz.www.ambts.model.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Administrator on 2016-05-27.
  */
 public class News {
+    @SerializedName("ID")
     private int id;
+    @SerializedName("Title")
     private String title;
+    @SerializedName("Content")
     private String content;
+    @SerializedName("AddTime")
     private String addTime;
+    @SerializedName("Author")
     private String author;
+    @SerializedName("Url")
     private String url;
+    @SerializedName("ImgUrl")
     private String imgUrl;
+    @SerializedName("IsTop")
     private Boolean isTop;
 
     public int getId() {

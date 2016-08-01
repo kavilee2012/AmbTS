@@ -17,18 +17,29 @@ import com.lz.www.ambts.presenter.NewsPresenter;
 import com.lz.www.ambts.presenter.jk.INewsPresenter;
 import com.lz.www.ambts.ui.NewsDetailActivity;
 import com.lz.www.ambts.ui.adapter.NewsAdapter;
+import com.lz.www.ambts.ui.component.DaggerNewsComponent;
 import com.lz.www.ambts.ui.jk.INewsView;
+import com.lz.www.ambts.ui.module.NewsModule;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  * Created by Administrator on 2016-06-01.
  */
 public class DaoFragment extends Fragment implements AdapterView.OnItemClickListener,INewsView {
 
+    @Inject
     INewsPresenter mPresenter;
-    public NewsAdapter mAdapter = null;
+    @InjectView(R.id.lvDao)
     public ListView lvNews;
+
+    public NewsAdapter mAdapter = null;
 
     public DaoFragment() {
     }
@@ -36,7 +47,6 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter=new NewsPresenter(this);//初始化
     }
 
     @Nullable
@@ -44,8 +54,14 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dao, container, false);
 
-        lvNews = (ListView) view.findViewById(R.id.lvDao);
-        ArrayList<News>  mNewsList = new ArrayList<>();
+        ButterKnife.inject(this,view);
+
+        DaggerNewsComponent.builder()
+                .newsModule(new NewsModule(this))
+                .build()
+                .inject(this);
+
+        List<News> mNewsList = new ArrayList<>();
         mNewsList.add(new News(1, "B1", "this is b1"));
         mNewsList.add(new News(2, "B2", "this is b2"));
         mNewsList.add(new News(3, "B3", "this is b3"));
@@ -73,10 +89,6 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
         mPresenter.start();
     }
 
-    @Override
-    public void setPresenter(Object presenter) {
-        mPresenter=(INewsPresenter) presenter;
-    }
 
     @Override
     public void showTopImages() {
@@ -84,15 +96,20 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     }
 
     @Override
-    public void showNewsList(ArrayList<News> newNewsList) {
+    public void showNewsList(List<News> newNewsList) {
+        Toast.makeText(getActivity(),"获取成功",Toast.LENGTH_SHORT).show();
+
         mAdapter.mNewsList=newNewsList;
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showLoading() {
+        Toast.makeText(getActivity(),"加载中",Toast.LENGTH_SHORT).show();
 
     }
+
+
 
     @Override
     public void showLoadingError(String msg) {

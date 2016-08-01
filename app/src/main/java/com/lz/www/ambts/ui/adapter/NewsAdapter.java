@@ -14,14 +14,15 @@ import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.News;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016-05-30.
  */
 public class NewsAdapter extends BaseAdapter {
-    public ArrayList<News> mNewsList;
+    public List<News> mNewsList;
     private Context mContext;
-    public NewsAdapter(ArrayList<News> newsList, Context context) {
+    public NewsAdapter(List<News> newsList, Context context) {
         this.mNewsList=newsList;
         this.mContext=context;
     }
