@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menuAdd"
+    android:orderInCategory="100"
+    android:showAsAction="always"
+    android:title="添加"></item>
+    <item android:id="@+id/menuDelete"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="删除"></item>
+    <item android:id="@+id/menuSave"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="保存"></item>
+    <item android:id="@+id/menuCancel"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="取消"></item>
+</menu>

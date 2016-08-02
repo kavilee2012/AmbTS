@@ -1,97 +1,85 @@
 package com.lz.www.ambts.ui;
 
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 
 import com.lz.www.ambts.R;
-import com.lz.www.ambts.util.CommonUtils;
-import com.lz.www.ambts.util.SPUtils;
+import com.lz.www.ambts.presenter.jk.ISchedulePresenter;
+import com.lz.www.ambts.ui.component.DaggerScheduleComponent;
+import com.lz.www.ambts.ui.jk.IScheduleView;
+import com.lz.www.ambts.ui.module.ScheduleModule;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  * Created by Administrator on 2016-07-09.
  */
-public class ScheduleActivity extends Activity {
+public class ScheduleActivity extends AppCompatActivity implements IScheduleView {
 
+    @Inject
+    ISchedulePresenter schedulePresenter;
+    @InjectView(R.id.cvSchedule)
     CalendarView calendarView;
-    TimePicker timePicker;
-    EditText editText;
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.add_delete_save_cancel, menu);
+        return true;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        calendarView=(CalendarView)findViewById(R.id.cvSchedule);
-        timePicker=(TimePicker)findViewById(R.id.tpSchedule);
-        editText=(EditText)findViewById(R.id.etSchedule);
+        ButterKnife.inject(this);
 
+        DaggerScheduleComponent.builder()
+                .scheduleModule(new ScheduleModule(this))
+                .build()
+                .inject(this);
 
-        Button btnSave=(Button)findViewById(R.id.btnAcSave);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                long date = calendarView.getDate();
-                int hour = timePicker.getCurrentHour();
-                int minute = timePicker.getCurrentMinute();
-
-                SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd ");
-                String nowDate = f.format(date);
-                String scheduleTime = nowDate + hour + ":" + minute + ":00";
-
-                String scheduleContent = editText.getText().toString();
-
-                SPUtils.put(ScheduleActivity.this, "ScheduleTime", scheduleTime);
-                SPUtils.put(ScheduleActivity.this, "ScheduleContent", scheduleContent);
-
-
-
-
-                //定时提醒
-                Intent it=new Intent(ScheduleActivity.this,ScheduleViewActivity.class);
-                it.putExtra("content",scheduleContent);
-
-                PendingIntent pi=PendingIntent.getActivity(ScheduleActivity.this,0,it,0);
-
-                AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-
-                long sTimes=0;
-                try {
-                    Date sTime= CommonUtils.ConverToDate(scheduleTime);
-                    sTimes=sTime.getTime();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                alarmManager.set(AlarmManager.RTC_WAKEUP,sTimes,pi);
-
-
-                Toast.makeText(ScheduleActivity.this,"日程设置完成！"+scheduleTime, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        Button btnCancel=(Button)findViewById(R.id.btnAcBack);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-
+        showCalender();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showCalender();
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuAdd:
+                showSubView();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void showCalender() {
+        schedulePresenter.getAllSchedule();
+    }
+
+    @Override
+    public void showSubView() {
+        Intent it = new Intent(ScheduleActivity.this, ScheduleSubActivity.class);
+        startActivity(it);
+    }
 }
