@@ -2,6 +2,7 @@ package com.lz.www.ambts.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2016-06-29.
  */
-public class ContractsActivity extends Activity implements IContactsView {
+public class ContractsActivity extends AppCompatActivity implements IContactsView {
 
     @Inject
     IContactsPresenter presenter;

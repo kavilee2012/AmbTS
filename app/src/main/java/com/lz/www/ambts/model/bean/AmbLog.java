@@ -1,4 +1,4 @@
-package com.lz.www.ambts.model;
+package com.lz.www.ambts.model.bean;
 
 import java.util.Date;
 

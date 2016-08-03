@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/etSchedule"
+        android:drawableLeft="@drawable/b3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <DatePicker
+        android:id="@+id/dpSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"></DatePicker>
+
+    <TimePicker
+        android:id="@+id/tpSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"></TimePicker>
+
+</LinearLayout>

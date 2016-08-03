@@ -4,6 +4,7 @@ import android.widget.SimpleAdapter;
 
 import com.lz.www.ambts.AppApplication;
 import com.lz.www.ambts.model.bean.Contacts;
+import com.lz.www.ambts.model.jk.IContactsService;
 import com.lz.www.ambts.presenter.jk.IContactsPresenter;
 import com.lz.www.ambts.provider.ContactsResolver;
 import com.lz.www.ambts.ui.jk.IContactsView;
@@ -20,9 +21,11 @@ public class ContactsPresenter implements IContactsPresenter {
 
 
     IContactsView contactsView;
+    IContactsService contactsService;
 
-    public ContactsPresenter(IContactsView view) {
+    public ContactsPresenter(IContactsView view,IContactsService model) {
         this.contactsView=view;
+        this.contactsService=model;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class ContactsPresenter implements IContactsPresenter {
     @Override
     public void loadContactsList() {
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-        List<Contacts> contactsArrayList = new ContactsResolver().getContacts(AppApplication.getContextObject());
+        List<Contacts> contactsArrayList = contactsService.getList();
         for (int i=0;i<contactsArrayList.size();i++){
             Map<String,String> items=new HashMap<String, String>();
             items.put("name",contactsArrayList.get(i).getName());
