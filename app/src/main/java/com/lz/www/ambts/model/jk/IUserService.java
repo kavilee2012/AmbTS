@@ -14,15 +14,15 @@ import retrofit2.http.Query;
 public interface IUserService {
 
     @GET("users/{user}/repos")
-    Call<String> getOne(@Path("user") String user);
+    Call<MyResponse> getOne(@Path("user") String user);
 
     @GET("user/getlist")
     Call<MyResponse> getList();
 
     @GET("user/login")
-    Call<String> login(@Query("code") String code,@Query("pwd") String pwd);
+    Call<MyResponse> login(@Query("code") String code,@Query("pwd") String pwd);
 
     @POST("user/register")
-    Call<String> add(@Query("code") String code,@Query("pwd") String pwd,@Query("mobile") String mobile);
+    Call<MyResponse> add(@Query("code") String code,@Query("pwd") String pwd,@Query("mobile") String mobile);
 
 }
