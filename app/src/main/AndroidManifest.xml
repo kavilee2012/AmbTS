@@ -53,6 +53,7 @@
         <!--<activity android:name=".ui.DrawActivity"/>-->
         <activity android:name=".ui.AnimationActivity"/>
         <activity android:name=".ui.HeadPhotoActivity"/>
+        <activity android:name=".ui.BannerActivity"/>
 
 
         <!--receiver-->

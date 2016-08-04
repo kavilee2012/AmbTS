@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnTestAA:
                 tvTest.setText("i am AA");
-                Intent itx =new Intent(MainActivity.this,RegisterActivity.class);
+                Intent itx =new Intent(MainActivity.this,BannerActivity.class);
                 startActivity(itx);
                 break;
             default:
