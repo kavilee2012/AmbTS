@@ -17,6 +17,36 @@ public class User {
     public String Password;
     @SerializedName("Mobile")
     public String Mobile;
+    @SerializedName("Sex")
+    public boolean Sex;
+    @SerializedName("PhotoUrl")
+    public String PhotoUrl;
+    @SerializedName("SbuID")
+    public int SbuID;
+
+    public int getSbuID() {
+        return SbuID;
+    }
+
+    public void setSbuID(int sbuID) {
+        SbuID = sbuID;
+    }
+
+    public String getPhotoUrl() {
+        return PhotoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        PhotoUrl = photoUrl;
+    }
+
+    public boolean isSex() {
+        return Sex;
+    }
+
+    public void setSex(boolean sex) {
+        Sex = sex;
+    }
 
     public int getID() {
         return ID;

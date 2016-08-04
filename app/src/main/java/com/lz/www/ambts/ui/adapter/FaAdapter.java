@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.BigSorts;
 import com.lz.www.ambts.model.SubSorts;
+import com.lz.www.ambts.model.bean.Report;
 
 import java.util.ArrayList;
 
@@ -18,11 +19,11 @@ import java.util.ArrayList;
  * Created by Administrator on 2016-06-06.
  */
 public class FaAdapter extends BaseExpandableListAdapter {
-    private ArrayList<BigSorts> groupList;
-    private ArrayList<ArrayList<SubSorts>> itemList;
+    private ArrayList<Report> groupList;
+    private ArrayList<ArrayList<Report>> itemList;
     private Context mContext;
 
-    public FaAdapter(ArrayList<BigSorts> gData, ArrayList<ArrayList<SubSorts>> iData, Context mContext) {
+    public FaAdapter(ArrayList<Report> gData, ArrayList<ArrayList<Report>> iData, Context mContext) {
         this.groupList = gData;
         this.itemList = iData;
         this.mContext = mContext;
