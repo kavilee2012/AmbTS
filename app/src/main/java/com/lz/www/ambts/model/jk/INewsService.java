@@ -18,4 +18,6 @@ public interface INewsService {
     Call<MyResponse> getList();
 
 
+
+
 }

@@ -25,12 +25,11 @@ public class AppApplication extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-//        //创建默认的ImageLoader配置参数
-//        ImageLoaderConfiguration configuration = ImageLoaderConfiguration
-//                .createDefault(this);
-//
-//        //Initialize ImageLoader with configuration.
-//        ImageLoader.getInstance().init(configuration);
+        //创建默认的ImageLoader配置参数
+        ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
+
+        //Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(configuration);
 
     }
 
