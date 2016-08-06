@@ -120,7 +120,7 @@ public class BannerActivity extends AppCompatActivity {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mImageLoader.displayImage("drawable://" + R.drawable.mn2
+                mImageLoader.displayImage("drawable://" + R.drawable.mn4
                         ,imgTest
                         );
             }
@@ -172,12 +172,7 @@ public class BannerActivity extends AppCompatActivity {
 //        tv_date = (TextView) findViewById(R.id.tv_date);
 //        tv_title = (TextView) findViewById(R.id.tv_title);
 //        tv_topic_from = (TextView) findViewById(R.id.tv_topic_from);
-//        tv_topic = (TextView) findViewById(R.id.tv_topic);
-
-//        adViewPager = (ViewPager) findViewById(R.id.vp);
-        adViewPager.setAdapter(new MyAdapter());// 设置填充ViewPager页面的适配器
-        // 设置一个监听器，当ViewPager中的页面改变时调用
-        adViewPager.setOnPageChangeListener(new MyPageChangeListener());
+//        tv_topic = (TextView) findViewById(R.id.tv_topic)
 
         // 动态添加图片和下面指示的圆点
         // 初始化图片资源
@@ -185,11 +180,19 @@ public class BannerActivity extends AppCompatActivity {
             ImageView imageView = new ImageView(this);
             // 异步加载图片
             mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView, options);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+           // imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageViews.add(imageView);
             dots.get(i).setVisibility(View.VISIBLE);
             dotList.add(dots.get(i));
         }
+
+
+//        adViewPager = (ViewPager) findViewById(R.id.vp);
+        adViewPager.setAdapter(new MyAdapter());// 设置填充ViewPager页面的适配器
+        // 设置一个监听器，当ViewPager中的页面改变时调用
+        adViewPager.setOnPageChangeListener(new MyPageChangeListener());
+
+
     }
 
 //    private void addDynamicView() {
@@ -249,8 +252,7 @@ public class BannerActivity extends AppCompatActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView iv = imageViews.get(position);
-            //((ViewPager) container).addView(iv);
-            container.addView(iv);
+            ((ViewPager) container).addView(iv);
 
 //            final AdDomain adDomain = adList.get(position);
 //            // 在这个方法里面设置图片的点击事件
