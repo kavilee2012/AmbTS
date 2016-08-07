@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lz.www.ambts.R;
+import com.lz.www.ambts.model.bean.AdDomain;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -29,30 +29,47 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
+
 /**
  * Created by Administrator on 2016/8/6.
  */
-public class ActivityLunBo extends AppCompatActivity {
+public class LunBoActivity extends AppCompatActivity {
 
     public static String IMAGE_CACHE_PATH = "imageloader/Cache"; // 图片缓存路径
 
-    private ViewPager adViewPager;
+    @InjectView(R.id.vpLunBo)
+    ViewPager adViewPager;
+    @InjectView(R.id.tv_date)
+    TextView tv_date;
+    @InjectView(R.id.tv_title)
+    TextView tv_title;
+    @InjectView(R.id.tv_topic_from)
+    TextView tv_topic_from;
+    @InjectView(R.id.tv_topic)
+    TextView tv_topic;
+
+
     private List<ImageView> imageViews;// 滑动的图片集合
 
     private List<View> dots; // 图片标题正文的那些点
     private List<View> dotList;
 
-    private TextView tv_date;
-    private TextView tv_title;
-    private TextView tv_topic_from;
-    private TextView tv_topic;
-    private int currentItem = 0; // 当前图片的索引号
+
+    int currentItem = 0; // 当前图片的索引号
     // 定义的五个指示点
-    private View dot0;
-    private View dot1;
-    private View dot2;
-    private View dot3;
-    private View dot4;
+    @InjectView(R.id.v_dot0)
+    View dot0;
+    @InjectView(R.id.v_dot1)
+    View dot1;
+    @InjectView(R.id.v_dot2)
+    View dot2;
+    @InjectView(R.id.v_dot3)
+    View dot3;
+    @InjectView(R.id.v_dot4)
+    View dot4;
 
     private ScheduledExecutorService scheduledExecutorService;
 
@@ -72,7 +89,10 @@ public class ActivityLunBo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.layout_lunbo);
+
+        ButterKnife.inject(this);
+
         // 使用ImageLoader之前初始化
         initImageLoader();
 
@@ -120,23 +140,14 @@ public class ActivityLunBo extends AppCompatActivity {
         // 点
         dots = new ArrayList<View>();
         dotList = new ArrayList<View>();
-        dot0 = findViewById(R.id.v_dot0);
-        dot1 = findViewById(R.id.v_dot1);
-        dot2 = findViewById(R.id.v_dot2);
-        dot3 = findViewById(R.id.v_dot3);
-        dot4 = findViewById(R.id.v_dot4);
+
         dots.add(dot0);
         dots.add(dot1);
         dots.add(dot2);
         dots.add(dot3);
         dots.add(dot4);
 
-        tv_date = (TextView) findViewById(R.id.tv_date);
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_topic_from = (TextView) findViewById(R.id.tv_topic_from);
-        tv_topic = (TextView) findViewById(R.id.tv_topic);
 
-        adViewPager = (ViewPager) findViewById(R.id.vp);
         adViewPager.setAdapter(new MyAdapter());// 设置填充ViewPager页面的适配器
         // 设置一个监听器，当ViewPager中的页面改变时调用
         adViewPager.setOnPageChangeListener(new MyPageChangeListener());
