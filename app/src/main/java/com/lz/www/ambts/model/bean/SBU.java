@@ -1,16 +1,26 @@
 package com.lz.www.ambts.model.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Administrator on 2016-08-03.
  */
 public class SBU {
+    @SerializedName("ID")
     int id;
+    @SerializedName("FatherID")
     int fatherId;
+    @SerializedName("Level")
     int level;
+    @SerializedName("Order")
     int order;
+    @SerializedName("Name")
     String name;
+    @SerializedName("Remark")
     String remark;
+    @SerializedName("Header")
     String header;
+    @SerializedName("MemberCount")
     int memberCount;
 
     public int getId() {

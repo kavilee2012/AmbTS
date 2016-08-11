@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<MyResponse> call, retrofit2.Response<MyResponse> response) {
                         if(response.isSuccess()){
-                            List<News> users=response.body().getData();
+                            Object obj=response.body().getData();
+                            List<News> users=(List<News>) obj;
                             Toast.makeText(MainActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
                             tvTest.setText(response.body().getMsg().toString());
                         }else {
