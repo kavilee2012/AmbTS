@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/29.
  */
-public class MyResponse {
+public class MyResponse<T> {
 
     @SerializedName("code")
     private String Code;
@@ -17,7 +17,7 @@ public class MyResponse {
     @SerializedName("count")
     private String Count;
     @SerializedName("data")
-    private List<News> List;
+    private T List;
 
     public String getCode() {
         return Code;
@@ -43,11 +43,11 @@ public class MyResponse {
         Count = count;
     }
 
-    public List<News> getData() {
+    public T getData() {
         return List;
     }
 
-    public void setData(List<News> data) {
+    public void setData(T data) {
         this.List = data;
     }
 }
