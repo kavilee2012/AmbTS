@@ -7,4 +7,93 @@
         <item>生产A巴</item>
         <item>生产B巴</item>
     </string-array>
+
+    <string-array name="photo">
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383299_1976.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383291_6518.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383291_8239.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383290_9329.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383290_1042.jpg"</item>
+        <item> "http://img.my.csdn.net/uploads/201407/26/1406383275_3977.jpg</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383265_8550.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383264_3954.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383264_4787.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383264_8243.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383248_3693.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383243_5120.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383242_3127.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383242_9576.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383242_1721.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383219_5806.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383214_7794.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383213_4418.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383213_3557.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383210_8779.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383172_4577.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383166_3407.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383166_2224.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383166_7301.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383165_7197.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383150_8410.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383131_3736.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383130_5094.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383130_7393.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383129_8813.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383100_3554.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383093_7894.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383092_2432.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383092_3071.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383091_3119.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383059_6589.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383059_8814.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383059_2237.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383058_4330.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406383038_3602.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382942_3079.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382942_8125.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382942_4881.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382941_4559.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382941_3845.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382924_8955.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382923_2141.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382923_8437.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382922_6166.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382922_4843.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382905_5804.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382904_3362.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382904_2312.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382904_4960.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382900_2418.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382881_4490.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382881_5935.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382880_3865.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382880_4662.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382879_2553.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382862_5375.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382862_1748.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382861_7618.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382861_8606.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382861_8949.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382841_9821.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382840_6603.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382840_2405.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382840_6354.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382839_5779.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382810_7578.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382810_2436.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382809_3883.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382809_6269.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382808_4179.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382790_8326.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382789_7174.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382789_5170.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382789_4118.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382788_9532.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382767_3184.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382767_4772.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382766_4924.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382766_5762.jpg"</item>
+        <item>"http://img.my.csdn.net/uploads/201407/26/1406382765_7341.jpg"</item>
+    </string-array>
+
 </resources>

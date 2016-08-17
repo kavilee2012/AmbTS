@@ -16,6 +16,7 @@ import com.lz.www.ambts.R;
 import com.lz.www.ambts.ui.AmbLogActivity;
 import com.lz.www.ambts.ui.AnimationActivity;
 import com.lz.www.ambts.ui.ContractsActivity;
+import com.lz.www.ambts.ui.EmployeePhotoActivity;
 import com.lz.www.ambts.ui.PhotoActivity;
 import com.lz.www.ambts.ui.ScheduleActivity;
 import com.lz.www.ambts.ui.ShakeActivity;
@@ -77,7 +78,7 @@ public class ShuFragment extends Fragment {
                         startActivity(it2);
                         break;
                     case 3:
-                        Intent it3=new Intent(getActivity(),PhotoActivity.class);
+                        Intent it3=new Intent(getActivity(),EmployeePhotoActivity.class);
                         startActivity(it3);
                         break;
                     case 4:
