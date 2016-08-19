@@ -1,6 +1,8 @@
 package com.lz.www.ambts.ui.fragment;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,6 +43,9 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
     public NewsAdapter mAdapter = null;
 
+    private LunboFragment fragment;
+    private FragmentManager fm;
+
     public DaoFragment() {
     }
 
@@ -53,14 +58,21 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dao, container, false);
-
         ButterKnife.inject(this,view);
+
+        showTopImages();//显示轮播图片
 
         DaggerNewsComponent.builder()
                 .newsModule(new NewsModule(this))
                 .build()
                 .inject(this);
 
+        InitListData(); //初始化数据，测试用
+
+        return view;
+    }
+
+    private void InitListData() {
         List<News> mNewsList = new ArrayList<>();
         mNewsList.add(new News(1, "B1", "this is b1"));
         mNewsList.add(new News(2, "B2", "this is b2"));
@@ -70,8 +82,6 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
         mAdapter = new NewsAdapter(mNewsList, getActivity());
         lvNews.setAdapter(mAdapter);
         lvNews.setOnItemClickListener(this);
-
-        return view;
     }
 
     @Override
@@ -92,7 +102,10 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
     @Override
     public void showTopImages() {
-
+        fm=getFragmentManager();
+        fragment=new LunboFragment();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.lunboContainer,fragment).commit();
     }
 
     @Override

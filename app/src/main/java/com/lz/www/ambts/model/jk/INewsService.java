@@ -13,10 +13,10 @@ import retrofit2.http.Path;
 public interface INewsService {
 
     @GET("news/getOne/?id={id}")
-    Call<MyResponse<News>> getOne(@Path("id") int id);
+    Call<MyResponse> getOne(@Path("id") int id);
 
     @GET("news/getlist")
-    Call<MyResponse<News>> getList();
+    Call<MyResponse> getList();
 
 
 

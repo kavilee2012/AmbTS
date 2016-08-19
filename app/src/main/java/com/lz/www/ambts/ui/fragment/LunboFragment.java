@@ -1,12 +1,14 @@
-package com.lz.www.ambts.ui;
+package com.lz.www.ambts.ui.fragment;
 
+import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -32,11 +34,10 @@ import java.util.concurrent.TimeUnit;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-
 /**
- * Created by Administrator on 2016/8/6.
+ * Created by Administrator on 2016-08-19.
  */
-public class LunBoActivity extends AppCompatActivity {
+public class LunboFragment extends Fragment {
 
     public static String IMAGE_CACHE_PATH = "imageloader/Cache"; // 图片缓存路径
 
@@ -50,14 +51,6 @@ public class LunBoActivity extends AppCompatActivity {
     TextView tv_topic_from;
     @InjectView(R.id.tv_topic)
     TextView tv_topic;
-
-
-    private List<ImageView> imageViews;// 滑动的图片集合
-    private List<View> dots; // 图片标题正文的那些点
-    private List<View> dotList;
-
-
-    int currentItem = 0; // 当前图片的索引号
     // 定义的五个指示点
     @InjectView(R.id.v_dot0)
     View dot0;
@@ -70,31 +63,29 @@ public class LunBoActivity extends AppCompatActivity {
     @InjectView(R.id.v_dot4)
     View dot4;
 
-    private ScheduledExecutorService scheduledExecutorService;
+    private List<ImageView> imageViews;// 滑动的图片集合
+    private List<View> dots; // 图片标题正文的那些点
+    private List<View> dotList;
+    int currentItem = 0; // 当前图片的索引号
+    private ScheduledExecutorService scheduledExecutorService;//定时服务
+    private ImageLoader mImageLoader;    // 异步加载图片
+    private DisplayImageOptions options;  // 异步加载图片参数
+    private List<AdDomain> adList;    // 轮播banner的数据
 
-    // 异步加载图片
-    private ImageLoader mImageLoader;
-    private DisplayImageOptions options;
-
-    // 轮播banner的数据
-    private List<AdDomain> adList;
-
-    private Handler handler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            adViewPager.setCurrentItem(currentItem);
-        };
-    };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_lunbo);
 
-        ButterKnife.inject(this);
+    }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.layout_lunbo, container,false);
+        ButterKnife.inject(this,view);
         // 使用ImageLoader之前初始化
         initImageLoader();
-
         // 获取图片加载实例
         mImageLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder()
@@ -106,15 +97,22 @@ public class LunBoActivity extends AppCompatActivity {
                 .imageScaleType(ImageScaleType.EXACTLY).build();
 
         initAdData();
-
         startAd();
+        return view;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        // 当Activity不可见的时候停止切换
+        scheduledExecutorService.shutdown();
     }
 
     private void initImageLoader() {
-        File cacheDir = com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory(getApplicationContext(),IMAGE_CACHE_PATH);
+        File cacheDir = com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory(getActivity().getApplicationContext(),IMAGE_CACHE_PATH);
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).build();
 
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getActivity())
                 .defaultDisplayImageOptions(defaultOptions)
                 .memoryCache(new LruMemoryCache(12 * 1024 * 1024))
                 .memoryCacheSize(12 * 1024 * 1024)
@@ -150,7 +148,7 @@ public class LunBoActivity extends AppCompatActivity {
         // 动态添加图片和下面指示的圆点
         // 初始化图片资源
         for (int i = 0; i < adList.size(); i++) {
-            ImageView imageView = new ImageView(this);
+            ImageView imageView = new ImageView(getActivity());
             // 异步加载图片
             mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView,options);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -160,17 +158,21 @@ public class LunBoActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     private void startAd() {
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         // 当Activity显示出来后，每两秒切换一次图片显示
-        scheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 2,TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 2, TimeUnit.SECONDS);
     }
 
+
+    //循环轮播主线程处理
+    private Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            adViewPager.setCurrentItem(currentItem);
+        };
+    };
+
+    //循环轮播
     private class ScrollTask implements Runnable {
         @Override
         public void run() {
@@ -179,13 +181,6 @@ public class LunBoActivity extends AppCompatActivity {
                 handler.obtainMessage().sendToTarget();
             }
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // 当Activity不可见的时候停止切换
-        scheduledExecutorService.shutdown();
     }
 
     private class MyPageChangeListener implements ViewPager.OnPageChangeListener {

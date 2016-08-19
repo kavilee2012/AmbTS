@@ -42,13 +42,14 @@ public class NewsPresenter implements INewsPresenter {
 
     @Override
     public void loadNewsList() {
-         Call<MyResponse<News>> call = mNewsService.getList();
-         call.enqueue(new Callback<MyResponse<News>>() {
+         Call<MyResponse> call = mNewsService.getList();
+         call.enqueue(new Callback<MyResponse>() {
              @Override
-             public void onResponse(Call<MyResponse<News>> call, Response<MyResponse<News>> response) {
+             public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                  if (response.isSuccess()) {
-                     List<News> news = (List<News>)response.body().getData();
-//                     List<News> news = (List<News>) obj;
+                     Object obj=response.body().getData();
+                    // List<News> news = (List<News>)response.body().getData();
+                     List<News> news = (List<News>) obj;
                      mNewsView.showNewsList(news);
                  } else {
                      mNewsView.showLoadingError("http fail");
@@ -56,7 +57,7 @@ public class NewsPresenter implements INewsPresenter {
              }
 
              @Override
-             public void onFailure(Call<MyResponse<News>> call, Throwable t) {
+             public void onFailure(Call<MyResponse> call, Throwable t) {
                  mNewsView.showLoadingError("http error");
              }
          });
