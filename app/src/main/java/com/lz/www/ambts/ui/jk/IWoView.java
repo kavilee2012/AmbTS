@@ -7,9 +7,11 @@ import com.lz.www.ambts.model.bean.User;
  */
 public interface IWoView {
 
-    void showUserInfo(User user);
+    void showLoginView(User user);
 
-    void turnHeadPhoto();
+    void showNoLoginView();
+
+    void openSetHeadPhoto();
 
     void openSetUserName();
 

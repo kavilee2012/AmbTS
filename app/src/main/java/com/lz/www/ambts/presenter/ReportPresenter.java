@@ -2,12 +2,20 @@ package com.lz.www.ambts.presenter;
 
 import com.lz.www.ambts.model.BigSorts;
 import com.lz.www.ambts.model.SubSorts;
+import com.lz.www.ambts.model.bean.Fa;
+import com.lz.www.ambts.model.bean.MyResponse;
+import com.lz.www.ambts.model.bean.News;
 import com.lz.www.ambts.model.bean.Report;
 import com.lz.www.ambts.model.jk.IReportService;
 import com.lz.www.ambts.presenter.jk.IReportPresenter;
 import com.lz.www.ambts.ui.jk.IReportView;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Administrator on 2016-08-03.
@@ -17,17 +25,54 @@ public class ReportPresenter implements IReportPresenter {
     IReportView mView;
     IReportService mModel;
 
-    public ReportPresenter(IReportView mView) {
-        this.mView = mView;
-        this.mModel = mModel;
+    public ReportPresenter(IReportView view,IReportService model) {
+        this.mView = view;
+        this.mModel = model;
     }
 
     @Override
     public void loadAllList() {
-        ArrayList<Report> allList = null;
-        ArrayList<Report> groupList = null;
-        ArrayList<ArrayList<Report>> subListList = null;
-        ArrayList<Report> subList = null;
+      final ArrayList<Fa> groupList = new ArrayList<Fa>();
+      final ArrayList<ArrayList<Fa>> itemList = new ArrayList<ArrayList<Fa>>();
+
+        Call<MyResponse<List<Report>>> call = mModel.getAllList();
+        call.enqueue(new Callback<MyResponse<List<Report>>>() {
+            @Override
+            public void onResponse(Call<MyResponse<List<Report>>> call, Response<MyResponse<List<Report>>> response) {
+                if (response.isSuccess()) {
+                    ArrayList<Report> allList = (ArrayList<Report>)response.body().getData();
+                    for(Report r : allList){
+                        if(r.getLevel()==0){
+                            groupList.add(r);
+                        }
+                    }
+                    for (Fa g : groupList){
+                        ArrayList<Fa> subList = new ArrayList<Fa>();
+                        for (Report r : allList){
+                            if(r.getFatherCode().equals(g.getCode())){
+                                subList.add(r);
+                            }
+                        }
+                        itemList.add(subList);
+                    }
+                    mView.showAllList(groupList,itemList);
+                } else {
+                   mView.showLoadError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse<List<Report>>> call, Throwable t) {
+                mView.showLoadError();
+            }
+        });
+
+
+
+
+
+
+
 //
 //        //数据准备
 //        groupList = new ArrayList<Report>();
@@ -58,10 +103,9 @@ public class ReportPresenter implements IReportPresenter {
 //        subList.add(new SubSorts("002","节约利润"));
 //        subList.add(new SubSorts("003","固定资产"));
 //        subListList.add(subList);
-        allList=mModel.getAllList();
 
 
-        mView.showAllList(groupList,subListList);
+
     }
 
     @Override

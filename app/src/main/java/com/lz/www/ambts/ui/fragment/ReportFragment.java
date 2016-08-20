@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.BigSorts;
 import com.lz.www.ambts.model.SubSorts;
+import com.lz.www.ambts.model.bean.Fa;
 import com.lz.www.ambts.model.bean.Report;
 import com.lz.www.ambts.presenter.jk.IReportPresenter;
 import com.lz.www.ambts.ui.adapter.FaAdapter;
@@ -44,7 +45,8 @@ public class ReportFragment extends Fragment implements IReportView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_fa_report,container,false);
 
-        ButterKnife.inject(getActivity());
+        ButterKnife.inject(this,view);
+
         DaggerReportComponent.builder()
                 .reportModule(new ReportModule(this))
                 .build()
@@ -52,22 +54,24 @@ public class ReportFragment extends Fragment implements IReportView {
 
         mPresenter.start();
 
-        elvFa.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-//                Toast.makeText(getActivity(), "你点击了：" + subListList.get(i).get(i1).getName(), Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
+//        elvFa.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+//            @Override
+//            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+////                Toast.makeText(getActivity(), "你点击了：" + subListList.get(i).get(i1).getName(), Toast.LENGTH_SHORT).show();
+//                return true;
+//            }
+//        });
         return view;
     }
 
     @Override
-    public void showAllList(ArrayList<Report> groupList, ArrayList<ArrayList<Report>> subList) {
+    public void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList) {
         FaAdapter faAdapter=new FaAdapter(groupList,subList,getActivity());
         elvFa.setAdapter(faAdapter);
     }
 
-
-
+    @Override
+    public void showLoadError() {
+        Toast.makeText(getActivity(), "加载错误", Toast.LENGTH_SHORT).show();
+    }
 }

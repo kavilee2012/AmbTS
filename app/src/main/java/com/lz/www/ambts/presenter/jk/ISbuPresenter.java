@@ -6,5 +6,4 @@ package com.lz.www.ambts.presenter.jk;
 public interface ISbuPresenter extends IBasePresenter {
     void loadAllList();
 
-    void loadMemberInfo();
 }

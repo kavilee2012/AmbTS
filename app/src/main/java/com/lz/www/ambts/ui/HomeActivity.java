@@ -15,7 +15,7 @@ import com.lz.www.ambts.ui.fragment.LunboFragment;
 import com.lz.www.ambts.ui.fragment.ShuFragment;
 import com.lz.www.ambts.ui.fragment.WoFragment;
 
-public class HomeActivity extends Activity implements RadioGroup.OnCheckedChangeListener{
+public class HomeActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
     private DaoFragment fg1;
     private FaFragment fg2;

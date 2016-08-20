@@ -1,8 +1,11 @@
 package com.lz.www.ambts.ui.jk;
 
+import com.lz.www.ambts.model.bean.Fa;
+import com.lz.www.ambts.model.bean.Report;
 import com.lz.www.ambts.model.bean.SBU;
 import com.lz.www.ambts.model.bean.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +13,7 @@ import java.util.List;
  */
 public interface ISbuView {
 
-    void showSbuList(List<SBU> groupList,List<User> subList);
+    void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList);
 
-    void showMemberInfo(int id);
+    void showLoadError();
 }

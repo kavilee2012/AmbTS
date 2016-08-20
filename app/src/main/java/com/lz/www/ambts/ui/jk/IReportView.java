@@ -1,5 +1,6 @@
 package com.lz.www.ambts.ui.jk;
 
+import com.lz.www.ambts.model.bean.Fa;
 import com.lz.www.ambts.model.bean.Report;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.List;
  */
 public interface IReportView {
 
-    void showAllList(ArrayList<Report> groupList,ArrayList<ArrayList<Report>> subList);
+    void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList);
+
+    void showLoadError();
 
 }
