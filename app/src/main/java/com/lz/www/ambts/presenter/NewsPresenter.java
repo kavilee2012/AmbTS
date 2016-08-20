@@ -23,7 +23,6 @@ import retrofit2.Response;
 public class NewsPresenter implements INewsPresenter {
 
     INewsView mNewsView;
-//    INewsModel mNewsModel;
     INewsService mNewsService;
     public NewsPresenter(INewsView newsView,INewsService newsService) {
         mNewsView=newsView;
@@ -42,13 +41,14 @@ public class NewsPresenter implements INewsPresenter {
 
     @Override
     public void loadNewsList() {
-         Call<MyResponse<News>> call = mNewsService.getList();
-         call.enqueue(new Callback<MyResponse<News>>() {
+         Call<MyResponse<List<News>>> call = mNewsService.getList();
+         call.enqueue(new Callback<MyResponse<List<News>>>() {
              @Override
-             public void onResponse(Call<MyResponse<News>> call, Response<MyResponse<News>> response) {
+             public void onResponse(Call<MyResponse<List<News>>> call, Response<MyResponse<List<News>>> response) {
                  if (response.isSuccess()) {
+                     Object obj=response.body().getData();
                      List<News> news = (List<News>)response.body().getData();
-//                     List<News> news = (List<News>) obj;
+                   //  List<News> news = (List<News>) obj;
                      mNewsView.showNewsList(news);
                  } else {
                      mNewsView.showLoadingError("http fail");
@@ -56,7 +56,7 @@ public class NewsPresenter implements INewsPresenter {
              }
 
              @Override
-             public void onFailure(Call<MyResponse<News>> call, Throwable t) {
+             public void onFailure(Call<MyResponse<List<News>>> call, Throwable t) {
                  mNewsView.showLoadingError("http error");
              }
          });

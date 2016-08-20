@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.lz.www.ambts.R;
+import com.lz.www.ambts.model.bean.Fa;
 import com.lz.www.ambts.model.bean.SBU;
 import com.lz.www.ambts.model.bean.User;
 import com.lz.www.ambts.presenter.jk.ISbuPresenter;
@@ -21,6 +22,7 @@ import com.lz.www.ambts.ui.jk.ISbuView;
 import com.lz.www.ambts.ui.module.ReportModule;
 import com.lz.www.ambts.ui.module.SbuModule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +39,7 @@ public class SbuFragment extends Fragment implements ISbuView {
     @Inject
     ISbuPresenter mPresenter;
 
-    @InjectView(R.id.elvFa)
+    @InjectView(R.id.elvFaSBU)
     ExpandableListView elvFa;
 
 
@@ -46,7 +48,7 @@ public class SbuFragment extends Fragment implements ISbuView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_fa_sbu,container,false);
 
-        ButterKnife.inject(getActivity());
+        ButterKnife.inject(this,view);
 
         DaggerSbuComponent.builder()
                 .sbuModule(new SbuModule(this))
@@ -59,7 +61,7 @@ public class SbuFragment extends Fragment implements ISbuView {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
 //                Toast.makeText(getActivity(), "你点击了：" + subListList.get(i).get(i1).getName(), Toast.LENGTH_SHORT).show();
-                showMemberInfo(1);
+
                 return true;
             }
         });
@@ -67,17 +69,13 @@ public class SbuFragment extends Fragment implements ISbuView {
     }
 
     @Override
-    public void showSbuList(List<SBU> groupList, List<User> subList) {
-//        FaAdapter faAdapter=new FaAdapter(groupList,subList,getActivity());
-//        elvFa.setAdapter(faAdapter);
+    public void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList) {
+        FaAdapter faAdapter=new FaAdapter(groupList,subList,getActivity());
+        elvFa.setAdapter(faAdapter);
     }
 
     @Override
-    public void showMemberInfo(int id) {
-        new AlertDialog.Builder(getActivity())
-                .setTitle("用户详细")
-                .setMessage("........")
-                .setPositiveButton("关闭",null)
-                .show();
+    public void showLoadError() {
+
     }
 }

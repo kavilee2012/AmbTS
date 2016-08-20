@@ -5,17 +5,19 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Administrator on 2016-08-03.
  */
-public class SBU {
+public class SBU extends Fa {
     @SerializedName("ID")
     int id;
-    @SerializedName("FatherID")
-    int fatherId;
+//    @SerializedName("Code")
+//    String code;
+    @SerializedName("FatherCode")
+    String fatherCode;
     @SerializedName("Level")
     int level;
     @SerializedName("Order")
     int order;
-    @SerializedName("Name")
-    String name;
+//    @SerializedName("Name")
+//    String name;
     @SerializedName("Remark")
     String remark;
     @SerializedName("Header")
@@ -31,12 +33,20 @@ public class SBU {
         this.id = id;
     }
 
-    public int getFatherId() {
-        return fatherId;
+//    public String getCode() {
+//        return code;
+//    }
+//
+//    public void setCode(String code) {
+//        this.code = code;
+//    }
+
+    public String getFatherCode() {
+        return fatherCode;
     }
 
-    public void setFatherId(int fatherId) {
-        this.fatherId = fatherId;
+    public void setFatherCode(String fatherCode) {
+        this.fatherCode = fatherCode;
     }
 
     public int getLevel() {
@@ -56,13 +66,13 @@ public class SBU {
         this.order = order;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public String getRemark() {
         return remark;
