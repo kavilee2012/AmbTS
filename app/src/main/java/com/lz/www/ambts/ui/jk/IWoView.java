@@ -19,6 +19,8 @@ public interface IWoView {
 
     void openSetPassword();
 
+    void openSetSex();
+
     void showSuccess(int type,String msg);
 
     void showFail(int type,String msg);
