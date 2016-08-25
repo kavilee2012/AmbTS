@@ -1,5 +1,7 @@
 package com.lz.www.ambts.ui.module;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.lz.www.ambts.model.jk.ISbuService;
 import com.lz.www.ambts.model.jk.IUserService;
 import com.lz.www.ambts.model.jk.IWoService;
@@ -35,9 +37,13 @@ public class WoModule {
 
     @Provides
     IUserService provideModel(){
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .create();
+
         return  new Retrofit.Builder()
                 .baseUrl(Config.AMB_API)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
                 .create(IUserService.class);
     }

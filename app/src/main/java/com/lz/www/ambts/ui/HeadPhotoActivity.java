@@ -38,7 +38,7 @@ import butterknife.OnClick;
  */
 public class HeadPhotoActivity extends Activity {
 
-    final String IMG_NAME="my_head";
+    final String IMG_NAME="my_head.jpg";
     final String SAVE_PATH=Environment.getExternalStorageDirectory() + "/" +IMG_NAME; //拍照后保存路径
     String SERVER_URL = Config.PhotoAPI + "/UploadImage";//上传的服务端API地址
     Handler handler;
@@ -99,6 +99,7 @@ public class HeadPhotoActivity extends Activity {
                         Photo photo=new Photo();
                         photo.setSort("head");
                         photo.setImgInfo("这是头像");
+                        photo.setAddUser(Config.LoginUser.getUserCode());
 
                         File file = new File(SAVE_PATH);
                         Message msg = new Message();

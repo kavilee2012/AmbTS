@@ -57,14 +57,29 @@ public class ImageUtils {
     public static int uploadImage(Photo photo, File uploadFile, String serverUrl) throws IOException {
         int re=0;
 
-        //POST参数
-        String paramStr="sort=" + URLEncoder.encode(photo.getSort(),"UTF-8")
-                       +"&info=" + URLEncoder.encode(photo.getImgInfo(),"UTF-8")
-                       +"&user=" + URLEncoder.encode(Config.LoginUser.getUserCode(),"UTF-8");
+//        //POST参数
+//        String paramStr="sort=" + URLEncoder.encode(photo.getSort(),"UTF-8")
+//                       +"&info=" + URLEncoder.encode(photo.getImgInfo(),"UTF-8")
+//                       +"&user=" + URLEncoder.encode(photo.getAddUser(),"UTF-8");
 
         String fileName = uploadFile.getName();
 
         StringBuilder sb = new StringBuilder();
+        sb.append("--" + BOUNDARY + "\r\n");
+        sb.append("Content-Disposition: form-data; name=\"sort\"" + "\r\n");
+        sb.append("\r\n");
+        sb.append(photo.getSort() + "\r\n");
+
+        sb.append("--" + BOUNDARY + "\r\n");
+        sb.append("Content-Disposition: form-data; name=\"info\"" + "\r\n");
+        sb.append("\r\n");
+        sb.append(photo.getImgInfo() + "\r\n");
+
+        sb.append("--" + BOUNDARY + "\r\n");
+        sb.append("Content-Disposition: form-data; name=\"user\"" + "\r\n");
+        sb.append("\r\n");
+        sb.append(photo.getAddUser() + "\r\n");
+
         sb.append("--" + BOUNDARY + "\r\n");
         sb.append("Content-Disposition: form-data; name=\"" + fileName + "\"; filename=\"" + fileName + "\"" + "\r\n");
         sb.append("Content-Type: image/jpeg" + "\r\n");
@@ -77,12 +92,12 @@ public class ImageUtils {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type","multipart/form-data; boundary=" + BOUNDARY);
-        conn.setRequestProperty("Content-Length", String.valueOf(headerInfo.length + uploadFile.length() + endInfo.length + paramStr.getBytes().length));
+        conn.setRequestProperty("Content-Length", String.valueOf(headerInfo.length + uploadFile.length() + endInfo.length));
         conn.setDoOutput(true);
 
         OutputStream out = conn.getOutputStream();
 
-        out.write(paramStr.getBytes()); //写入参数
+       // out.write(paramStr.getBytes()); //写入参数
 
         InputStream in = new FileInputStream(uploadFile);
         out.write(headerInfo);
