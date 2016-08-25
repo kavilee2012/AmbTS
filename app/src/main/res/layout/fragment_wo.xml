@@ -32,7 +32,6 @@
             android:layout_centerVertical="true"
             android:drawableRight="@drawable/right"/>
 
-
     </RelativeLayout>
 
     <TextView
@@ -40,39 +39,39 @@
         android:layout_height="2dp"
         android:background="#FF0000"/>
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tvB1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/b1"
-            android:text="二维码名片"
-            android:gravity="center"/>
+    <!--<LinearLayout-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+            <!--android:id="@+id/tvB1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:drawableTop="@drawable/b1"-->
+            <!--android:text="二维码名片"-->
+            <!--android:gravity="center"/>-->
 
-        <TextView
-            android:id="@+id/tvB2"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/b2"
-            android:text="扫一扫"
-            android:gravity="center"/>
+        <!--<TextView-->
+            <!--android:id="@+id/tvB2"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:drawableTop="@drawable/b2"-->
+            <!--android:text="扫一扫"-->
+            <!--android:gravity="center"/>-->
 
-        <TextView
-            android:id="@+id/tvB3"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/b3"
-            android:text="我要建议"
-            android:gravity="center"/>
+        <!--<TextView-->
+            <!--android:id="@+id/tvB3"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:drawableTop="@drawable/b3"-->
+            <!--android:text="我要建议"-->
+            <!--android:gravity="center"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <TextView
         android:id="@+id/tvLine1"

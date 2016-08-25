@@ -4,6 +4,7 @@ import com.lz.www.ambts.model.bean.User;
 import com.lz.www.ambts.model.jk.IUserService;
 import com.lz.www.ambts.presenter.jk.IUserInfoPresenter;
 import com.lz.www.ambts.ui.jk.IUserInfoView;
+import com.lz.www.ambts.util.Config;
 
 /**
  * Created by Administrator on 2016-08-03.
@@ -18,7 +19,7 @@ public class UserInfoPresenter implements IUserInfoPresenter {
 
     @Override
     public void loadUserInfo(int id) {
-         mModel.getOne(String.valueOf(id));
+         mModel.getOne( Config.AMB_TOKEN);
     }
 
     @Override

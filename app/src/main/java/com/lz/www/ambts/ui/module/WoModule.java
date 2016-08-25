@@ -1,6 +1,7 @@
 package com.lz.www.ambts.ui.module;
 
 import com.lz.www.ambts.model.jk.ISbuService;
+import com.lz.www.ambts.model.jk.IUserService;
 import com.lz.www.ambts.model.jk.IWoService;
 import com.lz.www.ambts.presenter.SbuPresenter;
 import com.lz.www.ambts.presenter.WoPresenter;
@@ -33,16 +34,16 @@ public class WoModule {
     }
 
     @Provides
-    IWoService provideModel(){
+    IUserService provideModel(){
         return  new Retrofit.Builder()
                 .baseUrl(Config.AMB_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(IWoService.class);
+                .create(IUserService.class);
     }
 
     @Provides
-    IWoPresenter providePresenter(IWoView view, IWoService model){
+    IWoPresenter providePresenter(IWoView view, IUserService model){
         return new WoPresenter(view,model);
     }
 }

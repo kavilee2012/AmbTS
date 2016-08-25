@@ -2,6 +2,8 @@ package com.lz.www.ambts.model.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2016/7/31.
  */
@@ -19,34 +21,12 @@ public class User {
     public String Mobile;
     @SerializedName("Sex")
     public boolean Sex;
-    @SerializedName("PhotoID")
-    public int PhotoID;
-    @SerializedName("SbuCode")
-    public String SbuCode;
-
-    public String getSbuCode() {
-        return SbuCode;
-    }
-
-    public void setSbuCode(String sbuCode) {
-        SbuCode = sbuCode;
-    }
-
-    public int getPhotoID() {
-        return PhotoID;
-    }
-
-    public void setPhotoID(int photoID) {
-        PhotoID = photoID;
-    }
-
-    public boolean isSex() {
-        return Sex;
-    }
-
-    public void setSex(boolean sex) {
-        Sex = sex;
-    }
+    @SerializedName("BirthDay")
+    public Date BirthDay;
+    @SerializedName("Sbu")
+    public SBU Sbu;
+    @SerializedName("Photo")
+    public Photo Photo;
 
     public int getID() {
         return ID;
@@ -88,13 +68,35 @@ public class User {
         Mobile = mobile;
     }
 
-    public String getSBU() {
-        return SBU;
+    public boolean isSex() {
+        return Sex;
     }
 
-    public void setSBU(String SBU) {
-        this.SBU = SBU;
+    public void setSex(boolean sex) {
+        Sex = sex;
     }
 
-    public String SBU;
+    public Date getBirthDay() {
+        return BirthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        BirthDay = birthDay;
+    }
+
+    public SBU getSbu() {
+        return Sbu;
+    }
+
+    public void setSbu(SBU sbu) {
+        Sbu = sbu;
+    }
+
+    public com.lz.www.ambts.model.bean.Photo getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(com.lz.www.ambts.model.bean.Photo photo) {
+        Photo = photo;
+    }
 }

@@ -1,6 +1,7 @@
 package com.lz.www.ambts.ui.fragment;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
@@ -21,9 +22,11 @@ import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.User;
 import com.lz.www.ambts.presenter.jk.IWoPresenter;
 import com.lz.www.ambts.ui.HeadPhotoActivity;
+import com.lz.www.ambts.ui.LoginActivity;
 import com.lz.www.ambts.ui.component.DaggerWoComponent;
 import com.lz.www.ambts.ui.jk.IWoView;
 import com.lz.www.ambts.ui.module.WoModule;
+import com.lz.www.ambts.util.Config;
 
 import javax.inject.Inject;
 
@@ -35,9 +38,8 @@ import butterknife.OnClick;
 public class WoFragment extends Fragment implements IWoView {
 
    boolean isLogin=true;
-   User mUser=null;
    String mSelectedSex = "";
-
+   User mUser = null;
    @Inject
    IWoPresenter mPresenter;
 
@@ -45,12 +47,6 @@ public class WoFragment extends Fragment implements IWoView {
    TextView tvMeHead;
    @InjectView(R.id.ivMeLogo)
    ImageView ivMeLogo;
-   @InjectView(R.id.tvB1)
-   TextView tv2Code;
-   @InjectView(R.id.tvB2)
-   TextView tvScan;
-   @InjectView(R.id.tvB3)
-   TextView tvB3;
    @InjectView(R.id.tvLine1)
    TextView tvName;
    @InjectView(R.id.tvLine2)
@@ -94,10 +90,33 @@ public class WoFragment extends Fragment implements IWoView {
             openSetSex();
             break;
          case R.id.btnLoginOut:
-            //退出操作
-            showNoLoginView();
+            if(Config.LoginUser==null){
+               //登录
+               Intent it=new Intent(getActivity(), LoginActivity.class);
+               startActivityForResult(it,0);
+            }else {
+               //退出登录
+               mPresenter.deleteUserInfo();
+            }
             break;
       }
+   }
+
+   @Override
+   public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//      switch (requestCode){
+//         case 0:
+//            if(resultCode== Activity.RESULT_OK)
+//               mPresenter.loadUserInfo();
+//            break;
+//      }
+      super.onActivityResult(requestCode, resultCode, data);
+   }
+
+   @Override
+   public void onResume() {
+      super.onResume();
+      mPresenter.loadUserInfo();
    }
 
    @Override
@@ -110,16 +129,34 @@ public class WoFragment extends Fragment implements IWoView {
       tvMobile.setText("联系电话："+user.getMobile());
       tvSex.setText("性别："+String.valueOf(user.isSex()));
       tvPassword.setText("个人密码："+user.getPassword());
+
+      tvMeHead.setClickable(true);
+      tvName.setClickable(true);
+      tvMobile.setClickable(true);
+      tvName.setClickable(true);
+      tvPassword.setClickable(true);
+      tvSex.setClickable(true);
+
+      btnLoginOut.setText("退出登录");
    }
 
    @Override
    public void showNoLoginView() {
       ivMeLogo.setImageResource(R.drawable.user);
-      tvMeHead.setText("点击登录");
+      tvMeHead.setText("未登录");
       tvName.setText("昵称");
       tvMobile.setText("联系电话");
       tvSex.setText("性别");
       tvPassword.setText("个人密码");
+
+      tvMeHead.setClickable(false);
+      tvName.setClickable(false);
+      tvMobile.setClickable(false);
+      tvName.setClickable(false);
+      tvPassword.setClickable(false);
+      tvSex.setClickable(false);
+
+      btnLoginOut.setText("点击登录");
    }
 
    @Override
@@ -188,6 +225,7 @@ public class WoFragment extends Fragment implements IWoView {
 
    @Override
    public void openSetSex() {
+
       new AlertDialog.Builder(getActivity()).setTitle("请选择性别")
               .setSingleChoiceItems(R.array.sex, 0, new DialogInterface.OnClickListener() {
                  @Override

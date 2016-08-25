@@ -17,10 +17,13 @@ import retrofit2.http.Path;
  */
 public interface IWoService {
 
-    @GET("user/getOne/?code={code}")
-    Call<MyResponse<User>> getOne(@Path("code") String code);
+//    @GET("user/getOne/?token={token}")
+//    Call<MyResponse<User>> getOne(@Path("token") String token);
+//
+//    @GET("user/getlist")
+//    Call<MyResponse<List<User>>> getList();
+//
+//    @GET("user/login/?code={code}&pwd={pwd}")
+//    Call<MyResponse<String>> login(@Path("code") String code,@Path("pwd") String pwd);
 
-    //void updateUser(User user);
-
-    //void uploadPhoto(Bitmap img,int uid);
 }
