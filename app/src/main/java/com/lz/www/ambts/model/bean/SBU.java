@@ -24,6 +24,16 @@ public class SBU extends Fa {
     String header;
     @SerializedName("MemberCount")
     int memberCount;
+    @SerializedName("Photo")
+    Photo Photo;
+
+    public com.lz.www.ambts.model.bean.Photo getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(com.lz.www.ambts.model.bean.Photo photo) {
+        Photo = photo;
+    }
 
     public int getId() {
         return id;

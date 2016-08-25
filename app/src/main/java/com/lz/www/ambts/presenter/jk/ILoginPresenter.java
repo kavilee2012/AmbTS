@@ -9,6 +9,5 @@ public interface ILoginPresenter extends IBasePresenter {
 
     void login(String name,String pwd);
 
-    void getLastLogin();
 
 }

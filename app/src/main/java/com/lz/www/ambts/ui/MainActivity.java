@@ -56,34 +56,34 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
                 break;
             case R.id.btnTestQuery:
-                tvTest.setText("i am query");
-                //构建retrofit实例
-                Retrofit retrofit=new Retrofit.Builder()
-                        .baseUrl(Config.AMB_API)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                IUserService userService=retrofit.create(IUserService.class);
-                Call<MyResponse> call=userService.getList();
-                call.enqueue(new Callback<MyResponse>() {
-                    @Override
-                    public void onResponse(Call<MyResponse> call, retrofit2.Response<MyResponse> response) {
-                        if(response.isSuccess()){
-                            Object obj=response.body().getData();
-                            List<News> users=(List<News>) obj;
-                            Toast.makeText(MainActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
-                            tvTest.setText(response.body().getMsg().toString());
-                        }else {
-                            Toast.makeText(MainActivity.this,"获取失败",Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<MyResponse> call, Throwable t) {
-                        Toast.makeText(MainActivity.this,"发生异常",Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+//                tvTest.setText("i am query");
+//                //构建retrofit实例
+//                Retrofit retrofit=new Retrofit.Builder()
+//                        .baseUrl(Config.AMB_API)
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .build();
+//                IUserService userService=retrofit.create(IUserService.class);
+//                Call<MyResponse> call=userService.getList();
+//                call.enqueue(new Callback<MyResponse>() {
+//                    @Override
+//                    public void onResponse(Call<MyResponse> call, retrofit2.Response<MyResponse> response) {
+//                        if(response.isSuccess()){
+//                            Object obj=response.body().getData();
+//                            List<News> users=(List<News>) obj;
+//                            Toast.makeText(MainActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
+//                            tvTest.setText(response.body().getMsg().toString());
+//                        }else {
+//                            Toast.makeText(MainActivity.this,"获取失败",Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<MyResponse> call, Throwable t) {
+//                        Toast.makeText(MainActivity.this,"发生异常",Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
 
 
                 break;

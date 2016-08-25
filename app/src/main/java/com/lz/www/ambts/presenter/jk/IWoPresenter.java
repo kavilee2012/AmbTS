@@ -9,6 +9,8 @@ public interface IWoPresenter extends IBasePresenter {
 
     void loadUserInfo();
 
+    void deleteUserInfo();
+
     void setHeadPhoto();
 
     void setUserName(User user);
