@@ -41,4 +41,7 @@ dependencies {
     //因为Dagger 2 中会用到@Generated注解，而javax.anotation.generated在Java 6及以上的版本中都有，在Android API 中是没有的，所以在Android项目中一定要加此句
     compile 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
 }

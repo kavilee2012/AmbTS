@@ -6,16 +6,19 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.News;
-import com.lz.www.ambts.presenter.NewsPresenter;
 import com.lz.www.ambts.presenter.jk.INewsPresenter;
 import com.lz.www.ambts.ui.NewsDetailActivity;
 import com.lz.www.ambts.ui.adapter.NewsAdapter;
@@ -38,8 +41,11 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
     @Inject
     INewsPresenter mPresenter;
-    @InjectView(R.id.lvDao)
-    public ListView lvNews;
+//    @InjectView(R.id.lvDao)
+//    public ListView lvNews;
+
+    @InjectView(R.id.rvNews)
+    public RecyclerView rvNews;
 
     public NewsAdapter mAdapter = null;
 
@@ -127,6 +133,76 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     @Override
     public void showLoadingError(String msg) {
         Toast.makeText(getActivity(),"发生错误,原因:"+msg,Toast.LENGTH_SHORT).show();
+    }
+
+
+    public class NewsRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+        private AppCompatActivity mContext;
+        private List<News> mDataList;
+        private LayoutInflater mLayoutInflater;
+
+        public NewsRvAdapter(AppCompatActivity mContext, List<News> mDataList) {
+            this.mContext = mContext;
+            this.mDataList = mDataList;
+            mLayoutInflater=LayoutInflater.from(mContext);
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new NewsViewHolder(mLayoutInflater.inflate(R.layout.item_rv_news,parent,false));
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            News m=mDataList.get(position);
+            if(m==null)
+                return;
+            NewsViewHolder nHolder=(NewsViewHolder)holder;
+            bindNewsItem(m,nHolder.txtTitle,nHolder.imgIcon);
+        }
+
+        @Override
+        public int getItemCount() {
+            return mDataList.size();
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return mDataList.get(position).getId();
+        }
+
+
+
+        void bindNewsItem(News m, TextView title, ImageView icon){
+            if(m.getImgUrl().isEmpty())
+                icon.setVisibility(View.GONE);
+            title.setText(m.getTitle());
+        }
+
+
+    }
+
+    void showNewsDetails(){
+        Intent it = new Intent(getActivity(), NewsDetailActivity.class);
+        startActivity(it);
+    }
+
+    class NewsViewHolder extends RecyclerView.ViewHolder {
+        public TextView txtTitle;
+        public ImageView imgIcon;
+
+        public NewsViewHolder(View itemView) {
+            super(itemView);
+            this.txtTitle = (TextView)itemView.findViewById(R.id.news_item_title);
+            this.imgIcon = (ImageView)itemView.findViewById(R.id.news_item_icon);
+            itemView.findViewById(R.id.news_item_icon).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //跳转到详细界面
+                    showNewsDetails();
+                }
+            });
+        }
     }
 
 }
