@@ -2,9 +2,12 @@ package com.lz.www.ambts.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Button;
@@ -39,13 +42,29 @@ public class MainActivity extends AppCompatActivity {
 
     @InjectView(R.id.tvTestView)
     TextView tvTest;
+    @InjectView(R.id.toolMain)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.inject(this);
 
+        toolbar.setTitle("阿米巴");
+        toolbar.setSubtitle("welcome to my company!");
+//        toolbar.setLogo(R.drawable.qq);
+        setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.left);
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        return true;
     }
 
     @OnClick({R.id.btnTestQuery,R.id.btnTestAA,R.id.btnOpenLogin})
