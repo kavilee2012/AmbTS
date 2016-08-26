@@ -27,11 +27,11 @@ public class SBU extends Fa {
     @SerializedName("Photo")
     Photo Photo;
 
-    public com.lz.www.ambts.model.bean.Photo getPhoto() {
+    public Photo getPhoto() {
         return Photo;
     }
 
-    public void setPhoto(com.lz.www.ambts.model.bean.Photo photo) {
+    public void setPhoto(Photo photo) {
         Photo = photo;
     }
 
