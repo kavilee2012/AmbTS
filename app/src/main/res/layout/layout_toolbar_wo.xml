@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar android:id="@+id/myTool"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="?attr/colorPrimary"
+    app:titleTextColor="@color/white"
+    app:subtitleTextColor="@color/white"
+    android:navigationIcon="@drawable/left2"
+    android:minHeight="?attr/actionBarSize"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivWo"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/qq"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/tvWo"
+            android:text="未登录"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</android.support.v7.widget.Toolbar>

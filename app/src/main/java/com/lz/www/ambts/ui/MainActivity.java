@@ -1,48 +1,24 @@
 package com.lz.www.ambts.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
-import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.lz.www.ambts.R;
-import com.lz.www.ambts.model.bean.MyResponse;
-import com.lz.www.ambts.model.bean.News;
-import com.lz.www.ambts.model.bean.User;
-import com.lz.www.ambts.model.jk.IUserService;
-import com.lz.www.ambts.util.Config;
-
-import java.util.List;
-import java.util.Objects;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     @InjectView(R.id.tvTestView)
     TextView tvTest;
-    @InjectView(R.id.toolMain)
+    @InjectView(R.id.myTool)
     Toolbar toolbar;
 
     @Override

@@ -5,10 +5,12 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.Fa;
@@ -39,6 +41,7 @@ public class SbuFragment extends Fragment implements ISbuView {
     @Inject
     ISbuPresenter mPresenter;
 
+
     @InjectView(R.id.elvFaSBU)
     ExpandableListView elvFa;
 
@@ -49,6 +52,8 @@ public class SbuFragment extends Fragment implements ISbuView {
         View view=inflater.inflate(R.layout.fragment_fa_sbu,container,false);
 
         ButterKnife.inject(this,view);
+
+
 
         DaggerSbuComponent.builder()
                 .sbuModule(new SbuModule(this))

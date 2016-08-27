@@ -6,8 +6,10 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,6 @@ import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.News;
 import com.lz.www.ambts.presenter.jk.INewsPresenter;
 import com.lz.www.ambts.ui.NewsDetailActivity;
-import com.lz.www.ambts.ui.adapter.NewsAdapter;
 import com.lz.www.ambts.ui.component.DaggerNewsComponent;
 import com.lz.www.ambts.ui.jk.INewsView;
 import com.lz.www.ambts.ui.module.NewsModule;
@@ -47,9 +47,15 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 //    @InjectView(R.id.lvDao)
 //    public ListView lvNews;
 
-    @InjectView(R.id.toolMain)
-    Toolbar toolbar;
+    int lastVisibleItem=0;
 
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
+    @InjectView(R.id.toolTvTitle)
+    TextView toolTvTitle;
+
+    @InjectView(R.id.refreshNews)
+    SwipeRefreshLayout refreshNews;
     @InjectView(R.id.rvNews)
     public RecyclerView rvNews;
 
@@ -71,14 +77,48 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
     }
 
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    refreshNews.setRefreshing(false);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dao, container, false);
         ButterKnife.inject(this,view);
 
-        toolbar.setTitle("阿米巴");
-        toolbar.setSubtitle("welcome to my company!");
+//        toolbar.setTitle("");
+        toolTvTitle.setText("经营理念");
+
+
+        refreshNews.setColorSchemeColors(R.color.accent,R.color.icons,R.color.colorPrimary,R.color.colorPrimaryDark);
+        refreshNews.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        mHandler.sendEmptyMessage(1);
+                    }
+                }).start();
+            }
+        });
+
 
 
         showTopImages();//显示轮播图片
@@ -103,6 +143,23 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 //        mAdapter = new NewsAdapter(mNewsList, getActivity());
 //        lvNews.setAdapter(mAdapter);
 //        lvNews.setOnItemClickListener(this);
+
+
+        rvNews.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState==RecyclerView.SCROLL_STATE_IDLE){
+
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+            }
+        });
 
         mLayoutManager=new LinearLayoutManager(this.getActivity());
         rvNews.setLayoutManager(mLayoutManager);
@@ -220,7 +277,7 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
             this.txtTitle = (TextView)itemView.findViewById(R.id.news_item_title);
             this.txtRemark = (TextView)itemView.findViewById(R.id.news_item_remark);
             this.imgIcon = (ImageView)itemView.findViewById(R.id.news_item_icon);
-            itemView.findViewById(R.id.news_item_icon).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.news_item_container).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //跳转到详细界面
