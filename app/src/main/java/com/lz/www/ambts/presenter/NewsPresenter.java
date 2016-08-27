@@ -46,9 +46,7 @@ public class NewsPresenter implements INewsPresenter {
              @Override
              public void onResponse(Call<MyResponse<List<News>>> call, Response<MyResponse<List<News>>> response) {
                  if (response.isSuccess()) {
-                     Object obj=response.body().getData();
                      List<News> news = (List<News>)response.body().getData();
-                   //  List<News> news = (List<News>) obj;
                      mNewsView.showNewsList(news);
                  } else {
                      mNewsView.showLoadingError("http fail");

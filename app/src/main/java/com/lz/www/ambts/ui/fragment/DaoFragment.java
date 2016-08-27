@@ -3,11 +3,14 @@ package com.lz.www.ambts.ui.fragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,20 +47,28 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 //    @InjectView(R.id.lvDao)
 //    public ListView lvNews;
 
+    @InjectView(R.id.toolMain)
+    Toolbar toolbar;
+
     @InjectView(R.id.rvNews)
     public RecyclerView rvNews;
 
-    public NewsAdapter mAdapter = null;
+    RecyclerView.LayoutManager mLayoutManager;
+
+//    public NewsAdapter mAdapter = null;
+    NewsRvAdapter mAdapter=null;
 
     private LunboFragment fragment;
     private FragmentManager fm;
 
     public DaoFragment() {
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -65,6 +76,10 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dao, container, false);
         ButterKnife.inject(this,view);
+
+        toolbar.setTitle("阿米巴");
+        toolbar.setSubtitle("welcome to my company!");
+
 
         showTopImages();//显示轮播图片
 
@@ -85,17 +100,23 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
         mNewsList.add(new News(3, "B3", "this is b3"));
         mNewsList.add(new News(4, "B4", "this is b4"));
 
-        mAdapter = new NewsAdapter(mNewsList, getActivity());
-        lvNews.setAdapter(mAdapter);
-        lvNews.setOnItemClickListener(this);
+//        mAdapter = new NewsAdapter(mNewsList, getActivity());
+//        lvNews.setAdapter(mAdapter);
+//        lvNews.setOnItemClickListener(this);
+
+        mLayoutManager=new LinearLayoutManager(this.getActivity());
+        rvNews.setLayoutManager(mLayoutManager);
+        mAdapter=new NewsRvAdapter(getActivity(),mNewsList);
+        rvNews.setAdapter(mAdapter);
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getActivity(), "你点击了第" + i + "项", Toast.LENGTH_SHORT).show();
-
-        Intent it = new Intent(getActivity(), NewsDetailActivity.class);
-        startActivity(it);
+//        Toast.makeText(getActivity(), "你点击了第" + i + "项", Toast.LENGTH_SHORT).show();
+//
+//        Intent it = new Intent(getActivity(), NewsDetailActivity.class);
+//        startActivity(it);
 
     }
 
@@ -118,7 +139,7 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     public void showNewsList(List<News> newNewsList) {
         Toast.makeText(getActivity(),"获取成功",Toast.LENGTH_SHORT).show();
 
-        mAdapter.mNewsList=newNewsList;
+        mAdapter.mDataList = newNewsList;
         mAdapter.notifyDataSetChanged();
     }
 
@@ -137,14 +158,14 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
 
     public class NewsRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-        private AppCompatActivity mContext;
+        private Context mContext;
         private List<News> mDataList;
         private LayoutInflater mLayoutInflater;
 
-        public NewsRvAdapter(AppCompatActivity mContext, List<News> mDataList) {
-            this.mContext = mContext;
-            this.mDataList = mDataList;
-            mLayoutInflater=LayoutInflater.from(mContext);
+        public NewsRvAdapter(Context context, List<News> dataList) {
+            this.mContext = context;
+            this.mDataList = dataList;
+            mLayoutInflater=LayoutInflater.from(context);
         }
 
         @Override
@@ -158,7 +179,7 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
             if(m==null)
                 return;
             NewsViewHolder nHolder=(NewsViewHolder)holder;
-            bindNewsItem(m,nHolder.txtTitle,nHolder.imgIcon);
+            bindNewsItem(m,nHolder.txtTitle,nHolder.txtRemark,nHolder.imgIcon);
         }
 
         @Override
@@ -173,10 +194,12 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
 
 
-        void bindNewsItem(News m, TextView title, ImageView icon){
-            if(m.getImgUrl().isEmpty())
-                icon.setVisibility(View.GONE);
+        void bindNewsItem(News m, TextView title,TextView remark, ImageView icon){
+//            if(m.getImgUrl().isEmpty())
+//                icon.setVisibility(View.GONE);
             title.setText(m.getTitle());
+            remark.setText(m.getContent());
+            icon.setImageDrawable(getResources().getDrawable(R.drawable.qq));
         }
 
 
@@ -189,11 +212,13 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
     class NewsViewHolder extends RecyclerView.ViewHolder {
         public TextView txtTitle;
+        public TextView txtRemark;
         public ImageView imgIcon;
 
         public NewsViewHolder(View itemView) {
             super(itemView);
             this.txtTitle = (TextView)itemView.findViewById(R.id.news_item_title);
+            this.txtRemark = (TextView)itemView.findViewById(R.id.news_item_remark);
             this.imgIcon = (ImageView)itemView.findViewById(R.id.news_item_icon);
             itemView.findViewById(R.id.news_item_icon).setOnClickListener(new View.OnClickListener() {
                 @Override
