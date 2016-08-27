@@ -1,36 +1,46 @@
 package com.lz.www.ambts.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.lz.www.ambts.R;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 /**
  * Created by Administrator on 2016/5/28.
  */
-public class NewsDetailActivity extends Activity {
-    private WebView webView;
+public class NewsDetailActivity extends AppCompatActivity {
+    @InjectView(R.id.wvNews)
+    WebView webView;
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsdetail);
 
-        webView=(WebView)findViewById(R.id.wvNews);
+        ButterKnife.inject(this);
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("http://www.simchn.com/");
         webView.setWebViewClient(new MyWebViewClient());
 
-        TextView tvTitle=(TextView)findViewById(R.id.tvTitle);
-        tvTitle.setText("新闻详细");
-
-        Button btnBack=(Button)findViewById(R.id.btnGoBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
+//        TextView tvTitle=(TextView)findViewById(R.id.tvTitle);
+//        tvTitle.setText("新闻详细");
+        toolbar.setTitle("正文详细");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbar.setNavigationIcon(R.drawable.left2);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(webView.canGoBack())
@@ -40,24 +50,14 @@ public class NewsDetailActivity extends Activity {
             }
         });
 
-        Button btnAhead=(Button)findViewById(R.id.btnForward);
-        btnAhead.setVisibility(View.VISIBLE);
-        btnAhead.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                webView.goForward();
-            }
-        });
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if((keyCode==KeyEvent.KEYCODE_BACK)&&webView.canGoBack()){
-//            webView.goBack();
-//            return true;
-//        }
-//        return false;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu_newsinfo,menu);
+        return true;
+    }
+
 
     private class MyWebViewClient extends WebViewClient{
         @Override

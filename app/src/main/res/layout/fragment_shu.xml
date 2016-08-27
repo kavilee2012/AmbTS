@@ -1,19 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.Fragment.SbuFragment"
-    android:background="#00ff00">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="术" />
+   <include layout="@layout/layout_toolbar_center"/>
+
     <GridView
         android:id="@+id/gvShu"
         android:numColumns="3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></GridView>
+        android:layout_height="match_parent">
 
-</FrameLayout>
+    </GridView>
+
+</LinearLayout>
