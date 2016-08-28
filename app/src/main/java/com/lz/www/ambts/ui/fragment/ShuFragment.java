@@ -1,9 +1,9 @@
 package com.lz.www.ambts.ui.fragment;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,13 +39,13 @@ public class ShuFragment extends Fragment {
     private SimpleAdapter mAdapter=null;
     private List<Map<String, Object>> data_list;
     // 图片封装为一个数组
-    private int[] icon = { R.drawable.b1, R.drawable.b2,
-            R.drawable.b3, R.drawable.b4, R.drawable.b1,
-            R.drawable.b2, R.drawable.b3, R.drawable.b4,
-            R.drawable.b1, R.drawable.b2, R.drawable.b3,
+    private int[] icon = { R.drawable.shu_notice,R.drawable.shu_date, R.drawable.shu_tel,
+            R.drawable.shu_home, R.drawable.shu_date, R.drawable.mn3,
+            R.drawable.b2, R.drawable.shu_home, R.drawable.b4,
+            R.drawable.b1, R.drawable.b2,
             R.drawable.b4 };
-    private String[] iconName = { "通讯录", "日程安排", "摇一摇", "员工风采", "绘画动画", "null", "null",
-            "null", "null", "null", "地理位置", "系统日志" };
+    private String[] iconName = {"企业公告","日程安排", "通讯录","考勤管理","费用报销","员工风采",  "摇一摇",  "绘画动画",
+            "null",  "null", "地理位置", "系统日志" };
 
     @InjectView(R.id.gvShu)
     GridView gridView;

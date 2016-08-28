@@ -1,40 +1,88 @@
 package com.lz.www.ambts.ui.fragment;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 import com.lz.www.ambts.R;
+import com.lz.www.ambts.ui.adapter.FaVpAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 /**
  * Created by Administrator on 2016-06-23.
  */
-public class FaFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public class FaFragment extends Fragment {
 
     private ReportFragment fg1;
     private SbuFragment fg2;
+
+    List<Fragment> fragmentList;
+    List<String> titleList;
+
     private FragmentManager fm;
 
-    private RadioGroup mFaTabBar;
-    private RadioButton mTabReport;
+//    private RadioGroup mFaTabBar;
+//    private RadioButton mTabReport;
+
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
+    @InjectView(R.id.toolTvTitle)
+    TextView toolTvTitle;
+
+    FaVpAdapter faVpAdapter;
+    @InjectView(R.id.tabFa)
+    TabLayout tabFa;
+    @InjectView(R.id.vpFa)
+    ViewPager vpFa;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_fa,container,false);
-        fm=getFragmentManager();
-        mFaTabBar=(RadioGroup)view.findViewById(R.id.faTopTab);
-        mFaTabBar.setOnCheckedChangeListener(this);
-        mTabReport=(RadioButton)view.findViewById(R.id.tabReport);
-        mTabReport.setChecked(true);
+        ButterKnife.inject(this,view);
+
+        toolTvTitle.setText("落地方法");
+
+
+        fm=getActivity().getSupportFragmentManager();
+
+        fg1=new ReportFragment();
+        fg2=new SbuFragment();
+
+        fragmentList=new ArrayList<>();
+        fragmentList.add(fg1);
+        fragmentList.add(fg2);
+
+        titleList=new ArrayList<>();
+        titleList.add("经营会计");
+        titleList.add("组织划分");
+
+         tabFa.setTabMode(TabLayout.MODE_FIXED);
+        tabFa.addTab(tabFa.newTab().setText(titleList.get(0)));
+        tabFa.addTab(tabFa.newTab().setText(titleList.get(1)));
+
+        faVpAdapter=new FaVpAdapter(fm,titleList,fragmentList);
+        vpFa.setAdapter(faVpAdapter);
+
+        tabFa.setupWithViewPager(vpFa);
 
         return view;
     }
@@ -44,29 +92,4 @@ public class FaFragment extends Fragment implements RadioGroup.OnCheckedChangeLi
         if(fg2!=null)ft.hide(fg2);
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        FragmentTransaction ft = fm.beginTransaction();
-        hideAllFragment(ft);
-        switch (i) {
-            case R.id.tabReport:
-                if (fg1 == null) {
-                    fg1 = new ReportFragment();
-                    ft.add(R.id.faContent, fg1);
-                } else {
-                    ft.show(fg1);
-                }
-                break;
-            case R.id.tabSub:
-                if (fg2 == null) {
-                    fg2 = new SbuFragment();
-                    ft.add(R.id.faContent, fg2);
-                } else {
-                    ft.show(fg2);
-                }
-                break;
-        }
-        ft.commit();
-
-    }
 }
