@@ -10,6 +10,8 @@ import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -71,6 +73,12 @@ public class WoFragment extends Fragment implements IWoView {
       return view;
    }
 
+   @Override
+   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+      super.onCreateOptionsMenu(menu, inflater);
+      inflater.inflate(R.menu.toolbar_menu_wo,menu);
+   }
+
    @OnClick({R.id.tvMeHead,R.id.tvLine1,R.id.tvLine2,R.id.tvLine3,R.id.tvLine4,R.id.btnLoginOut})
    public void OnClick(View view){
       switch (view.getId()){
@@ -125,9 +133,9 @@ public class WoFragment extends Fragment implements IWoView {
 
       ivMeLogo.setImageResource(R.drawable.mn1);
       tvMeHead.setText("修改头像");
-      tvName.setText("昵称："+user.getUserName());
+      tvName.setText("昵    称："+user.getUserName());
       tvMobile.setText("联系电话："+user.getMobile());
-      tvSex.setText("性别："+String.valueOf(user.isSex()));
+      tvSex.setText("性    别："+String.valueOf(user.isSex()));
       tvPassword.setText("个人密码："+user.getPassword());
 
       tvMeHead.setClickable(true);
@@ -144,9 +152,9 @@ public class WoFragment extends Fragment implements IWoView {
    public void showNoLoginView() {
       ivMeLogo.setImageResource(R.drawable.user);
       tvMeHead.setText("未登录");
-      tvName.setText("昵称");
+      tvName.setText("昵    称");
       tvMobile.setText("联系电话");
-      tvSex.setText("性别");
+      tvSex.setText("性    别");
       tvPassword.setText("个人密码");
 
       tvMeHead.setClickable(false);

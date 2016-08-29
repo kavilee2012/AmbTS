@@ -4,103 +4,87 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <include layout="@layout/layout_toolbar_wo"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <TextView
         android:id="@+id/tvMeHead"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="修改头像"
-        android:paddingLeft="2dp"
-        android:layout_centerVertical="true"
-        android:drawablePadding="50dp"
-        android:drawableLeft="@android:drawable/ic_menu_myplaces"
-        android:drawableRight="@drawable/right2"/>
+        style="@style/WoText"
+        android:text="更换头像"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@android:drawable/ic_menu_view"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#ccc"/>
+    <View style="@style/H_Line"/>
 
     <TextView
         android:id="@+id/tvLine1"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/WoText"
         android:text="我的昵称"
-        android:textSize="15sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@android:drawable/ic_menu_myplaces"
-        android:drawableRight="@drawable/right2"
+        android:drawableLeft="@android:drawable/ic_menu_myplaces"/>
 
-        android:drawablePadding="50dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#ccc"/>
+    <View style="@style/H_Line"/>
 
     <TextView
         android:id="@+id/tvLine2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/WoText"
         android:text="联系电话"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@android:drawable/ic_menu_call"
-        android:drawableRight="@drawable/right2"
-        android:drawablePadding="50dp"/>
+        android:drawableLeft="@android:drawable/ic_menu_call"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#ccc"/>
-
-    <TextView
-        android:id="@+id/tvLine3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="个人密码"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@android:drawable/ic_lock_lock"
-        android:drawableRight="@drawable/right2"
-        android:drawablePadding="50dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#ccc"/>
+    <View style="@style/H_Line"/>
 
     <TextView
         android:id="@+id/tvLine4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="性别"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@android:drawable/ic_menu_crop"
-        android:drawableRight="@drawable/right2"
-        android:drawablePadding="50dp"/>
+        style="@style/WoText"
+        android:text="性    别"
+        android:drawableLeft="@android:drawable/ic_menu_crop"/>
+
+    <View style="@style/H_Line"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#ccc"/>
+        android:id="@+id/tvBirthday"
+        style="@style/WoText"
+        android:text="生    日"
+        android:drawableLeft="@android:drawable/ic_menu_crop"/>
+
+    <View style="@style/H_Line"/>
+
+    <TextView
+        android:id="@+id/tvLine3"
+        style="@style/WoText"
+        android:layout_marginTop="10dp"
+        android:text="个人密码"
+        android:drawableLeft="@android:drawable/ic_menu_manage"/>
+
+    <View style="@style/H_Line"/>
+
+    <TextView
+        android:id="@+id/tvAbout"
+        style="@style/WoText"
+        android:text="关    于"
+        android:drawableLeft="@android:drawable/ic_menu_crop"/>
+
+    <View style="@style/H_Line"/>
 
     <Button
         android:id="@+id/btnLoginOut"
         android:text="退出登录"
         android:textAlignment="center"
         android:layout_marginTop="20dp"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
 
