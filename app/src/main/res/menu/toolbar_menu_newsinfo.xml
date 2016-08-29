@@ -5,6 +5,7 @@
         android:id="@+id/menuShare"
         android:orderInCategory="80"
         android:title="分享"
+
         app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
         app:showAsAction="always"/>
     <!--<item-->
