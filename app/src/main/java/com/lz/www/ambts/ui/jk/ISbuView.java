@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ISbuView {
 
-    void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList);
+    void showAllList(ArrayList<SBU> list);
 
     void showLoadError();
 }

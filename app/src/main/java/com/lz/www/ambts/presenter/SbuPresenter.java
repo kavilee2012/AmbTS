@@ -30,8 +30,7 @@ public class SbuPresenter implements ISbuPresenter {
 
     @Override
     public void loadAllList() {
-        final ArrayList<Fa> groupList = new ArrayList<Fa>();
-        final ArrayList<ArrayList<Fa>> itemList = new ArrayList<ArrayList<Fa>>();
+        final ArrayList<SBU> groupList = new ArrayList<SBU>();
 
         Call<MyResponse<List<SBU>>> call = mModel.getAllList();
         call.enqueue(new Callback<MyResponse<List<SBU>>>() {
@@ -44,16 +43,16 @@ public class SbuPresenter implements ISbuPresenter {
                             groupList.add(r);
                         }
                     }
-                    for (Fa g : groupList) {
-                        ArrayList<Fa> subList = new ArrayList<Fa>();
-                        for (SBU r : allList) {
-                            if (r.getFatherCode().equals(g.getCode())) {
-                                subList.add(r);
-                            }
-                        }
-                        itemList.add(subList);
-                    }
-                    mView.showAllList(groupList, itemList);
+//                    for (SBU g : groupList) {
+//                        ArrayList<SBU> subList = new ArrayList<SBU>();
+//                        for (SBU r : allList) {
+//                            if (r.getFatherCode().equals(g.getCode())) {
+//                                subList.add(r);
+//                            }
+//                        }
+//                        itemList.add(subList);
+//                    }
+                    mView.showAllList(groupList);
                 } else {
                     mView.showLoadError();
                 }
