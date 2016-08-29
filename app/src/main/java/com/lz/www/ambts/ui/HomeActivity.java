@@ -1,8 +1,8 @@
 package com.lz.www.ambts.ui;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        fm=getFragmentManager();
+        fm=getSupportFragmentManager();
         _homeTabBar=(RadioGroup)findViewById(R.id.homeTabBar);
         _homeTabBar.setOnCheckedChangeListener(this);
         _itemDao=(RadioButton)findViewById(R.id.itemDAO);

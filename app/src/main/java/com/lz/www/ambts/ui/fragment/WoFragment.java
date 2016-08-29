@@ -3,12 +3,12 @@ package com.lz.www.ambts.ui.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
