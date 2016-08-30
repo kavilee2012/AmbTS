@@ -11,7 +11,11 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,20 +40,20 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2016-07-18.
  */
-public class HeadPhotoActivity extends Activity {
+public class HeadPhotoActivity extends AppCompatActivity {
 
     final String IMG_NAME="my_head.jpg";
     final String SAVE_PATH=Environment.getExternalStorageDirectory() + "/" +IMG_NAME; //拍照后保存路径
     String SERVER_URL = Config.PhotoAPI + "/UploadImage";//上传的服务端API地址
     Handler handler;
 
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
 
     @InjectView(R.id.imgHead)
     ImageView imgHead;
     @InjectView(R.id.btnHeadCamera)
     Button btnHeadCamera;
-    @InjectView(R.id.btnHeadUpload)
-    Button btnHeadUpload;
     @InjectView(R.id.btnHeadSelect)
     Button btnHeadSelect;
 
@@ -58,6 +62,17 @@ public class HeadPhotoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_head);
         ButterKnife.inject(this);
+
+        toolbar.setTitle("更换头像");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
         handler=new Handler(){
             @Override
@@ -73,9 +88,53 @@ public class HeadPhotoActivity extends Activity {
                 }
             }
         };
+
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.itemUploadHead:
+                        //上传
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Photo photo=new Photo();
+                                photo.setSort("head");
+                                photo.setImgInfo("这是头像");
+                                photo.setAddUser(Config.LoginUser.getUserCode());
+
+                                File file = new File(SAVE_PATH);
+                                Message msg = new Message();
+                                msg.what = 0;
+                                if(file!=null) {
+                                    try {
+                                        int re = ImageUtils.uploadImage(photo, file, SERVER_URL);
+                                        msg.obj = re;
+                                    } catch (IOException ex) {
+                                        msg.obj = 0;
+                                        Toast.makeText(HeadPhotoActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+                                    }
+                                    handler.sendMessage(msg);
+                                }else {
+                                    Toast.makeText(HeadPhotoActivity.this, "找不到上传图片", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).start();
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
-    @OnClick({R.id.btnHeadSelect,R.id.btnHeadCamera,R.id.btnHeadUpload})
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu_wo,menu);
+        return true;
+    }
+
+    @OnClick({R.id.btnHeadSelect,R.id.btnHeadCamera})
     public void OnClick(View view){
         switch (view.getId()){
             case R.id.btnHeadCamera:
@@ -90,34 +149,6 @@ public class HeadPhotoActivity extends Activity {
                 // 如果朋友们要限制上传到服务器的图片类型时可以直接写如："image/jpeg 、 image/png等的类型"
                 itSelect.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
                 startActivityForResult(itSelect,1);
-                break;
-            case R.id.btnHeadUpload:
-                //上传
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Photo photo=new Photo();
-                        photo.setSort("head");
-                        photo.setImgInfo("这是头像");
-                        photo.setAddUser(Config.LoginUser.getUserCode());
-
-                        File file = new File(SAVE_PATH);
-                        Message msg = new Message();
-                        msg.what = 0;
-                        if(file!=null) {
-                            try {
-                                int re = ImageUtils.uploadImage(photo, file, SERVER_URL);
-                                msg.obj = re;
-                            } catch (IOException ex) {
-                                msg.obj = 0;
-                                Toast.makeText(HeadPhotoActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
-                            }
-                            handler.sendMessage(msg);
-                        }else {
-                            Toast.makeText(HeadPhotoActivity.this, "找不到上传图片", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }).start();
                 break;
         }
     }

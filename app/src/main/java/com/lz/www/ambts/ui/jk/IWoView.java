@@ -17,9 +17,13 @@ public interface IWoView {
 
     void openSetMobile();
 
+    void openSetBirthday();
+
     void openSetPassword();
 
     void openSetSex();
+
+    void openSetAbout();
 
     void showSuccess(int type,String msg);
 

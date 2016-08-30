@@ -12,6 +12,7 @@ public class Config {
     public static String AMB_TOKEN = "bc84e9369d40bc43dd01e9c78e77bbf8";//登录成功后获取
     public static User LoginUser = null; //登录用户信息
 
+    public static final String AMB_IMG = "http://122.114.95.32/";
     public static final String AMB_API = "http://122.114.95.32/api/";
     public static final String UserAPI = AMB_API + "user/";
     public static final String NewsAPI = AMB_API + "news/";
