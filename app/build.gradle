@@ -46,4 +46,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
 
     compile 'de.hdodenhof:circleimageview:2.1.0'//圆形头像
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

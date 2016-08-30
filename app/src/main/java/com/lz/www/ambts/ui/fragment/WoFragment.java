@@ -1,12 +1,10 @@
 package com.lz.www.ambts.ui.fragment;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lz.www.ambts.R;
+import com.lz.www.ambts.model.bean.Photo;
 import com.lz.www.ambts.model.bean.User;
 import com.lz.www.ambts.presenter.jk.IWoPresenter;
 import com.lz.www.ambts.ui.HeadPhotoActivity;
@@ -29,6 +28,7 @@ import com.lz.www.ambts.ui.component.DaggerWoComponent;
 import com.lz.www.ambts.ui.jk.IWoView;
 import com.lz.www.ambts.ui.module.WoModule;
 import com.lz.www.ambts.util.Config;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -40,25 +40,30 @@ import butterknife.OnClick;
 public class WoFragment extends Fragment implements IWoView {
 
    boolean isLogin=true;
-   String mSelectedSex = "";
    User mUser = null;
    @Inject
    IWoPresenter mPresenter;
 
-   @InjectView(R.id.tvMeHead)
+   @InjectView(R.id.tvWoHead)
    TextView tvMeHead;
-   @InjectView(R.id.ivMeLogo)
+   @InjectView(R.id.toolWoLogo)
    ImageView ivMeLogo;
-   @InjectView(R.id.tvLine1)
+   @InjectView(R.id.tvWoName)
    TextView tvName;
-   @InjectView(R.id.tvLine2)
+   @InjectView(R.id.tvWoPhone)
    TextView tvMobile;
-   @InjectView(R.id.tvLine3)
+   @InjectView(R.id.tvModityPassword)
    TextView tvPassword;
-   @InjectView(R.id.tvLine4)
+   @InjectView(R.id.tvWoSex)
    TextView tvSex;
+   @InjectView(R.id.tvWoBirthday)
+   TextView tvBirthday;
    @InjectView(R.id.btnLoginOut)
    Button btnLoginOut;
+   @InjectView(R.id.toolWoLogin)
+   TextView toolLogin;
+   @InjectView(R.id.toolWoName)
+   TextView toolName;
 
    @Nullable
    @Override
@@ -75,37 +80,43 @@ public class WoFragment extends Fragment implements IWoView {
 
    @Override
    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-      super.onCreateOptionsMenu(menu, inflater);
+
       inflater.inflate(R.menu.toolbar_menu_wo,menu);
+      super.onCreateOptionsMenu(menu, inflater);
    }
 
-   @OnClick({R.id.tvMeHead,R.id.tvLine1,R.id.tvLine2,R.id.tvLine3,R.id.tvLine4,R.id.btnLoginOut})
+   @OnClick({R.id.tvWoHead,R.id.tvWoName,R.id.tvWoPhone,R.id.tvWoBirthday,R.id.tvWoSex,R.id.tvAbout,R.id.btnLoginOut,R.id.toolWoLogin})
    public void OnClick(View view){
       switch (view.getId()){
-         case R.id.tvMeHead:
+         case R.id.tvWoHead:
             openSetHeadPhoto();
             break;
-         case R.id.tvLine1:
+         case R.id.tvWoName:
             openSetUserName();
             break;
-         case R.id.tvLine2:
+         case R.id.tvWoPhone:
             openSetMobile();
             break;
-         case R.id.tvLine3:
+         case R.id.tvModityPassword:
             openSetPassword();
             break;
-         case R.id.tvLine4:
+         case R.id.tvWoSex:
             openSetSex();
             break;
-         case R.id.btnLoginOut:
-            if(Config.LoginUser==null){
+         case R.id.tvWoBirthday:
+            openSetBirthday();
+            break;
+         case R.id.tvAbout:
+            openSetAbout();
+            break;
+         case R.id.toolWoLogin:
                //登录
                Intent it=new Intent(getActivity(), LoginActivity.class);
                startActivityForResult(it,0);
-            }else {
+            break;
+         case R.id.btnLoginOut:
                //退出登录
                mPresenter.deleteUserInfo();
-            }
             break;
       }
    }
@@ -131,12 +142,27 @@ public class WoFragment extends Fragment implements IWoView {
    public void showLoginView(User user) {
       mUser=user;
 
-      ivMeLogo.setImageResource(R.drawable.mn1);
-      tvMeHead.setText("修改头像");
-      tvName.setText("昵    称："+user.getUserName());
-      tvMobile.setText("联系电话："+user.getMobile());
-      tvSex.setText("性    别："+String.valueOf(user.isSex()));
-      tvPassword.setText("个人密码："+user.getPassword());
+      //登录显示
+      toolName.setVisibility(View.VISIBLE);
+      toolLogin.setVisibility(View.GONE);
+      btnLoginOut.setVisibility(View.VISIBLE);
+
+      toolName.setText(user.getUserName());
+
+      Photo photo=user.getPhoto();
+      if(photo==null) {
+         ivMeLogo.setImageResource(R.drawable.user);
+      }else {
+         String imgUrl = Config.AMB_IMG +  photo.getUrl().substring(2);
+
+         Picasso.with(getActivity()).load(imgUrl).placeholder(R.drawable.user).error(R.drawable.user).into(ivMeLogo);
+      }
+
+
+      tvName.setText("昵       称    --    "+user.getUserName());
+      tvMobile.setText("联系电话    --    "+user.getMobile());
+      tvSex.setText("性       别    --    "+(user.isSex()?"男":"女"));//  String.valueOf(user.isSex()));
+      tvBirthday.setText("生       日    --    "+String.valueOf(user.isSex()));
 
       tvMeHead.setClickable(true);
       tvName.setClickable(true);
@@ -144,18 +170,24 @@ public class WoFragment extends Fragment implements IWoView {
       tvName.setClickable(true);
       tvPassword.setClickable(true);
       tvSex.setClickable(true);
+      tvBirthday.setClickable(true);
 
-      btnLoginOut.setText("退出登录");
    }
 
    @Override
    public void showNoLoginView() {
+
+      //未登录显示
+      toolName.setVisibility(View.GONE);
+      toolLogin.setVisibility(View.VISIBLE);
+      btnLoginOut.setVisibility(View.GONE);
+
+      toolName.setText("");
       ivMeLogo.setImageResource(R.drawable.user);
-      tvMeHead.setText("未登录");
-      tvName.setText("昵    称");
+      tvName.setText("昵       称");
       tvMobile.setText("联系电话");
-      tvSex.setText("性    别");
-      tvPassword.setText("个人密码");
+      tvSex.setText("性       别");
+      tvBirthday.setText("生       日");
 
       tvMeHead.setClickable(false);
       tvName.setClickable(false);
@@ -163,8 +195,7 @@ public class WoFragment extends Fragment implements IWoView {
       tvName.setClickable(false);
       tvPassword.setClickable(false);
       tvSex.setClickable(false);
-
-      btnLoginOut.setText("点击登录");
+      tvBirthday.setClickable(false);
    }
 
    @Override
@@ -231,6 +262,7 @@ public class WoFragment extends Fragment implements IWoView {
               .show();
    }
 
+   String mSelectedSex = "";
    @Override
    public void openSetSex() {
 
@@ -238,7 +270,7 @@ public class WoFragment extends Fragment implements IWoView {
               .setSingleChoiceItems(R.array.sex, 0, new DialogInterface.OnClickListener() {
                  @Override
                  public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(getActivity(), "你点击了："+String.valueOf(i), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "你点击了："+String.valueOf(i), Toast.LENGTH_SHORT).show();
                     String sex = getResources().getStringArray(R.array.sex)[i];
                    mSelectedSex = sex;
                  }
@@ -246,13 +278,23 @@ public class WoFragment extends Fragment implements IWoView {
               .setPositiveButton("保存", new DialogInterface.OnClickListener() {
                  @Override
                  public void onClick(DialogInterface dialogInterface, int i) {
-                    //Toast.makeText(getActivity(), "你点击了："+String.valueOf(i), Toast.LENGTH_SHORT).show();
-                    if (!mSelectedSex.isEmpty() && (mSelectedSex.equals("男") != mUser.isSex()))
+                    if (!mSelectedSex.isEmpty() && (mSelectedSex.equals("男") != mUser.isSex())) {
                        mUser.setSex(mSelectedSex.equals("男"));
                        mPresenter.setSex(mUser);
+                    }
                  }
               })
               .setNegativeButton("取消", null).show();
+   }
+
+   @Override
+   public void openSetBirthday() {
+
+   }
+
+   @Override
+   public void openSetAbout() {
+      new AlertDialog.Builder(getActivity()).setTitle("阿米巴软件").setMessage("当前版本：V1.0").show();
    }
 
    @Override

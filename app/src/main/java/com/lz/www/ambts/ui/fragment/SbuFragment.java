@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -49,6 +50,9 @@ public class SbuFragment extends Fragment implements ISbuView {
     @InjectView(R.id.rvSbu)
     RecyclerView recyclerView;
 
+    RecyclerView.LayoutManager mLayoutManager;
+    SbuRvAdapter mAdapter;
+
 
     @Nullable
     @Override
@@ -64,16 +68,18 @@ public class SbuFragment extends Fragment implements ISbuView {
                 .build()
                 .inject(this);
 
-        mPresenter.start();
+        mLayoutManager=new LinearLayoutManager(this.getActivity());
+        recyclerView.setLayoutManager(mLayoutManager);
 
+        mPresenter.start();
 
         return view;
     }
 
     @Override
     public void showAllList(ArrayList<SBU> list) {
-        SbuRvAdapter adapter = new SbuRvAdapter(getContext(), list);
-        recyclerView.setAdapter(adapter);
+        mAdapter = new SbuRvAdapter(getContext(), list);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -122,8 +128,8 @@ public class SbuFragment extends Fragment implements ISbuView {
 //            if(m.getImgUrl().isEmpty())
 //                icon.setVisibility(View.GONE);
             name.setText(m.getName());
-            header.setText(m.getHeader());
-            count.setText(m.getMemberCount());
+            header.setText("巴长：" + m.getHeader());
+            count.setText(String.valueOf("成员数：" + m.getMemberCount()));
         }
 
 

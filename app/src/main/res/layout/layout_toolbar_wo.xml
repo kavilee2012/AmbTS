@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/toolTvTitle"
-            android:text="个人设置"
+            android:text="个人中心"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
@@ -25,18 +25,26 @@
             android:layout_height="wrap_content" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivMeLogo"
+            android:id="@+id/toolWoLogo"
             android:layout_gravity="center_horizontal"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="15dp"
-            android:src="@drawable/mn2"
+            android:src="@drawable/user"
             app:civ_border_width="1dp"
             app:civ_border_color="#fff"/>
 
         <TextView
-            android:id="@+id/tvWo"
+            android:id="@+id/toolWoLogin"
             android:text="点击登录"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/toolWoName"
+            android:text="用户名称"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
