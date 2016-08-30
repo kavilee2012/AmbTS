@@ -1,19 +1,23 @@
 package com.lz.www.ambts.ui.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.Fa;
+import com.lz.www.ambts.model.bean.News;
 import com.lz.www.ambts.model.bean.SBU;
 import com.lz.www.ambts.model.bean.User;
 import com.lz.www.ambts.presenter.jk.ISbuPresenter;
@@ -42,8 +46,8 @@ public class SbuFragment extends Fragment implements ISbuView {
     ISbuPresenter mPresenter;
 
 
-    @InjectView(R.id.elvFaSBU)
-    ExpandableListView elvFa;
+    @InjectView(R.id.rvSbu)
+    RecyclerView recyclerView;
 
 
     @Nullable
@@ -62,25 +66,86 @@ public class SbuFragment extends Fragment implements ISbuView {
 
         mPresenter.start();
 
-        elvFa.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-//                Toast.makeText(getActivity(), "你点击了：" + subListList.get(i).get(i1).getName(), Toast.LENGTH_SHORT).show();
 
-                return true;
-            }
-        });
         return view;
     }
 
     @Override
-    public void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList) {
-        FaAdapter faAdapter=new FaAdapter(groupList,subList,getActivity());
-        elvFa.setAdapter(faAdapter);
+    public void showAllList(ArrayList<SBU> list) {
+        SbuRvAdapter adapter = new SbuRvAdapter(getContext(), list);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void showLoadError() {
 
     }
+
+    public class SbuRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+        private Context mContext;
+        private List<SBU> mDataList;
+        private LayoutInflater mLayoutInflater;
+
+        public SbuRvAdapter(Context context, List<SBU> dataList) {
+            this.mContext = context;
+            this.mDataList = dataList;
+            mLayoutInflater=LayoutInflater.from(context);
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new SbuViewHolder(mLayoutInflater.inflate(R.layout.item_rv_sbu,parent,false));
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            SBU m=mDataList.get(position);
+            if(m==null)
+                return;
+            SbuViewHolder nHolder=(SbuViewHolder) holder;
+            bindItem(m,nHolder.txtName,nHolder.txtHeader,nHolder.txtCount);
+        }
+
+        @Override
+        public int getItemCount() {
+            return mDataList.size();
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return mDataList.get(position).getId();
+        }
+
+
+
+        void bindItem(SBU m, TextView name,TextView header, TextView count){
+//            if(m.getImgUrl().isEmpty())
+//                icon.setVisibility(View.GONE);
+            name.setText(m.getName());
+            header.setText(m.getHeader());
+            count.setText(m.getMemberCount());
+        }
+
+
+    }
+
+    class SbuViewHolder extends RecyclerView.ViewHolder {
+        public TextView txtName;
+        public TextView txtHeader;
+        public TextView txtCount;
+
+        public SbuViewHolder(View itemView) {
+            super(itemView);
+            this.txtName = (TextView)itemView.findViewById(R.id.sbu_item_name);
+            this.txtHeader = (TextView)itemView.findViewById(R.id.sbu_item_header);
+            this.txtCount = (TextView) itemView.findViewById(R.id.sbu_item_count);
+            itemView.findViewById(R.id.sbu_item_container).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //跳转到详细界面
+                }
+            });
+        }
+    }
+
 }
