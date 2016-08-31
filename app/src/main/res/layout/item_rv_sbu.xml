@@ -25,7 +25,7 @@
             android:text="阿米巴部门"
             android:gravity="left"
             android:textColor="#000000"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_height="30dp"
                 android:text="巴长"
                 android:gravity="left"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/sbu_item_count"
@@ -47,7 +47,7 @@
                 android:layout_height="60dp"
                 android:text="成员数量"
                 android:gravity="right"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
     </LinearLayout>

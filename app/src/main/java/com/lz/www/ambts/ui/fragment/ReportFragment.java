@@ -68,6 +68,7 @@ public class ReportFragment extends Fragment implements IReportView {
     public void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList) {
         FaAdapter faAdapter=new FaAdapter(groupList,subList,getActivity());
         elvFa.setAdapter(faAdapter);
+        elvFa.expandGroup(0);
     }
 
     @Override

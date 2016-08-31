@@ -295,8 +295,7 @@ public class LunBoActivity extends AppCompatActivity {
         adDomain2.setTitle("bbbbbbbbbbbbbb");
         adDomain2.setTopicFrom("小巫");
         adDomain2.setTopic("“BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB？”");
-        adDomain2
-                .setImgUrl("http://g.hiphotos.baidu.com/image/w%3D310/sign=7cbcd7da78f40ad115e4c1e2672e1151/eaf81a4c510fd9f9a1edb58b262dd42a2934a45e.jpg");
+        adDomain2.setImgUrl("http://g.hiphotos.baidu.com/image/w%3D310/sign=7cbcd7da78f40ad115e4c1e2672e1151/eaf81a4c510fd9f9a1edb58b262dd42a2934a45e.jpg");
         adDomain2.setAd(false);
         adList.add(adDomain2);
 
@@ -306,8 +305,7 @@ public class LunBoActivity extends AppCompatActivity {
         adDomain3.setTitle("cccccccccccccccc");
         adDomain3.setTopicFrom("旭东");
         adDomain3.setTopic("“CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC？”");
-        adDomain3
-                .setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=392ce7f779899e51788e3c1572a6d990/8718367adab44aed22a58aeeb11c8701a08bfbd4.jpg");
+        adDomain3.setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=392ce7f779899e51788e3c1572a6d990/8718367adab44aed22a58aeeb11c8701a08bfbd4.jpg");
         adDomain3.setAd(false);
         adList.add(adDomain3);
 
@@ -317,8 +315,7 @@ public class LunBoActivity extends AppCompatActivity {
         adDomain4.setTitle("dddddddddddddddddd");
         adDomain4.setTopicFrom("小软");
         adDomain4.setTopic("“DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD？”");
-        adDomain4
-                .setImgUrl("http://d.hiphotos.baidu.com/image/w%3D310/sign=54884c82b78f8c54e3d3c32e0a282dee/a686c9177f3e670932e4cf9338c79f3df9dc55f2.jpg");
+        adDomain4.setImgUrl("http://d.hiphotos.baidu.com/image/w%3D310/sign=54884c82b78f8c54e3d3c32e0a282dee/a686c9177f3e670932e4cf9338c79f3df9dc55f2.jpg");
         adDomain4.setAd(false);
         adList.add(adDomain4);
 
@@ -328,8 +325,7 @@ public class LunBoActivity extends AppCompatActivity {
         adDomain5.setTitle("eeeeeeeeeeeeeee");
         adDomain5.setTopicFrom("大熊");
         adDomain5.setTopic("“EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE？”");
-        adDomain5
-                .setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=66270b4fe8c4b7453494b117fffd1e78/0bd162d9f2d3572c7dad11ba8913632762d0c30d.jpg");
+        adDomain5.setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=66270b4fe8c4b7453494b117fffd1e78/0bd162d9f2d3572c7dad11ba8913632762d0c30d.jpg");
         adDomain5.setAd(true); // 代表是广告
         adList.add(adDomain5);
 

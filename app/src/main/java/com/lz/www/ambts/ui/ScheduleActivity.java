@@ -3,9 +3,11 @@ package com.lz.www.ambts.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -32,6 +34,9 @@ public class ScheduleActivity extends AppCompatActivity implements IScheduleView
     @InjectView(R.id.cvSchedule)
     CalendarView calendarView;
 
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,6 +52,16 @@ public class ScheduleActivity extends AppCompatActivity implements IScheduleView
         setContentView(R.layout.activity_schedule);
 
         ButterKnife.inject(this);
+
+        toolbar.setTitle("日程安排");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         DaggerScheduleComponent.builder()
                 .scheduleModule(new ScheduleModule(this))

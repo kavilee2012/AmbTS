@@ -2,6 +2,7 @@ package com.lz.www.ambts.ui.fragment;
 
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +31,12 @@ import com.lz.www.ambts.ui.jk.IWoView;
 import com.lz.www.ambts.ui.module.WoModule;
 import com.lz.www.ambts.util.Config;
 import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -71,6 +79,8 @@ public class WoFragment extends Fragment implements IWoView {
       View view = inflater.inflate(R.layout.fragment_wo,container,false);
       ButterKnife.inject(this,view);
 
+
+
       DaggerWoComponent.builder().woModule(new WoModule(this)).build().inject(this);
 
       mPresenter.start();
@@ -85,7 +95,7 @@ public class WoFragment extends Fragment implements IWoView {
       super.onCreateOptionsMenu(menu, inflater);
    }
 
-   @OnClick({R.id.tvWoHead,R.id.tvWoName,R.id.tvWoPhone,R.id.tvWoBirthday,R.id.tvWoSex,R.id.tvAbout,R.id.btnLoginOut,R.id.toolWoLogin})
+   @OnClick({R.id.tvWoHead,R.id.tvWoName,R.id.tvWoPhone,R.id.tvWoBirthday,R.id.tvWoSex,R.id.tvModityPassword,R.id.tvAbout,R.id.btnLoginOut,R.id.toolWoLogin})
    public void OnClick(View view){
       switch (view.getId()){
          case R.id.tvWoHead:
@@ -162,7 +172,14 @@ public class WoFragment extends Fragment implements IWoView {
       tvName.setText("昵       称    --    "+user.getUserName());
       tvMobile.setText("联系电话    --    "+user.getMobile());
       tvSex.setText("性       别    --    "+(user.isSex()?"男":"女"));//  String.valueOf(user.isSex()));
-      tvBirthday.setText("生       日    --    "+String.valueOf(user.isSex()));
+      Date date=user.getBirthDay();
+      if(date!=null) {
+         SimpleDateFormat formatter = new SimpleDateFormat("MM 月 dd 日");
+         tvBirthday.setText("生       日    --    " + formatter.format(date));
+      }else {
+         tvBirthday.setText("生       日    --    " + "未设置");
+      }
+
 
       tvMeHead.setClickable(true);
       tvName.setClickable(true);
@@ -201,8 +218,9 @@ public class WoFragment extends Fragment implements IWoView {
    @Override
    public void openSetHeadPhoto() {
       Intent it=new Intent(getActivity(), HeadPhotoActivity.class);
+      ivMeLogo.setDrawingCacheEnabled(true);
+      it.putExtra("Bitmap",ivMeLogo.getDrawingCache());
       startActivity(it);
-      Toast.makeText(getActivity(),"clicked head",Toast.LENGTH_SHORT).show();
    }
 
    @Override
@@ -267,7 +285,7 @@ public class WoFragment extends Fragment implements IWoView {
    public void openSetSex() {
 
       new AlertDialog.Builder(getActivity()).setTitle("请选择性别")
-              .setSingleChoiceItems(R.array.sex, 0, new DialogInterface.OnClickListener() {
+              .setSingleChoiceItems(R.array.sex, (mUser.isSex()?1:0), new DialogInterface.OnClickListener() {
                  @Override
                  public void onClick(DialogInterface dialogInterface, int i) {
 //                    Toast.makeText(getActivity(), "你点击了："+String.valueOf(i), Toast.LENGTH_SHORT).show();
@@ -289,7 +307,25 @@ public class WoFragment extends Fragment implements IWoView {
 
    @Override
    public void openSetBirthday() {
+      Calendar calendar=Calendar.getInstance(Locale.CHINA);
 
+     DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+         @Override
+         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            String dateStr = i + "-" + i1 + "-" + i2;
+            SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+            try {
+               Date birthday=formatter.parse(dateStr);
+               mUser.setBirthDay(birthday);
+               mPresenter.setBirthday(mUser);
+            } catch (ParseException e) {
+               e.printStackTrace();
+            }
+         }
+      }, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+      dialog.getDatePicker().setCalendarViewShown(false);
+      dialog.setTitle("请选择出生日期");
+      dialog.show();
    }
 
    @Override

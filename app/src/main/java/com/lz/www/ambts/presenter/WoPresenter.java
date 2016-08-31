@@ -85,6 +85,11 @@ public class WoPresenter implements IWoPresenter {
     }
 
     @Override
+    public void setBirthday(User user) {
+        mView.showLoginView(user);
+    }
+
+    @Override
     public void start() {
         if(Config.LoginUser==null){
             mView.showNoLoginView();
