@@ -4,8 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/btnHeadCamera"
+        android:text="2016 年 8 月"
+        android:background="@drawable/concers"
+        android:layout_width="match_parent"
+        android:drawableRight="@android:drawable/ic_menu_search"
+        android:layout_height="wrap_content" />
+
+
     <ExpandableListView
         android:id="@+id/elvFa"
+        android:groupIndicator="@null"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

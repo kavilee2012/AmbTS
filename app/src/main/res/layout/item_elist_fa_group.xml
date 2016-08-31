@@ -8,7 +8,8 @@
         android:id="@+id/tvGroupName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/primary_text"
         android:text="AP"
         android:textStyle="bold"
         android:textSize="20sp" />
@@ -16,9 +17,10 @@
     <TextView
         android:id="@+id/tvGroupMoney"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="1000(2.1%)"
+        android:textColor="@color/primary"
+        android:text="合计：1000(2.1%)"
         android:textStyle="bold"
         android:textSize="20sp" />
 

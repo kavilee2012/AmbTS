@@ -63,6 +63,12 @@ public class HeadPhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_head);
         ButterKnife.inject(this);
 
+        Intent intent = getIntent();
+        if (intent  != null &&  intent.getParcelableExtra("Bitmap") != null) {
+            Bitmap bitmap = (Bitmap)getIntent().getParcelableExtra("Bitmap");
+            imgHead.setImageBitmap(bitmap);
+        }
+
         toolbar.setTitle("更换头像");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

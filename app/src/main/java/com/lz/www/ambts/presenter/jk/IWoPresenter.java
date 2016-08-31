@@ -20,4 +20,6 @@ public interface IWoPresenter extends IBasePresenter {
     void setPassword(User user);
 
     void setSex(User user);
+
+    void setBirthday(User user);
 }
