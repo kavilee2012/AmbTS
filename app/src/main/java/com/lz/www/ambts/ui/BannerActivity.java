@@ -179,7 +179,7 @@ public class BannerActivity extends AppCompatActivity {
         for (int i = 0; i < adList.size(); i++) {
             ImageView imageView = new ImageView(this);
             // 异步加载图片
-            mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView, options);
+           // mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView, options);
            // imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageViews.add(imageView);
             dots.get(i).setVisibility(View.VISIBLE);

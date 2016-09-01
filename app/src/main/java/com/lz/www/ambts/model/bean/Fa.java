@@ -13,6 +13,17 @@ public class Fa {
     @SerializedName("Code")
     String code;
 
+    Float money;
+
+    public Float getMoney() {
+        return money;
+    }
+
+    public void setMoney(Float money) {
+        this.money = money;
+    }
+
+
     public String getCode() {
         return code;
     }

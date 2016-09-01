@@ -22,6 +22,7 @@ public class Report extends Fa {
     @SerializedName(("Remark"))
     String remark;
 
+
     public int getId() {
         return id;
     }

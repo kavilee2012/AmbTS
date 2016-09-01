@@ -1,5 +1,7 @@
 package com.lz.www.ambts.ui.module;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.lz.www.ambts.model.NewsModel;
 import com.lz.www.ambts.model.UserModel;
 import com.lz.www.ambts.model.jk.INewsService;
@@ -37,9 +39,13 @@ public class NewsModule {
 
     @Provides
     INewsService provideNewsService(){
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .create();
+
       return  new Retrofit.Builder()
               .baseUrl(Config.AMB_API)
-              .addConverterFactory(GsonConverterFactory.create())
+              .addConverterFactory(GsonConverterFactory.create(gson))
               .build()
               .create(INewsService.class);
     }

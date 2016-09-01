@@ -9,7 +9,7 @@ public class AdDomain {
     private String title; // 标题
     private String topicFrom; //选题来自
     private String topic; // 选题
-    private String imgUrl; // 图片url
+//    private String imgUrl; // 图片url
     private boolean isAd; // 是否为广告
     private String startTime; // 广告开始时间
     private String endTime; // 广告结束时间
@@ -17,7 +17,15 @@ public class AdDomain {
     private int width; // 宽
     private int height; // 高
     private boolean available; // 是否可用
+    private int imgID;
 
+    public int getImgID() {
+        return imgID;
+    }
+
+    public void setImgID(int imgID) {
+        this.imgID = imgID;
+    }
 
     public String getId() {
         return id;
@@ -35,13 +43,13 @@ public class AdDomain {
         this.title = title;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
+//    public String getImgUrl() {
+//        return imgUrl;
+//    }
+//
+//    public void setImgUrl(String imgUrl) {
+//        this.imgUrl = imgUrl;
+//    }
 
     public boolean isAd() {
         return isAd;
