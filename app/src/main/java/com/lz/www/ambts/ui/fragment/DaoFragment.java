@@ -28,9 +28,15 @@ import com.lz.www.ambts.ui.NewsDetailActivity;
 import com.lz.www.ambts.ui.component.DaggerNewsComponent;
 import com.lz.www.ambts.ui.jk.INewsView;
 import com.lz.www.ambts.ui.module.NewsModule;
+import com.lz.www.ambts.util.Config;
+import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 import javax.inject.Inject;
 
@@ -40,7 +46,7 @@ import butterknife.InjectView;
 /**
  * Created by Administrator on 2016-06-01.
  */
-public class DaoFragment extends Fragment implements AdapterView.OnItemClickListener,INewsView {
+public class DaoFragment extends Fragment implements INewsView {
 
     @Inject
     INewsPresenter mPresenter;
@@ -136,28 +142,16 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
     private void InitListData() {
         List<News> mNewsList = new ArrayList<>();
         mNewsList.add(new News(1, "B1", "this is b1"));
-        mNewsList.add(new News(2, "B2", "this is b2"));
-        mNewsList.add(new News(3, "B3", "this is b3"));
-        mNewsList.add(new News(4, "B4", "this is b4"));
-
-//        mAdapter = new NewsAdapter(mNewsList, getActivity());
-//        lvNews.setAdapter(mAdapter);
-//        lvNews.setOnItemClickListener(this);
-
-
         rvNews.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(newState==RecyclerView.SCROLL_STATE_IDLE){
-
-                }
+                if(newState==RecyclerView.SCROLL_STATE_IDLE){}
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
             }
         });
 
@@ -168,14 +162,6 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//        Toast.makeText(getActivity(), "你点击了第" + i + "项", Toast.LENGTH_SHORT).show();
-//
-//        Intent it = new Intent(getActivity(), NewsDetailActivity.class);
-//        startActivity(it);
-
-    }
 
     @Override
     public void onResume() {
@@ -232,11 +218,11 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            News m=mDataList.get(position);
-            if(m==null)
+            News m = mDataList.get(position);
+            if (m == null)
                 return;
-            NewsViewHolder nHolder=(NewsViewHolder)holder;
-            bindNewsItem(m,nHolder.txtTitle,nHolder.txtRemark,nHolder.imgIcon);
+            NewsViewHolder nHolder = (NewsViewHolder) holder;
+            bindNewsItem(m, nHolder.txtTitle, nHolder.txtRemark, nHolder.txtTime, nHolder.txtUrl, nHolder.imgIcon);
         }
 
         @Override
@@ -251,19 +237,30 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
 
 
 
-        void bindNewsItem(News m, TextView title,TextView remark, ImageView icon){
+        void bindNewsItem(News m, TextView title,TextView remark,TextView time,TextView url, ImageView icon){
 //            if(m.getImgUrl().isEmpty())
 //                icon.setVisibility(View.GONE);
             title.setText(m.getTitle());
             remark.setText(m.getContent());
+            url.setText(m.getUrl());
+
+            Picasso.with(getActivity()).load(Config.AMB_IMG + m.getImgUrl()).placeholder(R.drawable.pictures_no).error(R.drawable.pictures_no).into(icon);
             icon.setImageDrawable(getResources().getDrawable(R.drawable.qq));
+
+            SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+            Date date=m.getAddTime();
+            if(date!=null) {
+                time.setText(formatter.format(m.getAddTime()));
+            }
+
         }
 
 
     }
 
-    void showNewsDetails(){
+    void showNewsDetails(String url){
         Intent it = new Intent(getActivity(), NewsDetailActivity.class);
+        it.putExtra("url",url);
         startActivity(it);
     }
 
@@ -271,17 +268,21 @@ public class DaoFragment extends Fragment implements AdapterView.OnItemClickList
         public TextView txtTitle;
         public TextView txtRemark;
         public ImageView imgIcon;
+        public TextView txtTime;
+        public TextView txtUrl;
 
         public NewsViewHolder(View itemView) {
             super(itemView);
             this.txtTitle = (TextView)itemView.findViewById(R.id.news_item_title);
             this.txtRemark = (TextView)itemView.findViewById(R.id.news_item_remark);
             this.imgIcon = (ImageView)itemView.findViewById(R.id.news_item_icon);
+            this.txtTime = (TextView)itemView.findViewById(R.id.news_item_time);
+            this.txtUrl=(TextView)itemView.findViewById(R.id.news_item_url);
             itemView.findViewById(R.id.news_item_container).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //跳转到详细界面
-                    showNewsDetails();
+                    showNewsDetails(txtUrl.getText().toString());
                 }
             });
         }

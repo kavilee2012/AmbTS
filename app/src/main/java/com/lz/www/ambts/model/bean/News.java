@@ -2,6 +2,8 @@ package com.lz.www.ambts.model.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2016-05-27.
  */
@@ -13,7 +15,7 @@ public class News {
     @SerializedName("Content")
     private String content;
     @SerializedName("AddTime")
-    private String addTime;
+    private Date addTime;
     @SerializedName("Author")
     private String author;
     @SerializedName("Url")
@@ -47,11 +49,11 @@ public class News {
         this.content = content;
     }
 
-    public String getAddTime() {
+    public Date getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(String addTime) {
+    public void setAddTime(Date addTime) {
         this.addTime = addTime;
     }
 

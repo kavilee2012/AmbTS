@@ -1,5 +1,6 @@
 package com.lz.www.ambts.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,8 +31,11 @@ public class NewsDetailActivity extends AppCompatActivity {
 
         ButterKnife.inject(this);
 
+        Intent it=getIntent();
+        String url = it.getStringExtra("url");
+
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://www.simchn.com/");
+        webView.loadUrl(url);
         webView.setWebViewClient(new MyWebViewClient());
 
 //        TextView tvTitle=(TextView)findViewById(R.id.tvTitle);

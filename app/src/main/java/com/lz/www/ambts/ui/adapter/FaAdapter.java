@@ -77,12 +77,13 @@ public class FaAdapter extends BaseExpandableListAdapter {
             view= LayoutInflater.from(mContext).inflate(R.layout.item_elist_fa_group,viewGroup,false);
             holderGroup=new ViewHolderGroup();
             holderGroup.tv_group_name=(TextView)view.findViewById(R.id.tvGroupName);
+            holderGroup.tv_group_money=(TextView)view.findViewById(R.id.tvGroupMoney);
             view.setTag(holderGroup);
         }else {
             holderGroup=(ViewHolderGroup)view.getTag();
         }
         holderGroup.tv_group_name.setText(groupList.get(i).getName());
-
+        holderGroup.tv_group_money.setText(groupList.get(i).getMoney().toString());
         return view;
     }
 
@@ -92,14 +93,14 @@ public class FaAdapter extends BaseExpandableListAdapter {
         if(view==null){
             view= LayoutInflater.from(mContext).inflate(R.layout.item_elist_fa_sub,viewGroup,false);
             holderItem=new ViewHolderItem();
-            //holderItem.img_icon=(ImageView) view.findViewById(R.id.ivChildImg);
             holderItem.tv_name=(TextView)view.findViewById(R.id.tvChildName);
+            holderItem.tv_money=(TextView)view.findViewById(R.id.tvChildMoney);
             view.setTag(holderItem);
         }else {
             holderItem=(ViewHolderItem) view.getTag();
         }
-        //holderItem.img_icon.setImageResource(itemList.get(i).get(i1).getUri());
         holderItem.tv_name.setText(itemList.get(i).get(i1).getName());
+        holderItem.tv_name.setText(itemList.get(i).get(i1).getMoney().toString());
 
         return view;
     }
@@ -107,11 +108,14 @@ public class FaAdapter extends BaseExpandableListAdapter {
 
     private static class ViewHolderGroup{
         private TextView tv_group_name;
+        private TextView tv_group_money;
+
     }
 
     private static class ViewHolderItem{
         //private ImageView img_icon;
         private TextView tv_name;
+        private TextView tv_money;
     }
 
 

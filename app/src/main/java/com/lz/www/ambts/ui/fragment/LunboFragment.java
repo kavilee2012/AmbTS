@@ -43,14 +43,14 @@ public class LunboFragment extends Fragment {
 
     @InjectView(R.id.vpLunBo)
     ViewPager adViewPager;
-    @InjectView(R.id.tv_date)
-    TextView tv_date;
+//    @InjectView(R.id.tv_date)
+//    TextView tv_date;
     @InjectView(R.id.tv_title)
     TextView tv_title;
-    @InjectView(R.id.tv_topic_from)
-    TextView tv_topic_from;
-    @InjectView(R.id.tv_topic)
-    TextView tv_topic;
+//    @InjectView(R.id.tv_topic_from)
+//    TextView tv_topic_from;
+//    @InjectView(R.id.tv_topic)
+//    TextView tv_topic;
     // 定义的五个指示点
     @InjectView(R.id.v_dot0)
     View dot0;
@@ -68,8 +68,8 @@ public class LunboFragment extends Fragment {
     private List<View> dotList;
     int currentItem = 0; // 当前图片的索引号
     private ScheduledExecutorService scheduledExecutorService;//定时服务
-    private ImageLoader mImageLoader;    // 异步加载图片
-    private DisplayImageOptions options;  // 异步加载图片参数
+//    private ImageLoader mImageLoader;    // 异步加载图片
+//    private DisplayImageOptions options;  // 异步加载图片参数
     private List<AdDomain> adList;    // 轮播banner的数据
 
 
@@ -87,14 +87,14 @@ public class LunboFragment extends Fragment {
         // 使用ImageLoader之前初始化
         initImageLoader();
         // 获取图片加载实例
-        mImageLoader = ImageLoader.getInstance();
-        options = new DisplayImageOptions.Builder()
-                .showStubImage(R.drawable.top_banner_android)
-                .showImageForEmptyUri(R.drawable.top_banner_android)
-                .showImageOnFail(R.drawable.top_banner_android)
-                .cacheInMemory(true).cacheOnDisc(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .imageScaleType(ImageScaleType.EXACTLY).build();
+//        mImageLoader = ImageLoader.getInstance();
+//        options = new DisplayImageOptions.Builder()
+//                .showStubImage(R.drawable.top_banner_android)
+//                .showImageForEmptyUri(R.drawable.top_banner_android)
+//                .showImageOnFail(R.drawable.top_banner_android)
+//                .cacheInMemory(true).cacheOnDisc(true)
+//                .bitmapConfig(Bitmap.Config.RGB_565)
+//                .imageScaleType(ImageScaleType.EXACTLY).build();
 
         initAdData();
         startAd();
@@ -109,19 +109,19 @@ public class LunboFragment extends Fragment {
     }
 
     private void initImageLoader() {
-        File cacheDir = com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory(getActivity().getApplicationContext(),IMAGE_CACHE_PATH);
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).build();
+//        File cacheDir = com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory(getActivity().getApplicationContext(),IMAGE_CACHE_PATH);
+//        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).build();
 
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getActivity())
-                .defaultDisplayImageOptions(defaultOptions)
-                .memoryCache(new LruMemoryCache(12 * 1024 * 1024))
-                .memoryCacheSize(12 * 1024 * 1024)
-                .discCacheSize(32 * 1024 * 1024).discCacheFileCount(100)
-                .discCache(new UnlimitedDiscCache(cacheDir))
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
+//        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getActivity())
+//                .defaultDisplayImageOptions(defaultOptions)
+//                .memoryCache(new LruMemoryCache(12 * 1024 * 1024))
+//                .memoryCacheSize(12 * 1024 * 1024)
+//                .discCacheSize(32 * 1024 * 1024).discCacheFileCount(100)
+//                .discCache(new UnlimitedDiscCache(cacheDir))
+//                .threadPriority(Thread.NORM_PRIORITY - 2)
+//                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
 
-        ImageLoader.getInstance().init(config);
+ //       ImageLoader.getInstance().init(config);
     }
 
     private void initAdData() {
@@ -150,7 +150,8 @@ public class LunboFragment extends Fragment {
         for (int i = 0; i < adList.size(); i++) {
             ImageView imageView = new ImageView(getActivity());
             // 异步加载图片
-            mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView,options);
+           // mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView,options);
+            imageView.setImageResource(adList.get(i).getImgID());
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageViews.add(imageView);
             dots.get(i).setVisibility(View.VISIBLE);
@@ -202,9 +203,9 @@ public class LunboFragment extends Fragment {
             currentItem = position;
             AdDomain adDomain = adList.get(position);
             tv_title.setText(adDomain.getTitle()); // 设置标题
-            tv_date.setText(adDomain.getDate());
-            tv_topic_from.setText(adDomain.getTopicFrom());
-            tv_topic.setText(adDomain.getTopic());
+//            tv_date.setText(adDomain.getDate());
+//            tv_topic_from.setText(adDomain.getTopicFrom());
+//            tv_topic.setText(adDomain.getTopic());
             dots.get(oldPosition).setBackgroundResource(R.drawable.dot_normal);
             dots.get(position).setBackgroundResource(R.drawable.dot_focused);
             oldPosition = position;
@@ -275,57 +276,43 @@ public class LunboFragment extends Fragment {
         List<AdDomain> adList = new ArrayList<AdDomain>();
 
         AdDomain adDomain = new AdDomain();
-        adDomain.setId("108078");
+        adDomain.setId("1");
         adDomain.setDate("3月4日");
-        adDomain.setTitle("aaaaaaaaaaaaaa");
-        adDomain.setTopicFrom("阿宅");
-        adDomain.setTopic("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA？");
-        adDomain.setImgUrl("http://g.hiphotos.baidu.com/image/w%3D310/sign=bb99d6add2c8a786be2a4c0f5708c9c7/d50735fae6cd7b8900d74cd40c2442a7d9330e29.jpg");
+        adDomain.setTitle("中国阿米巴落地领导者--道成智聚");
         adDomain.setAd(false);
+        adDomain.setImgID(R.drawable.banner5);
         adList.add(adDomain);
 
         AdDomain adDomain2 = new AdDomain();
-        adDomain2.setId("108078");
+        adDomain2.setId("2");
         adDomain2.setDate("3月5日");
-        adDomain2.setTitle("bbbbbbbbbbbbbb");
-        adDomain2.setTopicFrom("小巫");
-        adDomain2.setTopic("“BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB？”");
-        adDomain2
-                .setImgUrl("http://g.hiphotos.baidu.com/image/w%3D310/sign=7cbcd7da78f40ad115e4c1e2672e1151/eaf81a4c510fd9f9a1edb58b262dd42a2934a45e.jpg");
+        adDomain2.setTitle("【理念 + 算盘】经营实学创始人--田和喜");
         adDomain2.setAd(false);
+        adDomain2.setImgID(R.drawable.banner3);
         adList.add(adDomain2);
 
         AdDomain adDomain3 = new AdDomain();
-        adDomain3.setId("108078");
+        adDomain3.setId("3");
         adDomain3.setDate("3月6日");
-        adDomain3.setTitle("cccccccccccccccc");
-        adDomain3.setTopicFrom("旭东");
-        adDomain3.setTopic("“CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC？”");
-        adDomain3
-                .setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=392ce7f779899e51788e3c1572a6d990/8718367adab44aed22a58aeeb11c8701a08bfbd4.jpg");
+        adDomain3.setTitle("什么是【理念 + 算盘】？");
         adDomain3.setAd(false);
+        adDomain3.setImgID(R.drawable.banner2);
         adList.add(adDomain3);
 
         AdDomain adDomain4 = new AdDomain();
-        adDomain4.setId("108078");
+        adDomain4.setId("4");
         adDomain4.setDate("3月7日");
-        adDomain4.setTitle("dddddddddddddddddd");
-        adDomain4.setTopicFrom("小软");
-        adDomain4.setTopic("“DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD？”");
-        adDomain4
-                .setImgUrl("http://d.hiphotos.baidu.com/image/w%3D310/sign=54884c82b78f8c54e3d3c32e0a282dee/a686c9177f3e670932e4cf9338c79f3df9dc55f2.jpg");
+        adDomain4.setTitle("金正大集团启动阿米巴项目");
         adDomain4.setAd(false);
+        adDomain4.setImgID(R.drawable.banner4);
         adList.add(adDomain4);
 
         AdDomain adDomain5 = new AdDomain();
-        adDomain5.setId("108078");
+        adDomain5.setId("5");
         adDomain5.setDate("3月8日");
-        adDomain5.setTitle("eeeeeeeeeeeeeee");
-        adDomain5.setTopicFrom("大熊");
-        adDomain5.setTopic("“EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE？”");
-        adDomain5
-                .setImgUrl("http://e.hiphotos.baidu.com/image/w%3D310/sign=66270b4fe8c4b7453494b117fffd1e78/0bd162d9f2d3572c7dad11ba8913632762d0c30d.jpg");
+        adDomain5.setTitle("9月广州课程，期待你的加入！");
         adDomain5.setAd(true); // 代表是广告
+        adDomain5.setImgID(R.drawable.banner1);
         adList.add(adDomain5);
 
         return adList;
