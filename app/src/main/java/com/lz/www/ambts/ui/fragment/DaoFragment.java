@@ -245,7 +245,6 @@ public class DaoFragment extends Fragment implements INewsView {
             url.setText(m.getUrl());
 
             Picasso.with(getActivity()).load(Config.AMB_IMG + m.getImgUrl()).placeholder(R.drawable.pictures_no).error(R.drawable.pictures_no).into(icon);
-            icon.setImageDrawable(getResources().getDrawable(R.drawable.qq));
 
             SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
             Date date=m.getAddTime();

@@ -3,6 +3,7 @@ package com.lz.www.ambts.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,12 +39,11 @@ public class ContractsActivity extends AppCompatActivity implements IContactsVie
     @Inject
     IContactsPresenter presenter;
 
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
+
     @InjectView(R.id.lvUserList)
     ListView lvContacts;
-    @InjectView(R.id.etUserName)
-    EditText etName;
-    @InjectView(R.id.btnSearchUser)
-    Button btnSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +51,25 @@ public class ContractsActivity extends AppCompatActivity implements IContactsVie
         ButterKnife.inject(this);
         DaggerContactsComponent.builder().contactsModule(new ContactsModule(this)).build().inject(this);
 
+        toolbar.setTitle("通讯录");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         presenter.start();
     }
 
-    @OnClick(R.id.btnSearchUser)
-    public void OnClick(View view){
-        String key=etName.getText().toString();
-        presenter.searchContactsList(key);
-    }
+//    @OnClick(R.id.btnSearchUser)
+//    public void OnClick(View view){
+//        String key=etName.getText().toString();
+//        presenter.searchContactsList(key);
+//    }
 
     @Override
     public void showContactsList(List<Map<String, String>> list) {

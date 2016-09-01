@@ -4,24 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/layout_toolbar"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/etUserName"
-            android:hint="请录入同事姓名"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp" />
-        <Button
-            android:id="@+id/btnSearchUser"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:text="查找"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
+        <!--<EditText-->
+            <!--android:id="@+id/etUserName"-->
+            <!--android:hint="请录入同事姓名"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawableRight="@android:drawable/ic_menu_search"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content" />-->
 
     </LinearLayout>
 

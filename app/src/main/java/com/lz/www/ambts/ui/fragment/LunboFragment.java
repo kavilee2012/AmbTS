@@ -23,6 +23,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -151,8 +153,14 @@ public class LunboFragment extends Fragment {
             ImageView imageView = new ImageView(getActivity());
             // 异步加载图片
            // mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView,options);
-            imageView.setImageResource(adList.get(i).getImgID());
+//            imageView.setImageResource(adList.get(i).getImgID());
+
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            Picasso.with(getActivity())
+                    .load(adList.get(i).getImgID())
+                    .resize(200,100)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
+                    .into(imageView);
             imageViews.add(imageView);
             dots.get(i).setVisibility(View.VISIBLE);
             dotList.add(dots.get(i));

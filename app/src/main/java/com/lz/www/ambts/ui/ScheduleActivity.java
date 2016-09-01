@@ -41,7 +41,7 @@ public class ScheduleActivity extends AppCompatActivity implements IScheduleView
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.add_delete_save_cancel, menu);
+        inflater.inflate(R.menu.menu_add, menu);
         return true;
     }
 
