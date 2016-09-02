@@ -18,5 +18,5 @@ import retrofit2.http.Query;
 public interface IReportService {
 
     @GET("report/getlist")
-   Call<MyResponse<List<Report>>> getAllList();
+   Call<MyResponse<List<Report>>> getAllList(@Query("ym") String ym);
 }

@@ -5,11 +5,21 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnHeadCamera"
+        android:id="@+id/btnReportDate"
         android:text="2016 年 8 月"
         android:background="@drawable/concers"
         android:layout_width="match_parent"
         android:drawableRight="@android:drawable/ic_menu_search"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvNoData"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="#f00"
+        android:visibility="gone"
+        android:text="没有查到相关数据!"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 

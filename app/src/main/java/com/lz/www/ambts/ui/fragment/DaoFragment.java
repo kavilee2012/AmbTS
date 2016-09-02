@@ -80,7 +80,6 @@ public class DaoFragment extends Fragment implements INewsView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     private Handler mHandler = new Handler(){
@@ -126,7 +125,6 @@ public class DaoFragment extends Fragment implements INewsView {
         });
 
 
-
         showTopImages();//显示轮播图片
 
         DaggerNewsComponent.builder()
@@ -136,6 +134,7 @@ public class DaoFragment extends Fragment implements INewsView {
 
         InitListData(); //初始化数据，测试用
 
+        mPresenter.start();
         return view;
     }
 
@@ -166,7 +165,7 @@ public class DaoFragment extends Fragment implements INewsView {
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+
     }
 
 

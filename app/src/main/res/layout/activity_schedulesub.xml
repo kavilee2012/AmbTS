@@ -4,21 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etSchedule"
-        android:drawableLeft="@drawable/b3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+    <include layout="@layout/layout_toolbar"/>
+
 
     <DatePicker
         android:id="@+id/dpSchedule"
         android:calendarViewShown="false"
         android:layout_width="match_parent"
-        android:layout_height="120dp"></DatePicker>
+        android:layout_height="100dp"></DatePicker>
 
     <TimePicker
         android:id="@+id/tpSchedule"
         android:layout_width="match_parent"
         android:layout_height="100dp"></TimePicker>
+
+    <EditText
+        android:id="@+id/etSchedule"
+        android:background="@color/primary_light"
+        android:drawableLeft="@drawable/b3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
 </LinearLayout>

@@ -83,7 +83,12 @@ public class FaAdapter extends BaseExpandableListAdapter {
             holderGroup=(ViewHolderGroup)view.getTag();
         }
         holderGroup.tv_group_name.setText(groupList.get(i).getName());
-        holderGroup.tv_group_money.setText(groupList.get(i).getMoney().toString());
+        String code=groupList.get(i).getCode();
+        if(code.equals("400")||code.equals("700")){
+            holderGroup.tv_group_money.setText(groupList.get(i).getMoney().toString() + "%");
+        }else {
+            holderGroup.tv_group_money.setText("￥" + String.format("%.0f",groupList.get(i).getMoney()));
+        }
         return view;
     }
 
@@ -100,7 +105,7 @@ public class FaAdapter extends BaseExpandableListAdapter {
             holderItem=(ViewHolderItem) view.getTag();
         }
         holderItem.tv_name.setText(itemList.get(i).get(i1).getName());
-        holderItem.tv_name.setText(itemList.get(i).get(i1).getMoney().toString());
+        holderItem.tv_money.setText("￥" + String.format("%.0f",itemList.get(i).get(i1).getMoney()));
 
         return view;
     }

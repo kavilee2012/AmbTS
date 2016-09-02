@@ -5,9 +5,11 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -48,10 +50,13 @@ public class ScheduleSubActivity extends AppCompatActivity implements IScheduleS
     @InjectView(R.id.tpSchedule)
     TimePicker timePicker;
 
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.add_delete_save_cancel,menu);
+        inflater.inflate(R.menu.menu_add,menu);
         return true;
     }
 
@@ -61,6 +66,16 @@ public class ScheduleSubActivity extends AppCompatActivity implements IScheduleS
         setContentView(R.layout.activity_schedulesub);
 
         ButterKnife.inject(this);
+
+        toolbar.setTitle("新建日程");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         DaggerScheduleSubComponent.builder()
                 .scheduleSubModule(new ScheduleSubModule(this))
@@ -73,7 +88,7 @@ public class ScheduleSubActivity extends AppCompatActivity implements IScheduleS
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menuSave:
+            case R.id.menuAdd:
                 saveSchedule();
                 break;
             case R.id.menuDelete:
