@@ -40,12 +40,10 @@ public class ShuFragment extends Fragment {
     private List<Map<String, Object>> data_list;
     // 图片封装为一个数组
     private int[] icon = { R.drawable.shu_notice,R.drawable.shu_date, R.drawable.shu_tel,
-            R.drawable.shu_home, R.drawable.shu_date, R.drawable.mn3,
-            R.drawable.b2, R.drawable.shu_home, R.drawable.b4,
-            R.drawable.b1, R.drawable.b2,
-            R.drawable.b4 };
-    private String[] iconName = {"企业公告","日程安排", "通讯录","考勤管理","费用报销","员工风采",  "摇一摇",  "绘画动画",
-            "null",  "null", "地理位置", "系统日志" };
+            R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.shu_home,
+            R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.pictures_no,
+            R.drawable.pictures_no, R.drawable.pictures_no,R.drawable.pictures_no };
+    private String[] iconName = {"企业公告","日程安排", "通讯录","考勤管理","费用报销","员工风采","摇一摇",  "绘画动画","地理位置", "系统日志", "null",  "null", };
 
     @InjectView(R.id.gvShu)
     GridView gridView;
@@ -88,22 +86,26 @@ public class ShuFragment extends Fragment {
                         startActivity(it1);
                         break;
                     case 2:
-                        Intent it2=new Intent(getActivity(),ShakeActivity.class);
+                        Intent it2=new Intent(getActivity(),ContractsActivity.class);
                         startActivity(it2);
                         break;
-                    case 3:
-                        Intent it3=new Intent(getActivity(),EmployeePhotoActivity.class);
-                        startActivity(it3);
+                    case 5:
+                        Intent it5=new Intent(getActivity(),EmployeePhotoActivity.class);
+                        startActivity(it5);
                         break;
-                    case 4:
-                        Intent it4=new Intent(getActivity(),AnimationActivity.class);
-                        startActivity(it4);
+                    case 6:
+                        Intent it6=new Intent(getActivity(),ShakeActivity.class);
+                        startActivity(it6);
                         break;
-                    case 10:
+                    case 7:
+                        Intent it7=new Intent(getActivity(),AnimationActivity.class);
+                        startActivity(it7);
+                        break;
+                    case 8:
 //                        Intent it10=new Intent(getActivity(), MapActivity.class);
 //                        startActivity(it10);
                         break;
-                    case 11:
+                    case 9:
                         Intent it11=new Intent(getActivity(), AmbLogActivity.class);
                         startActivity(it11);
                         break;
