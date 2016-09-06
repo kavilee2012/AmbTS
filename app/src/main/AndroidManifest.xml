@@ -3,24 +3,23 @@
     package="com.lz.www.ambts">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
-    <!--百度地图需要权限-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 百度地图需要权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".AppApplication"
@@ -30,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.MD">
 
-        <!--activity-->
+        <!-- activity -->
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,48 +37,59 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.LoginActivity" android:label="@string/title_activity_login" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:label="@string/title_activity_login" />
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.NewsDetailActivity" />
-        <!--<activity android:name=".ui.ServiceActivity" />-->
-        <!--<activity android:name=".ui.NewsIndexActivity" />-->
+        <!-- <activity android:name=".ui.ServiceActivity" /> -->
+        <!-- <activity android:name=".ui.NewsIndexActivity" /> -->
         <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.ContractsActivity"/>
-        <activity android:name=".ui.AmbLogActivity"/>
-        <!--<activity android:name=".ui.ShakeActivity"/>-->
-        <activity android:name=".ui.ScheduleActivity"/>
-        <activity android:name=".ui.ScheduleSubActivity"/>
-        <!--<activity android:name=".ui.PhotoActivity"/>-->
-        <!--<activity android:name=".ui.DrawActivity"/>-->
-        <activity android:name=".ui.AnimationActivity"/>
-        <activity android:name=".ui.HeadPhotoActivity"/>
-        <activity android:name=".ui.BannerActivity"/>
-        <activity android:name=".ui.LunBoActivity"/>
-        <activity android:name=".ui.EmployeePhotoActivity"/>
+        <activity android:name=".ui.ContractsActivity" />
+        <activity android:name=".ui.AmbLogActivity" />
+        <!-- <activity android:name=".ui.ShakeActivity"/> -->
+        <activity android:name=".ui.ScheduleActivity" />
+        <activity android:name=".ui.ScheduleSubActivity" />
+        <!-- <activity android:name=".ui.PhotoActivity"/> -->
+        <!-- <activity android:name=".ui.DrawActivity"/> -->
+        <activity android:name=".ui.AnimationActivity" />
+        <activity android:name=".ui.HeadPhotoActivity" />
+        <activity android:name=".ui.BannerActivity" />
+        <activity android:name=".ui.LunBoActivity" />
+        <activity android:name=".ui.EmployeePhotoActivity" />
+        <activity android:name=".ui.NoticeActivity" android:label="企业公告" />
+        <activity android:name=".ui.AttendActivity" android:label="考勤管理" />
+        <activity
+            android:name=".ui.RockActivity"
+            android:label="扫一扫"
+            android:theme="@style/AppTheme.MD" />
 
-
-        <!--receiver-->
+        <!-- receiver -->
         <receiver android:name=".receiver.MyBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.lz.www.ambrm.Broadcast.MYBC" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".receiver.ScheduleBoradcastReceiver"/>
+        <receiver android:name=".receiver.ScheduleBoradcastReceiver" />
 
-        <!--provider-->
+        <!-- provider -->
         <provider
             android:name=".provider.LogProvider"
             android:authorities="com.lz.www.ambrm.ContentProvider.LogProvider"
+            android:exported="true" />
+
+        <!-- service -->
+        <service android:name=".service.ScheduleService" />
+        <service
+            android:name=".service.BgMusicService"
             android:exported="true"
-            />
+            android:process=":remote" />
 
-        <!--service-->
-        <service android:name=".service.ScheduleService"/>
-        <service android:name=".service.BgMusicService" android:exported="true" android:process=":remote"/>
+        <!-- biadu apikey -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="bayihlMLHcG7QOdD9vnybz3sGsTBKjEm" />
 
-
-        <!--biadu apikey-->
-        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="bayihlMLHcG7QOdD9vnybz3sGsTBKjEm"/>
 
     </application>
 

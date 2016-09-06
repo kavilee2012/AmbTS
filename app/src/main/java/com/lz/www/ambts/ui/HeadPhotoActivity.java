@@ -87,6 +87,8 @@ public class HeadPhotoActivity extends AppCompatActivity {
                     case 0:
                         if ((int)msg.obj == 1) {
                             Toast.makeText(HeadPhotoActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                            setResult(RESULT_OK);
+                            finish();
                         } else {
                             Toast.makeText(HeadPhotoActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
                         }

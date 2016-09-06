@@ -33,22 +33,28 @@ public class WoPresenter implements IWoPresenter {
 //        user.setMobile("158768574");
 //        user.setPassword("admin");
 //        mModel.getOne()
-        if(Config.LoginUser==null&&!Config.AMB_TOKEN.isEmpty()){
-            Call<MyResponse<User>> call=mModel.getOne(Config.AMB_TOKEN);
-            call.enqueue(new Callback<MyResponse<User>>() {
-                @Override
-                public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
-                    User user=(User)response.body().getData();
-                    Config.LoginUser=user;
-                    mView.showLoginView(user);
-                }
+        if(Config.LoginUser==null){
+            if(!Config.AMB_TOKEN.isEmpty()) {
+                Call<MyResponse<User>> call = mModel.getOne(Config.AMB_TOKEN);
+                call.enqueue(new Callback<MyResponse<User>>() {
+                    @Override
+                    public void onResponse(Call<MyResponse<User>> call, Response<MyResponse<User>> response) {
+                        User user = (User) response.body().getData();
+                        Config.LoginUser = user;
+                        mView.showLoginView(user);
+                    }
 
-                @Override
-                public void onFailure(Call<MyResponse<User>> call, Throwable t) {
-                    mView.showNoLoginView();
-                    mView.showFail(0,"获取用户信息失败,请检查网络!");
-                }
-            });
+                    @Override
+                    public void onFailure(Call<MyResponse<User>> call, Throwable t) {
+                        mView.showNoLoginView();
+                        mView.showFail(0, "获取用户信息失败,请检查网络!");
+                    }
+                });
+            }else {
+                mView.showNoLoginView();
+            }
+        }else {
+            mView.showLoginView(Config.LoginUser);
         }
     }
 
@@ -91,10 +97,6 @@ public class WoPresenter implements IWoPresenter {
 
     @Override
     public void start() {
-        if(Config.LoginUser==null){
-            mView.showNoLoginView();
-        }else {
-            mView.showLoginView(Config.LoginUser);
-        }
+        loadUserInfo();
     }
 }

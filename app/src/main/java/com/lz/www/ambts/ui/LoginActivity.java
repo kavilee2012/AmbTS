@@ -45,6 +45,7 @@ import com.lz.www.ambts.ui.jk.ILoginView;
 import com.lz.www.ambts.ui.module.LoginModule;
 import com.lz.www.ambts.ui.module.SbuModule;
 import com.lz.www.ambts.util.Config;
+import com.lz.www.ambts.util.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +114,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                         if (response.isSuccess()) {
                             String token = (String) response.body().getData();
                             Config.AMB_TOKEN = token;
+                            SPUtils.put(getApplicationContext(),"Token",token);//保存到本地
                             showSuccess();
                         } else {
                             showFail();
@@ -131,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void showSuccess() {
-        Toast.makeText(LoginActivity.this,"success",Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
         setResult(RESULT_OK);
         finish();
     }
@@ -139,12 +141,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void showFail() {
-        Toast.makeText(this,"fail",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"登录失败",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showLoading() {
-       // mProgressBar.setVisibility(ProgressBar.VISIBLE);
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override

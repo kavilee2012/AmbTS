@@ -14,6 +14,8 @@ import com.lz.www.ambts.ui.fragment.FaFragment;
 import com.lz.www.ambts.ui.fragment.LunboFragment;
 import com.lz.www.ambts.ui.fragment.ShuFragment;
 import com.lz.www.ambts.ui.fragment.WoFragment;
+import com.lz.www.ambts.util.Config;
+import com.lz.www.ambts.util.SPUtils;
 
 public class HomeActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
@@ -44,6 +46,9 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
         _homeTabBar.setOnCheckedChangeListener(this);
         _itemDao=(RadioButton)findViewById(R.id.itemDAO);
         _itemDao.setChecked(true);
+
+        //加载Token
+        Config.AMB_TOKEN = String.valueOf(SPUtils.get(getApplicationContext(),"Token",""));
     }
 
     @Override

@@ -17,9 +17,12 @@ import android.widget.Toast;
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.ui.AmbLogActivity;
 import com.lz.www.ambts.ui.AnimationActivity;
+import com.lz.www.ambts.ui.AttendActivity;
 import com.lz.www.ambts.ui.ContractsActivity;
 import com.lz.www.ambts.ui.EmployeePhotoActivity;
+import com.lz.www.ambts.ui.NoticeActivity;
 import com.lz.www.ambts.ui.PhotoActivity;
+import com.lz.www.ambts.ui.RockActivity;
 import com.lz.www.ambts.ui.ScheduleActivity;
 import com.lz.www.ambts.ui.ShakeActivity;
 
@@ -78,7 +81,7 @@ public class ShuFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
                     case 0:
-                        Intent it0=new Intent(getActivity(),ContractsActivity.class);
+                        Intent it0=new Intent(getActivity(),NoticeActivity.class);
                         startActivity(it0);
                         break;
                     case 1:
@@ -89,12 +92,21 @@ public class ShuFragment extends Fragment {
                         Intent it2=new Intent(getActivity(),ContractsActivity.class);
                         startActivity(it2);
                         break;
+                    case 3:
+                        Intent it3=new Intent(getActivity(),AttendActivity.class);
+                        startActivity(it3);
+                        break;
+                    case 4:
+//                        Intent it4=new Intent(getActivity(),AttendActivity.class);
+//                        startActivity(it4);
+                        Toast.makeText(getActivity(),"该功能还未开放！",Toast.LENGTH_SHORT).show();
+                        break;
                     case 5:
                         Intent it5=new Intent(getActivity(),EmployeePhotoActivity.class);
                         startActivity(it5);
                         break;
                     case 6:
-                        Intent it6=new Intent(getActivity(),ShakeActivity.class);
+                        Intent it6=new Intent(getActivity(),RockActivity.class);
                         startActivity(it6);
                         break;
                     case 7:

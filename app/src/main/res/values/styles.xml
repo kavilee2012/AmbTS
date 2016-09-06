@@ -2,10 +2,10 @@
 
     <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
     <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--<item name="colorAccent">@color/colorAccent</item>-->
     <!--</style>-->
 
     <style name="AppTheme.MD" parent="Theme.AppCompat.Light.NoActionBar">
@@ -22,15 +22,15 @@
     </style>
 
     <style name="homeTabItem">
-    <item name="android:layout_width">0dp</item>
-    <item name="android:layout_height">match_parent</item>
-    <item name="android:layout_weight">1</item>
-    <item name="android:background">@drawable/tab_menu_bg</item>
-    <item name="android:button">@null</item>
-    <item name="android:gravity">center</item>
-    <item name="android:paddingTop">3dp</item>
-    <item name="android:textColor">@drawable/tab_menu_text</item>
-    <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/tab_menu_bg</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:textColor">@drawable/tab_menu_text</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="dot_style">
@@ -61,5 +61,9 @@
         <item name="actionMenuTextColor">@color/white</item> <!--  敲定颜色-->
         <item name="android:textSize">18sp</item> <!--  搞掂字体大小-->
     </style>
+
+    <style name="AppTheme.MD.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.MD.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

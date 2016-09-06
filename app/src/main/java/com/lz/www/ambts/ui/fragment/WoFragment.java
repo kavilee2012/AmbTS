@@ -1,6 +1,7 @@
 package com.lz.www.ambts.ui.fragment;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -133,19 +134,23 @@ public class WoFragment extends Fragment implements IWoView {
 
    @Override
    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//      switch (requestCode){
-//         case 0:
-//            if(resultCode== Activity.RESULT_OK)
-//               mPresenter.loadUserInfo();
-//            break;
-//      }
+      switch (requestCode){
+         case 0:
+            if(resultCode== Activity.RESULT_OK)
+               mPresenter.loadUserInfo();
+            break;
+         case 1:
+            if(resultCode== Activity.RESULT_OK)
+               mPresenter.loadUserInfo();
+            break;
+      }
       super.onActivityResult(requestCode, resultCode, data);
    }
 
    @Override
    public void onResume() {
       super.onResume();
-      mPresenter.loadUserInfo();
+      //mPresenter.loadUserInfo();
    }
 
    @Override
@@ -220,7 +225,7 @@ public class WoFragment extends Fragment implements IWoView {
       Intent it=new Intent(getActivity(), HeadPhotoActivity.class);
       ivMeLogo.setDrawingCacheEnabled(true);
       it.putExtra("Bitmap",ivMeLogo.getDrawingCache());
-      startActivity(it);
+      startActivityForResult(it,1);
    }
 
    @Override

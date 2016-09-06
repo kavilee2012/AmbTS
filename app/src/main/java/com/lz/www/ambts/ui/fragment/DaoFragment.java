@@ -140,7 +140,7 @@ public class DaoFragment extends Fragment implements INewsView {
 
     private void InitListData() {
         List<News> mNewsList = new ArrayList<>();
-        mNewsList.add(new News(1, "B1", "this is b1"));
+        mNewsList.add(new News(1, "内容加载中......", " "));
         rvNews.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

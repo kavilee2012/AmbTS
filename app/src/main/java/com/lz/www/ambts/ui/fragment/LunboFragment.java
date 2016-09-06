@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.AdDomain;
+import com.lz.www.ambts.util.LocalData;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -128,7 +129,7 @@ public class LunboFragment extends Fragment {
 
     private void initAdData() {
         // 广告数据
-        adList = getBannerAd();
+        adList = LocalData.getBannerAd();
         imageViews = new ArrayList<ImageView>();
         // 点
         dots = new ArrayList<View>();
@@ -158,7 +159,7 @@ public class LunboFragment extends Fragment {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Picasso.with(getActivity())
                     .load(adList.get(i).getImgID())
-                    .resize(200,100)
+                    .resize(300,200)
                     .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
                     .into(imageView);
             imageViews.add(imageView);
@@ -275,54 +276,4 @@ public class LunboFragment extends Fragment {
 
     }
 
-    /**
-     * 轮播广播模拟数据
-     *
-     * @return
-     */
-    public static List<AdDomain> getBannerAd() {
-        List<AdDomain> adList = new ArrayList<AdDomain>();
-
-        AdDomain adDomain = new AdDomain();
-        adDomain.setId("1");
-        adDomain.setDate("3月4日");
-        adDomain.setTitle("中国阿米巴落地领导者--道成智聚");
-        adDomain.setAd(false);
-        adDomain.setImgID(R.drawable.banner5);
-        adList.add(adDomain);
-
-        AdDomain adDomain2 = new AdDomain();
-        adDomain2.setId("2");
-        adDomain2.setDate("3月5日");
-        adDomain2.setTitle("【理念 + 算盘】经营实学创始人--田和喜");
-        adDomain2.setAd(false);
-        adDomain2.setImgID(R.drawable.banner3);
-        adList.add(adDomain2);
-
-        AdDomain adDomain3 = new AdDomain();
-        adDomain3.setId("3");
-        adDomain3.setDate("3月6日");
-        adDomain3.setTitle("什么是【理念 + 算盘】？");
-        adDomain3.setAd(false);
-        adDomain3.setImgID(R.drawable.banner2);
-        adList.add(adDomain3);
-
-        AdDomain adDomain4 = new AdDomain();
-        adDomain4.setId("4");
-        adDomain4.setDate("3月7日");
-        adDomain4.setTitle("金正大集团启动阿米巴项目");
-        adDomain4.setAd(false);
-        adDomain4.setImgID(R.drawable.banner4);
-        adList.add(adDomain4);
-
-        AdDomain adDomain5 = new AdDomain();
-        adDomain5.setId("5");
-        adDomain5.setDate("3月8日");
-        adDomain5.setTitle("9月广州课程，期待你的加入！");
-        adDomain5.setAd(true); // 代表是广告
-        adDomain5.setImgID(R.drawable.banner1);
-        adList.add(adDomain5);
-
-        return adList;
-    }
 }

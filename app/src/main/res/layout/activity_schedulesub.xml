@@ -7,22 +7,39 @@
     <include layout="@layout/layout_toolbar"/>
 
 
-    <DatePicker
-        android:id="@+id/dpSchedule"
-        android:calendarViewShown="false"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"></DatePicker>
+        android:layout_height="wrap_content">
+        <DatePicker
+            android:id="@+id/dpSchedule"
+            android:calendarViewShown="false"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="150dp"></DatePicker>
 
-    <TimePicker
-        android:id="@+id/tpSchedule"
+        <TimePicker
+            android:id="@+id/tpSchedule"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="150dp"></TimePicker>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:text="内容"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="100dp"></TimePicker>
-
+        android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/etSchedule"
-        android:background="@color/primary_light"
-        android:drawableLeft="@drawable/b3"
+        android:inputType="textMultiLine"
+        android:gravity="left|top"
+        android:minLines="6"
+        android:background="@drawable/concers"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

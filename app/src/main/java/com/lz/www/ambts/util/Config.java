@@ -9,7 +9,7 @@ import com.lz.www.ambts.model.bean.User;
  */
 public class Config {
 
-    public static String AMB_TOKEN = "bc84e9369d40bc43dd01e9c78e77bbf8";//登录成功后获取
+    public static String AMB_TOKEN = "";//"bc84e9369d40bc43dd01e9c78e77bbf8";//登录成功后获取
     public static User LoginUser = null; //登录用户信息
 
     public static final String AMB_IMG = "http://122.114.95.32/";

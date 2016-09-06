@@ -26,4 +26,5 @@
     <string name="fa">法</string>
     <string name="shu">术</string>
     <string name="wo">我</string>
+    <string name="title_activity_rock">RockActivity</string>
 </resources>
