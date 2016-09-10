@@ -1,13 +1,17 @@
 package com.lz.www.ambts.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.ui.fragment.DaoFragment;
 import com.lz.www.ambts.ui.fragment.FaFragment;
@@ -92,5 +96,21 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
                 break;
         }
         ft.commit();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult scanResult= IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(scanResult!=null) {
+            String result = scanResult.getContents();
+            if (result != null && result.toLowerCase().contains("http")) {
+                Intent it = new Intent(this, NewsDetailActivity.class);
+                it.putExtra("url", result);
+                it.putExtra("title", "扫描结果");
+                startActivity(it);
+            } else {
+//                Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

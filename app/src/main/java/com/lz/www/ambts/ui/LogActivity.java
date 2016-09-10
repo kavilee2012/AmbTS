@@ -2,8 +2,8 @@ package com.lz.www.ambts.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lz.www.ambts.R;
-import com.lz.www.ambts.model.bean.Attend;
 import com.lz.www.ambts.model.bean.Notice;
 import com.lz.www.ambts.util.LocalData;
 
@@ -22,8 +21,10 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class NoticeActivity extends AppCompatActivity {
-
+/**
+ * Created by Administrator on 2016-09-10.
+ */
+public class LogActivity extends AppCompatActivity {
     @InjectView(R.id.myTool)
     Toolbar toolbar;
     @InjectView(R.id.rvNotice)
@@ -40,7 +41,7 @@ public class NoticeActivity extends AppCompatActivity {
 
         mLayoutManager=new LinearLayoutManager(this);
         rvNotice.setLayoutManager(mLayoutManager);
-        mAdapter=new NoticeRvAdapter(this, LocalData.getNoticeList());
+        mAdapter=new NoticeRvAdapter(this, LocalData.getLogList());
         rvNotice.setAdapter(mAdapter);
 
         setSupportActionBar(toolbar);
@@ -78,8 +79,8 @@ public class NoticeActivity extends AppCompatActivity {
             NoticeViewHolder h = (NoticeViewHolder) holder;
             h.notice=m;
             h.txtTitle.setText(m.getTitle());
-            h.txtUser.setText("发布者：" + m.getAddUser());
-            h.txtTime.setText("发布时间：" + m.getAddTime());
+            h.txtUser.setText("用户：" + m.getAddUser());
+            h.txtTime.setText("时间：" + m.getAddTime());
         }
 
         @Override

@@ -33,14 +33,13 @@ public class NewsDetailActivity extends AppCompatActivity {
 
         Intent it=getIntent();
         String url = it.getStringExtra("url");
+        String title=it.getStringExtra("title");
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
         webView.setWebViewClient(new MyWebViewClient());
 
-//        TextView tvTitle=(TextView)findViewById(R.id.tvTitle);
-//        tvTitle.setText("新闻详细");
-        toolbar.setTitle("正文详细");
+        toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.drawable.left2);

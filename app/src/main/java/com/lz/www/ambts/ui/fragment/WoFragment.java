@@ -122,7 +122,7 @@ public class WoFragment extends Fragment implements IWoView {
             break;
          case R.id.toolWoLogin:
                //登录
-               Intent it=new Intent(getActivity(), LoginActivity.class);
+               Intent it=new Intent(view.getContext(), LoginActivity.class);
                startActivityForResult(it,0);
             break;
          case R.id.btnLoginOut:
@@ -222,7 +222,7 @@ public class WoFragment extends Fragment implements IWoView {
 
    @Override
    public void openSetHeadPhoto() {
-      Intent it=new Intent(getActivity(), HeadPhotoActivity.class);
+      Intent it=new Intent(this.getContext(), HeadPhotoActivity.class);
       ivMeLogo.setDrawingCacheEnabled(true);
       it.putExtra("Bitmap",ivMeLogo.getDrawingCache());
       startActivityForResult(it,1);

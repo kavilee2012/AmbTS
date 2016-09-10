@@ -49,8 +49,8 @@
         <activity android:name=".ui.AmbLogActivity" />
         <!-- <activity android:name=".ui.ShakeActivity"/> -->
         <activity android:name=".ui.ScheduleActivity" />
-        <activity android:name=".ui.ScheduleSubActivity" />
-        <!-- <activity android:name=".ui.PhotoActivity"/> -->
+        <activity android:name=".ui.ScheduleSubActivity" android:label="新建日程" />
+         <activity android:name=".ui.PhotoActivity"/>
         <!-- <activity android:name=".ui.DrawActivity"/> -->
         <activity android:name=".ui.AnimationActivity" />
         <activity android:name=".ui.HeadPhotoActivity" />
@@ -59,6 +59,7 @@
         <activity android:name=".ui.EmployeePhotoActivity" />
         <activity android:name=".ui.NoticeActivity" android:label="企业公告" />
         <activity android:name=".ui.AttendActivity" android:label="考勤管理" />
+        <activity android:name=".ui.LogActivity" android:label="系统日志" />
         <activity
             android:name=".ui.RockActivity"
             android:label="扫一扫"

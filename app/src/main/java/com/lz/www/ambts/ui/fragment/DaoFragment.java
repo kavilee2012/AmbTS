@@ -179,7 +179,7 @@ public class DaoFragment extends Fragment implements INewsView {
 
     @Override
     public void showNewsList(List<News> newNewsList) {
-        Toast.makeText(getActivity(),"获取成功",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(),"获取成功",Toast.LENGTH_SHORT).show();
 
         mAdapter.mDataList = newNewsList;
         mAdapter.notifyDataSetChanged();
@@ -239,8 +239,17 @@ public class DaoFragment extends Fragment implements INewsView {
         void bindNewsItem(News m, TextView title,TextView remark,TextView time,TextView url, ImageView icon){
 //            if(m.getImgUrl().isEmpty())
 //                icon.setVisibility(View.GONE);
-            title.setText(m.getTitle());
-            remark.setText(m.getContent());
+            String _title=m.getTitle();
+             if((_title.length()>13)) {
+                 _title = _title.substring(0, 12);
+             }
+            title.setText(_title);
+
+            String _content=m.getContent();
+            if(_content.length()>51){
+                _content=_content.substring(0,50);
+            }
+            remark.setText(_content);
             url.setText(m.getUrl());
 
             Picasso.with(getActivity()).load(Config.AMB_IMG + m.getImgUrl()).placeholder(R.drawable.pictures_no).error(R.drawable.pictures_no).into(icon);
@@ -256,9 +265,10 @@ public class DaoFragment extends Fragment implements INewsView {
 
     }
 
-    void showNewsDetails(String url){
+    void showNewsDetails(String url,String title){
         Intent it = new Intent(getActivity(), NewsDetailActivity.class);
         it.putExtra("url",url);
+        it.putExtra("title",title);
         startActivity(it);
     }
 
@@ -280,7 +290,7 @@ public class DaoFragment extends Fragment implements INewsView {
                 @Override
                 public void onClick(View view) {
                     //跳转到详细界面
-                    showNewsDetails(txtUrl.getText().toString());
+                    showNewsDetails(txtUrl.getText().toString(),txtTitle.getText().toString());
                 }
             });
         }

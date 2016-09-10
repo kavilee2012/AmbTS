@@ -6,25 +6,10 @@
 
     <include layout="@layout/layout_toolbar"/>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <DatePicker
-            android:id="@+id/dpSchedule"
-            android:calendarViewShown="false"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="150dp"></DatePicker>
-
-        <TimePicker
+    <TimePicker
             android:id="@+id/tpSchedule"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="150dp"></TimePicker>
-    </LinearLayout>
-
-
+            android:layout_width="match_parent"
+            android:layout_height="100dp"></TimePicker>
 
     <TextView
         android:layout_marginTop="15dp"
@@ -38,6 +23,8 @@
         android:inputType="textMultiLine"
         android:gravity="left|top"
         android:minLines="6"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:background="@drawable/concers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

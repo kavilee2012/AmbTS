@@ -19,6 +19,8 @@ import com.lz.www.ambts.ui.component.DaggerScheduleComponent;
 import com.lz.www.ambts.ui.jk.IScheduleView;
 import com.lz.www.ambts.ui.module.ScheduleModule;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
@@ -95,6 +97,7 @@ public class ScheduleActivity extends AppCompatActivity implements IScheduleView
     @Override
     public void showSubView() {
         Intent it = new Intent(ScheduleActivity.this, ScheduleSubActivity.class);
+        it.putExtra("date",calendarView.getDate());
         startActivity(it);
     }
 }

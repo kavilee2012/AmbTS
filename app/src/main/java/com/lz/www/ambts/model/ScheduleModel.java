@@ -19,8 +19,13 @@ import java.util.List;
 public class ScheduleModel implements IScheduleService {
 
     @Override
-    public Schedule getOne(int id) {
-        return null;
+    public Schedule getOne(String key) {
+        try {
+            Schedule schedule = (Schedule) SPUtils.get(AppApplication.getContextObject(), key, null);
+            return schedule;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     @Override
@@ -29,7 +34,15 @@ public class ScheduleModel implements IScheduleService {
     }
 
     @Override
-    public int add(Schedule schedule) {
+    public int add(String key, Schedule schedule) {
+        try {
+            SPUtils.put(AppApplication.getContextObject(), key, schedule);
+            return 1;
+        } catch (Exception ex) {
+            return 0;
+        }
+
+
         //SPUtils.put(AppApplication.getContextObject(), "Schedule",schedule);
         // SPUtils.put(ScheduleActivity.this, "ScheduleContent", schedule.getContent());
 
@@ -49,11 +62,16 @@ public class ScheduleModel implements IScheduleService {
 //        }
 //        alarmManager.set(AlarmManager.RTC_WAKEUP,sTimes,pi);
 
-        return 1;
+
     }
 
     @Override
-    public int delete(int id) {
-        return 0;
+    public int delete(String key) {
+        try {
+            SPUtils.remove(AppApplication.getContextObject(),key);
+            return 1;
+        }catch(Exception ex) {
+            return 0;
+        }
     }
 }

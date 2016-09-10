@@ -5,11 +5,11 @@ import com.lz.www.ambts.model.bean.Schedule;
 /**
  * Created by Administrator on 2016/8/2.
  */
-public interface IScheduleSubPresenter {
+public interface IScheduleSubPresenter extends IBasePresenter {
 
-    Schedule getSchedule(int id);
+    Schedule getSchedule(String key);
 
-    void addSchedule(Schedule schedule);
+    void addSchedule(String key, Schedule schedule);
 
-    void deleteSchedule(int id);
+    void deleteSchedule(String key);
 }

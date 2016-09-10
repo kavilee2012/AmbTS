@@ -14,12 +14,16 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.ui.AmbLogActivity;
 import com.lz.www.ambts.ui.AnimationActivity;
 import com.lz.www.ambts.ui.AttendActivity;
 import com.lz.www.ambts.ui.ContractsActivity;
 import com.lz.www.ambts.ui.EmployeePhotoActivity;
+import com.lz.www.ambts.ui.LogActivity;
+import com.lz.www.ambts.ui.NewsDetailActivity;
 import com.lz.www.ambts.ui.NoticeActivity;
 import com.lz.www.ambts.ui.PhotoActivity;
 import com.lz.www.ambts.ui.RockActivity;
@@ -46,7 +50,7 @@ public class ShuFragment extends Fragment {
             R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.shu_home,
             R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.pictures_no,
             R.drawable.pictures_no, R.drawable.pictures_no,R.drawable.pictures_no };
-    private String[] iconName = {"企业公告","日程安排", "通讯录","考勤管理","费用报销","员工风采","摇一摇",  "绘画动画","地理位置", "系统日志", "null",  "null", };
+    private String[] iconName = {"企业公告","日程安排", "通讯录","费用报销","考勤管理","员工风采", "工作审批","扫一扫","地理位置", "系统日志", "关于道成",  "更多", };
 
     @InjectView(R.id.gvShu)
     GridView gridView;
@@ -93,36 +97,44 @@ public class ShuFragment extends Fragment {
                         startActivity(it2);
                         break;
                     case 3:
-                        Intent it3=new Intent(getActivity(),AttendActivity.class);
-                        startActivity(it3);
-                        break;
-                    case 4:
-//                        Intent it4=new Intent(getActivity(),AttendActivity.class);
-//                        startActivity(it4);
                         Toast.makeText(getActivity(),"该功能还未开放！",Toast.LENGTH_SHORT).show();
                         break;
+                    case 4:
+                        Intent it4=new Intent(getActivity(),AttendActivity.class);
+                        startActivity(it4);
+                        break;
                     case 5:
-                        Intent it5=new Intent(getActivity(),EmployeePhotoActivity.class);
+                        Intent it5=new Intent(getActivity(),PhotoActivity.class);
                         startActivity(it5);
                         break;
                     case 6:
-                        Intent it6=new Intent(getActivity(),RockActivity.class);
-                        startActivity(it6);
+                        Toast.makeText(getActivity(),"该功能还未开放！",Toast.LENGTH_SHORT).show();
                         break;
                     case 7:
-                        Intent it7=new Intent(getActivity(),AnimationActivity.class);
-                        startActivity(it7);
+//                        Intent it7=new Intent(getActivity(),RockActivity.class);
+//                        startActivity(it7);
+                        IntentIntegrator integrator=new IntentIntegrator(getActivity());
+                        integrator.initiateScan();
                         break;
                     case 8:
 //                        Intent it10=new Intent(getActivity(), MapActivity.class);
 //                        startActivity(it10);
                         break;
                     case 9:
-                        Intent it11=new Intent(getActivity(), AmbLogActivity.class);
-                        startActivity(it11);
+                        Intent it9=new Intent(getActivity(), LogActivity.class);
+                        startActivity(it9);
+                        break;
+                    case 10:
+                        Intent it = new Intent(getActivity(), NewsDetailActivity.class);
+                        it.putExtra("url","http://www.simchn.com/");
+                        it.putExtra("title","关于道成");
+                        startActivity(it);
+                        break;
+                    case 11:
+                        Toast.makeText(getActivity(),"敬请期待！",Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        Toast.makeText(getActivity(),"你点击了第" + i + "项",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"敬请期待！",Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -144,6 +156,5 @@ public class ShuFragment extends Fragment {
 
         return data_list;
     }
-
 
 }
