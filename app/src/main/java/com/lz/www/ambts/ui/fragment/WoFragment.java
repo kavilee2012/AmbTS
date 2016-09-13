@@ -137,6 +137,7 @@ public class WoFragment extends Fragment implements IWoView {
       super.onActivityResult(requestCode, resultCode, data);
       switch (resultCode){
          case Activity.RESULT_OK:
+               Config.LoginUser=null;
                mPresenter.loadUserInfo();
             break;
       }

@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/ivGvShu"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 
     <!--<de.hdodenhof.circleimageview.CircleImageView-->
         <!--android:id="@+id/ivGvShu"-->
