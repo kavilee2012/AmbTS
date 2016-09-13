@@ -33,12 +33,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-
+    <View
+        style="@style/H_Line"
+        android:layout_above="@id/homeTabBar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <!-- 底部BAR -->
     <RadioGroup
         android:id="@+id/homeTabBar"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="60dp">

@@ -57,7 +57,7 @@ public class ListPhotoFragment extends Fragment {
 //
 
         toolbar.setTitle("员工风采");
-        toolbar.setNavigationIcon(R.drawable.left);
+//        toolbar.setNavigationIcon(R.drawable.left);
 
 
         return view;

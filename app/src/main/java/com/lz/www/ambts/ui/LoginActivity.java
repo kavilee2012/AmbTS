@@ -134,7 +134,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void showSuccess() {
         Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-        setResult(RESULT_OK);
+//        Intent it=new Intent();
+//        it.putExtra("result","yes");
+        setResult(Activity.RESULT_OK);
         finish();
     }
 

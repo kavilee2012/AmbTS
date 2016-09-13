@@ -46,11 +46,14 @@ public class ShuFragment extends Fragment {
     private SimpleAdapter mAdapter=null;
     private List<Map<String, Object>> data_list;
     // 图片封装为一个数组
-    private int[] icon = { R.drawable.shu_notice,R.drawable.shu_date, R.drawable.shu_tel,
-            R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.shu_home,
-            R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.pictures_no,
-            R.drawable.pictures_no, R.drawable.pictures_no,R.drawable.pictures_no };
-    private String[] iconName = {"企业公告","日程安排", "通讯录","费用报销","考勤管理","员工风采", "工作审批","扫一扫","地理位置", "系统日志", "关于道成",  "更多", };
+    private int[] icon = { R.drawable.app_notice_a,R.drawable.app_schedule_a, R.drawable.app_tel_a,
+                             R.drawable.app_money_a, R.drawable.app_attend_a, R.drawable.app_photo_a,
+                             R.drawable.app_audit_a, R.drawable.app_scan_a, R.drawable.app_map_a,
+                             R.drawable.app_log_a, R.drawable.app_dczj_a,R.drawable.app_more_a };
+    private String[] iconName = { "企业公告","日程安排", "通讯录",
+                                     "费用报销","考勤管理","员工风采",
+                                     "工作审批","扫一扫","地理位置",
+                                     "系统日志", "关于道成",  "更多", };
 
     @InjectView(R.id.gvShu)
     GridView gridView;

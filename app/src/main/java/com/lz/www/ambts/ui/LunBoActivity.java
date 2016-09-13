@@ -96,14 +96,14 @@ public class LunBoActivity extends AppCompatActivity {
         initImageLoader();
 
         // 获取图片加载实例
-        mImageLoader = ImageLoader.getInstance();
-        options = new DisplayImageOptions.Builder()
-                .showStubImage(R.drawable.top_banner_android)
-                .showImageForEmptyUri(R.drawable.top_banner_android)
-                .showImageOnFail(R.drawable.top_banner_android)
-                .cacheInMemory(true).cacheOnDisc(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .imageScaleType(ImageScaleType.EXACTLY).build();
+//        mImageLoader = ImageLoader.getInstance();
+//        options = new DisplayImageOptions.Builder()
+//                .showStubImage(R.drawable.top_banner_android)
+//                .showImageForEmptyUri(R.drawable.top_banner_android)
+//                .showImageOnFail(R.drawable.top_banner_android)
+//                .cacheInMemory(true).cacheOnDisc(true)
+//                .bitmapConfig(Bitmap.Config.RGB_565)
+//                .imageScaleType(ImageScaleType.EXACTLY).build();
 
         initAdData();
 

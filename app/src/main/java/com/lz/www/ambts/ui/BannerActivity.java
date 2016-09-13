@@ -120,9 +120,9 @@ public class BannerActivity extends AppCompatActivity {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mImageLoader.displayImage("drawable://" + R.drawable.mn4
-                        ,imgTest
-                        );
+//                mImageLoader.displayImage("drawable://" + R.drawable.mn4
+//                        ,imgTest
+//                        );
             }
         });
     }
