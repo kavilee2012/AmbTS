@@ -23,6 +23,10 @@ public class Report extends Fa {
     String remark;
 
 
+
+
+
+
     public int getId() {
         return id;
     }

@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.lz.www.ambts.AppApplication;
 import com.lz.www.ambts.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,9 +39,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     }
 
     private LayoutInflater mInflater;
-    private List<Integer> mDatas;
+    private List<String> mDatas;
 
-    public GalleryAdapter(Context context, List<Integer> datas){
+    public GalleryAdapter(Context context, List<String> datas){
         mInflater=LayoutInflater.from(context);
         mDatas=datas;
     }
@@ -59,8 +61,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mImg.setImageResource(mDatas.get(position));
-
+//        holder.mImg.setImageResource(mDatas.get(position));
+        Picasso.with(AppApplication.getContextObject()).load(mDatas.get(position)).placeholder(R.drawable.pictures_no).error(R.drawable.pictures_no).into(holder.mImg);
         if(mOnItemClickLitener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

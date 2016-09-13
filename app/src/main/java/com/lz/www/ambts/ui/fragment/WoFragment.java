@@ -1,6 +1,7 @@
 package com.lz.www.ambts.ui.fragment;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -121,8 +122,8 @@ public class WoFragment extends Fragment implements IWoView {
             break;
          case R.id.toolWoLogin:
                //登录
-               Intent it=new Intent(getActivity(), LoginActivity.class);
-               startActivityForResult(it,0);
+               Intent it=new Intent(view.getContext(), LoginActivity.class);
+               startActivityForResult(it,1);
             break;
          case R.id.btnLoginOut:
                //退出登录
@@ -133,19 +134,18 @@ public class WoFragment extends Fragment implements IWoView {
 
    @Override
    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//      switch (requestCode){
-//         case 0:
-//            if(resultCode== Activity.RESULT_OK)
-//               mPresenter.loadUserInfo();
-//            break;
-//      }
       super.onActivityResult(requestCode, resultCode, data);
+      switch (resultCode){
+         case Activity.RESULT_OK:
+               mPresenter.loadUserInfo();
+            break;
+      }
    }
 
    @Override
    public void onResume() {
       super.onResume();
-      mPresenter.loadUserInfo();
+      //mPresenter.loadUserInfo();
    }
 
    @Override
@@ -217,10 +217,10 @@ public class WoFragment extends Fragment implements IWoView {
 
    @Override
    public void openSetHeadPhoto() {
-      Intent it=new Intent(getActivity(), HeadPhotoActivity.class);
+      Intent it=new Intent(this.getContext(), HeadPhotoActivity.class);
       ivMeLogo.setDrawingCacheEnabled(true);
       it.putExtra("Bitmap",ivMeLogo.getDrawingCache());
-      startActivity(it);
+      startActivityForResult(it,2);
    }
 
    @Override
@@ -235,7 +235,7 @@ public class WoFragment extends Fragment implements IWoView {
                     String txt=inputServer.getText().toString();
                     mUser.setUserName(txt);
                     mPresenter.setUserName(mUser);
-                    Toast.makeText(getActivity(),txt,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(),txt,Toast.LENGTH_SHORT).show();
                  }
               })
               .setNegativeButton("取消",null)
@@ -254,7 +254,7 @@ public class WoFragment extends Fragment implements IWoView {
                     String txt=inputServer.getText().toString();
                     mUser.setMobile(txt);
                     mPresenter.setMobile(mUser);
-                    Toast.makeText(getActivity(),txt,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(),txt,Toast.LENGTH_SHORT).show();
                  }
               })
               .setNegativeButton("取消",null)
@@ -273,7 +273,7 @@ public class WoFragment extends Fragment implements IWoView {
                     String txt=inputServer.getText().toString();
                     mUser.setPassword(txt);
                     mPresenter.setPassword(mUser);
-                    Toast.makeText(getActivity(),txt,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(),txt,Toast.LENGTH_SHORT).show();
                  }
               })
               .setNegativeButton("取消",null)

@@ -16,8 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@drawable/mn5">
+            android:layout_gravity="bottom">
 
             <TextView
                 android:id="@+id/tv_date"
@@ -128,7 +127,6 @@
     <ImageView
         android:layout_gravity="center"
         android:id="@+id/imgTest"
-        android:src="@drawable/mn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -44,6 +45,7 @@ import com.lz.www.ambts.ui.jk.ILoginView;
 import com.lz.www.ambts.ui.module.LoginModule;
 import com.lz.www.ambts.ui.module.SbuModule;
 import com.lz.www.ambts.util.Config;
+import com.lz.www.ambts.util.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +63,12 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity implements ILoginView {
+public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Inject
     ILoginPresenter mLoginPresenter;
+
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
 
     @Inject
     IUserService mUserModel;
@@ -84,6 +89,16 @@ public class LoginActivity extends Activity implements ILoginView {
 
         ButterKnife.inject(this);
 
+        toolbar.setTitle("用户登录");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         DaggerLoginComponent.builder().loginModule(new LoginModule(this)).build().inject(this);
 
         btnLogin.setOnClickListener(new OnClickListener() {
@@ -99,6 +114,7 @@ public class LoginActivity extends Activity implements ILoginView {
                         if (response.isSuccess()) {
                             String token = (String) response.body().getData();
                             Config.AMB_TOKEN = token;
+                            SPUtils.put(getApplicationContext(),"Token",token);//保存到本地
                             showSuccess();
                         } else {
                             showFail();
@@ -117,20 +133,22 @@ public class LoginActivity extends Activity implements ILoginView {
 
     @Override
     public void showSuccess() {
-        Toast.makeText(LoginActivity.this,"success",Toast.LENGTH_SHORT).show();
-        setResult(RESULT_OK);
+        Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+//        Intent it=new Intent();
+//        it.putExtra("result","yes");
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
 
     @Override
     public void showFail() {
-        Toast.makeText(this,"fail",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"登录失败",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showLoading() {
-       // mProgressBar.setVisibility(ProgressBar.VISIBLE);
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override

@@ -9,12 +9,12 @@ import java.util.List;
  */
 public interface IScheduleService {
 
-    Schedule getOne(int id);
+    Schedule getOne(String key);
 
     List<Schedule> getList();
 
-    int add(Schedule schedule);
+    int add(String key, Schedule schedule);
 
-    int delete(int id);
+    int delete(String key);
 
 }

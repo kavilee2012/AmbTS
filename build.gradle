@@ -3,6 +3,12 @@
 buildscript {
     repositories {
         jcenter()
+
+        //add zxing
+        mavenCentral()
+        maven {
+            url "http://dl.bintray.com/journeyapps/maven"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0'

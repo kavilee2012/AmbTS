@@ -6,7 +6,6 @@
     android:background="?attr/colorPrimary"
     app:titleTextColor="@color/white"
     app:subtitleTextColor="@color/white"
-    android:navigationIcon="@drawable/left2"
     android:minHeight="?attr/actionBarSize"
     app:layout_scrollFlags="scroll|enterAlways"
 

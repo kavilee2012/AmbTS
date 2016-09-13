@@ -8,15 +8,16 @@
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
-        android:layout_width="80dp"
-        android:layout_height="80dp" />
+        android:layout_width="100dp"
+        android:layout_height="200dp" />
 
     <TextView
         android:id="@+id/tvPhoto"
         android:text="Name"
         android:layout_below="@+id/imgPhoto"
         android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>

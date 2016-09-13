@@ -31,33 +31,37 @@ public class ReportPresenter implements IReportPresenter {
     }
 
     @Override
-    public void loadAllList() {
+    public void loadAllList(String ym) {
       final ArrayList<Fa> groupList = new ArrayList<Fa>();
       final ArrayList<ArrayList<Fa>> itemList = new ArrayList<ArrayList<Fa>>();
 
-        Call<MyResponse<List<Report>>> call = mModel.getAllList();
+        Call<MyResponse<List<Report>>> call = mModel.getAllList(ym);
         call.enqueue(new Callback<MyResponse<List<Report>>>() {
             @Override
             public void onResponse(Call<MyResponse<List<Report>>> call, Response<MyResponse<List<Report>>> response) {
                 if (response.isSuccess()) {
-                    ArrayList<Report> allList = (ArrayList<Report>)response.body().getData();
-                    for(Report r : allList){
-                        if(r.getLevel()==0){
+                    ArrayList<Report> allList = (ArrayList<Report>) response.body().getData();
+                    for (Report r : allList) {
+                        if (r.getLevel() == 0) {
                             groupList.add(r);
                         }
                     }
-                    for (Fa g : groupList){
+                    for (Fa g : groupList) {
                         ArrayList<Fa> subList = new ArrayList<Fa>();
-                        for (Report r : allList){
-                            if(r.getFatherCode().equals(g.getCode())){
+                        for (Report r : allList) {
+                            if (r.getFatherCode().equals(g.getCode())) {
                                 subList.add(r);
                             }
                         }
                         itemList.add(subList);
                     }
-                    mView.showAllList(groupList,itemList);
+                    if (groupList.size() > 0) {
+                        mView.showAllList(groupList, itemList);
+                    } else {
+                        mView.showLoadError();
+                    }
                 } else {
-                   mView.showLoadError();
+                    mView.showLoadError();
                 }
             }
 
@@ -110,6 +114,6 @@ public class ReportPresenter implements IReportPresenter {
 
     @Override
     public void start() {
-        loadAllList();
+        loadAllList("201609");
     }
 }

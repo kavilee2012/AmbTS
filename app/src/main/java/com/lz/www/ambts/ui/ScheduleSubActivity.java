@@ -5,9 +5,11 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -38,20 +40,23 @@ import butterknife.InjectView;
  */
 public class ScheduleSubActivity extends AppCompatActivity implements IScheduleSubView {
 
+    private String mKey;
+
     @Inject
     IScheduleSubPresenter presenter;
 
     @InjectView(R.id.etSchedule)
     EditText etSchedule;
-    @InjectView(R.id.dpSchedule)
-    DatePicker datePicker;
     @InjectView(R.id.tpSchedule)
     TimePicker timePicker;
+
+    @InjectView(R.id.myTool)
+    Toolbar toolbar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.add_delete_save_cancel,menu);
+        inflater.inflate(R.menu.menu_add,menu);
         return true;
     }
 
@@ -62,23 +67,36 @@ public class ScheduleSubActivity extends AppCompatActivity implements IScheduleS
 
         ButterKnife.inject(this);
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         DaggerScheduleSubComponent.builder()
                 .scheduleSubModule(new ScheduleSubModule(this))
                 .build()
                 .inject(this);
 
-        showAddView();
+        Intent it=getIntent();
+        Long date = it.getLongExtra("date",0);
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd ");
+        mKey=f.format(date);
+        presenter.getSchedule(mKey);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menuSave:
+            case R.id.menuAdd:
                 saveSchedule();
                 break;
             case R.id.menuDelete:
                 int id=1;
-                presenter.deleteSchedule(id);
+                presenter.deleteSchedule(mKey);
                 break;
         }
         return true;
@@ -86,13 +104,12 @@ public class ScheduleSubActivity extends AppCompatActivity implements IScheduleS
 
     private void saveSchedule(){
 
-        long date = datePicker.getMaxDate();
+//        long date = mDate;
         int hour = timePicker.getCurrentHour();
         int minute = timePicker.getCurrentMinute();
-
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd ");
-        String nowDate = f.format(date);
-        String scheduleTime = nowDate + hour + ":" + minute + ":00";
+//        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd ");
+//        String nowDate = f.format(date);
+        String scheduleTime = mKey + hour + ":" + minute + ":00";
         String scheduleContent = etSchedule.getText().toString();
 
         Schedule schedule=new Schedule();
@@ -101,31 +118,24 @@ public class ScheduleSubActivity extends AppCompatActivity implements IScheduleS
         }catch (Exception ex){ }
         schedule.setContent(scheduleContent);
 
-        presenter.addSchedule(schedule);
+        presenter.addSchedule(mKey,schedule);
     }
 
     @Override
-    public void showAddView() {
-
-    }
-
-    @Override
-    public void showInfoView() {
-        String id = this.getIntent().getStringExtra("id");
-        Schedule schedule=presenter.getSchedule(Integer.parseInt(id));
+    public void showInfoView(Schedule schedule) {
+//        String id = this.getIntent().getStringExtra("id");
+//        Schedule schedule=presenter.getSchedule(Integer.parseInt(id));
         etSchedule.setText(schedule.getContent());
-
     }
 
     @Override
     public void showSetSuccess(String msg) {
         Toast.makeText(ScheduleSubActivity.this,msg,Toast.LENGTH_SHORT).show();
-
+        finish();
     }
 
     @Override
     public void showSetFail(String msg) {
         Toast.makeText(ScheduleSubActivity.this,msg,Toast.LENGTH_SHORT).show();
-
     }
 }

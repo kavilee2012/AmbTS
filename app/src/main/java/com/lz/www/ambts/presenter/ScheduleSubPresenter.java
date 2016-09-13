@@ -26,14 +26,14 @@ public class ScheduleSubPresenter implements IScheduleSubPresenter {
     }
 
     @Override
-    public Schedule getSchedule(int id) {
-        Schedule schedule=scheduleModule.getOne(id);
+    public Schedule getSchedule(String key) {
+        Schedule schedule=scheduleModule.getOne(key);
         return schedule;
     }
 
     @Override
-    public void addSchedule(Schedule schedule) {
-        int re = scheduleModule.add(schedule);
+    public void addSchedule(String key, Schedule schedule) {
+        int re = scheduleModule.add(key,schedule);
         if(re>0) {
             scheduleSubView.showSetSuccess("添加成功！");
         }else{
@@ -42,12 +42,17 @@ public class ScheduleSubPresenter implements IScheduleSubPresenter {
     }
 
     @Override
-    public void deleteSchedule(int id) {
-       int re = scheduleModule.delete(id);
+    public void deleteSchedule(String key) {
+       int re = scheduleModule.delete(key);
         if(re>0) {
             scheduleSubView.showSetSuccess("删除成功！");
         }else{
             scheduleSubView.showSetFail("删除失败！");
         }
+    }
+
+    @Override
+    public void start() {
+
     }
 }

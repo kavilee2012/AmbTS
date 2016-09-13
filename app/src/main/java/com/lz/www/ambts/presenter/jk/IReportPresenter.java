@@ -5,5 +5,5 @@ package com.lz.www.ambts.presenter.jk;
  */
 public interface IReportPresenter extends IBasePresenter {
 
-    void loadAllList();
+    void loadAllList(String ym);
 }

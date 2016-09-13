@@ -2,17 +2,17 @@
 
     <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
     <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--<item name="colorAccent">@color/colorAccent</item>-->
     <!--</style>-->
 
     <style name="AppTheme.MD" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        <!--<item name="android:textColorPrimary">@color/primary_text</item>-->
+
         <!--<item name="android:textColorSecondary">@color/secondary_text</item>-->
         <item name="android:windowBackground">@color/white</item>
         <item name="windowActionBar">false</item>
@@ -22,15 +22,15 @@
     </style>
 
     <style name="homeTabItem">
-    <item name="android:layout_width">0dp</item>
-    <item name="android:layout_height">match_parent</item>
-    <item name="android:layout_weight">1</item>
-    <item name="android:background">@drawable/tab_menu_bg</item>
-    <item name="android:button">@null</item>
-    <item name="android:gravity">center</item>
-    <item name="android:paddingTop">3dp</item>
-    <item name="android:textColor">@drawable/tab_menu_text</item>
-    <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/tab_menu_bg</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:textColor">@drawable/tab_menu_text</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="dot_style">
@@ -44,7 +44,7 @@
     <style name="WoText">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:textSize">15sp</item>
         <item name="android:drawablePadding">20dp</item>
         <item name="android:drawableRight">@drawable/txt_right</item>
@@ -58,8 +58,15 @@
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColorPrimary">@color/white</item>
         <item name="actionMenuTextColor">@color/white</item> <!--  敲定颜色-->
         <item name="android:textSize">18sp</item> <!--  搞掂字体大小-->
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
+
+    <style name="AppTheme.MD.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.MD.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -14,12 +14,19 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.ui.AmbLogActivity;
 import com.lz.www.ambts.ui.AnimationActivity;
+import com.lz.www.ambts.ui.AttendActivity;
 import com.lz.www.ambts.ui.ContractsActivity;
 import com.lz.www.ambts.ui.EmployeePhotoActivity;
+import com.lz.www.ambts.ui.LogActivity;
+import com.lz.www.ambts.ui.NewsDetailActivity;
+import com.lz.www.ambts.ui.NoticeActivity;
 import com.lz.www.ambts.ui.PhotoActivity;
+import com.lz.www.ambts.ui.RockActivity;
 import com.lz.www.ambts.ui.ScheduleActivity;
 import com.lz.www.ambts.ui.ShakeActivity;
 
@@ -39,11 +46,14 @@ public class ShuFragment extends Fragment {
     private SimpleAdapter mAdapter=null;
     private List<Map<String, Object>> data_list;
     // 图片封装为一个数组
-    private int[] icon = { R.drawable.shu_notice,R.drawable.shu_date, R.drawable.shu_tel,
-            R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.shu_home,
-            R.drawable.pictures_no, R.drawable.pictures_no, R.drawable.pictures_no,
-            R.drawable.pictures_no, R.drawable.pictures_no,R.drawable.pictures_no };
-    private String[] iconName = {"企业公告","日程安排", "通讯录","考勤管理","费用报销","员工风采","摇一摇",  "绘画动画","地理位置", "系统日志", "null",  "null", };
+    private int[] icon = { R.drawable.app_notice_a,R.drawable.app_schedule_a, R.drawable.app_tel_a,
+                             R.drawable.app_money_a, R.drawable.app_attend_a, R.drawable.app_photo_a,
+                             R.drawable.app_audit_a, R.drawable.app_scan_a, R.drawable.app_map_a,
+                             R.drawable.app_log_a, R.drawable.app_dczj_a,R.drawable.app_more_a };
+    private String[] iconName = { "企业公告","日程安排", "通讯录",
+                                     "费用报销","考勤管理","员工风采",
+                                     "工作审批","扫一扫","地理位置",
+                                     "系统日志", "关于道成",  "更多", };
 
     @InjectView(R.id.gvShu)
     GridView gridView;
@@ -78,7 +88,7 @@ public class ShuFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
                     case 0:
-                        Intent it0=new Intent(getActivity(),ContractsActivity.class);
+                        Intent it0=new Intent(getActivity(),NoticeActivity.class);
                         startActivity(it0);
                         break;
                     case 1:
@@ -89,28 +99,45 @@ public class ShuFragment extends Fragment {
                         Intent it2=new Intent(getActivity(),ContractsActivity.class);
                         startActivity(it2);
                         break;
+                    case 3:
+                        Toast.makeText(getActivity(),"该功能还未开放！",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Intent it4=new Intent(getActivity(),AttendActivity.class);
+                        startActivity(it4);
+                        break;
                     case 5:
-                        Intent it5=new Intent(getActivity(),EmployeePhotoActivity.class);
+                        Intent it5=new Intent(getActivity(),PhotoActivity.class);
                         startActivity(it5);
                         break;
                     case 6:
-                        Intent it6=new Intent(getActivity(),ShakeActivity.class);
-                        startActivity(it6);
+                        Toast.makeText(getActivity(),"该功能还未开放！",Toast.LENGTH_SHORT).show();
                         break;
                     case 7:
-                        Intent it7=new Intent(getActivity(),AnimationActivity.class);
-                        startActivity(it7);
+//                        Intent it7=new Intent(getActivity(),RockActivity.class);
+//                        startActivity(it7);
+                        IntentIntegrator integrator=new IntentIntegrator(getActivity());
+                        integrator.initiateScan();
                         break;
                     case 8:
 //                        Intent it10=new Intent(getActivity(), MapActivity.class);
 //                        startActivity(it10);
                         break;
                     case 9:
-                        Intent it11=new Intent(getActivity(), AmbLogActivity.class);
-                        startActivity(it11);
+                        Intent it9=new Intent(getActivity(), LogActivity.class);
+                        startActivity(it9);
+                        break;
+                    case 10:
+                        Intent it = new Intent(getActivity(), NewsDetailActivity.class);
+                        it.putExtra("url","http://www.simchn.com/");
+                        it.putExtra("title","关于道成");
+                        startActivity(it);
+                        break;
+                    case 11:
+                        Toast.makeText(getActivity(),"敬请期待！",Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        Toast.makeText(getActivity(),"你点击了第" + i + "项",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"敬请期待！",Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -132,6 +159,5 @@ public class ShuFragment extends Fragment {
 
         return data_list;
     }
-
 
 }

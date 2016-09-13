@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menuStartMusic"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:title="播放背景音乐"></item>
+
+    <item android:id="@+id/menuCloseMusic"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:title="关闭背景音乐"></item>
+</menu>
