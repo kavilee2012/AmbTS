@@ -159,7 +159,7 @@ public class LunboFragment extends Fragment {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Picasso.with(getActivity())
                     .load(adList.get(i).getImgID())
-                    .resize(300,200)
+                    .resize(350,210)
                     .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
                     .into(imageView);
             imageViews.add(imageView);
