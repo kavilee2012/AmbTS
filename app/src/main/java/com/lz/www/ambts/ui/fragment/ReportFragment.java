@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ExpandableListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,8 @@ public class ReportFragment extends Fragment implements IReportView {
     Button btnDate;
     @InjectView(R.id.tvNoData)
     TextView tvNoData;
+    @InjectView(R.id.pbReport)
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -100,17 +103,23 @@ public class ReportFragment extends Fragment implements IReportView {
                     }
                 }, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
                 dialog.getDatePicker().setCalendarViewShown(false);
-                dialog.setTitle("请选择出生日期");
+                dialog.setTitle("请选择月份");
                 dialog.show();
                 break;
         }
     }
 
 
-
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void showAllList(ArrayList<Fa> groupList, ArrayList<ArrayList<Fa>> subList) {
+
+        progressBar.setVisibility(View.GONE);
+
         tvNoData.setVisibility(View.GONE);
         elvFa.setVisibility(View.VISIBLE);
         FaAdapter faAdapter=new FaAdapter(groupList,subList,getActivity());
@@ -120,6 +129,9 @@ public class ReportFragment extends Fragment implements IReportView {
 
     @Override
     public void showLoadError() {
+
+        progressBar.setVisibility(View.GONE);
+
         tvNoData.setVisibility(View.VISIBLE);
         elvFa.setVisibility(View.GONE);
        // Toast.makeText(getActivity(), "加载错误", Toast.LENGTH_SHORT).show();

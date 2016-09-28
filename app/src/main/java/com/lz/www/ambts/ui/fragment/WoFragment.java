@@ -172,7 +172,7 @@ public class WoFragment extends Fragment implements IWoView {
 
       tvName.setText("昵       称    --    "+user.getUserName());
       tvMobile.setText("联系电话    --    "+user.getMobile());
-      tvSex.setText("性       别    --    "+(user.isSex()?"男":"女"));//  String.valueOf(user.isSex()));
+      tvSex.setText("性       别    --    "+(user.isSex()?"女":"男"));//  String.valueOf(user.isSex()));
       Date date=user.getBirthDay();
       if(date!=null) {
          SimpleDateFormat formatter = new SimpleDateFormat("MM 月 dd 日");

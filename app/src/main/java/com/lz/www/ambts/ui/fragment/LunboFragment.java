@@ -1,5 +1,6 @@
 package com.lz.www.ambts.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.lz.www.ambts.R;
 import com.lz.www.ambts.model.bean.AdDomain;
+import com.lz.www.ambts.ui.NewsDetailActivity;
 import com.lz.www.ambts.util.LocalData;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -152,14 +154,14 @@ public class LunboFragment extends Fragment {
         // 初始化图片资源
         for (int i = 0; i < adList.size(); i++) {
             ImageView imageView = new ImageView(getActivity());
+//            imageView.setMaxHeight(210);
             // 异步加载图片
            // mImageLoader.displayImage(adList.get(i).getImgUrl(), imageView,options);
 //            imageView.setImageResource(adList.get(i).getImgID());
 
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             Picasso.with(getActivity())
                     .load(adList.get(i).getImgID())
-                    .resize(350,210)
                     .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
                     .into(imageView);
             imageViews.add(imageView);
@@ -239,6 +241,10 @@ public class LunboFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     // 处理跳转逻辑
+                    Intent it = new Intent(getActivity(), NewsDetailActivity.class);
+                    it.putExtra("url",adDomain.getTargetUrl());
+                    it.putExtra("title",adDomain.getTitle());
+                    startActivity(it);
                 }
             });
             return iv;

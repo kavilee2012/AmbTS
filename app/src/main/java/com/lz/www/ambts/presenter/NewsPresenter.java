@@ -41,6 +41,9 @@ public class NewsPresenter implements INewsPresenter {
 
     @Override
     public void loadNewsList() {
+
+        mNewsView.showLoading();
+
          Call<MyResponse<List<News>>> call = mNewsService.getList();
          call.enqueue(new Callback<MyResponse<List<News>>>() {
              @Override
@@ -49,13 +52,13 @@ public class NewsPresenter implements INewsPresenter {
                      List<News> news = (List<News>)response.body().getData();
                      mNewsView.showNewsList(news);
                  } else {
-                     mNewsView.showLoadingError("http fail");
+                     mNewsView.showLoadingError("数据获取失败，请检查网络！");
                  }
              }
 
              @Override
              public void onFailure(Call<MyResponse<List<News>>> call, Throwable t) {
-                 mNewsView.showLoadingError("http error");
+                 mNewsView.showLoadingError("数据获取失败，请检查网络！");
              }
          });
 

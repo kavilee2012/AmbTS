@@ -23,6 +23,7 @@ import com.lz.www.ambts.ui.AttendActivity;
 import com.lz.www.ambts.ui.ContractsActivity;
 import com.lz.www.ambts.ui.EmployeePhotoActivity;
 import com.lz.www.ambts.ui.LogActivity;
+import com.lz.www.ambts.ui.MapActivity;
 import com.lz.www.ambts.ui.NewsDetailActivity;
 import com.lz.www.ambts.ui.NoticeActivity;
 import com.lz.www.ambts.ui.PhotoActivity;
@@ -46,10 +47,10 @@ public class ShuFragment extends Fragment {
     private SimpleAdapter mAdapter=null;
     private List<Map<String, Object>> data_list;
     // 图片封装为一个数组
-    private int[] icon = { R.drawable.app_notice_a,R.drawable.app_schedule_a, R.drawable.app_tel_a,
-                             R.drawable.app_money_a, R.drawable.app_attend_a, R.drawable.app_photo_a,
-                             R.drawable.app_audit_a, R.drawable.app_scan_a, R.drawable.app_map_a,
-                             R.drawable.app_log_a, R.drawable.app_dczj_a,R.drawable.app_more_a };
+    private int[] icon = { R.drawable.app_notice,R.drawable.app_schedule, R.drawable.app_tel,
+                             R.drawable.app_fee, R.drawable.app_attend, R.drawable.app_photo,
+                             R.drawable.app_audit, R.drawable.app_scan, R.drawable.app_map_c,
+                             R.drawable.app_log2, R.drawable.app_dczj_white,R.drawable.app_more_a };
     private String[] iconName = { "企业公告","日程安排", "通讯录",
                                      "费用报销","考勤管理","员工风采",
                                      "工作审批","扫一扫","地理位置",
@@ -120,8 +121,8 @@ public class ShuFragment extends Fragment {
                         integrator.initiateScan();
                         break;
                     case 8:
-//                        Intent it10=new Intent(getActivity(), MapActivity.class);
-//                        startActivity(it10);
+                        Intent it10=new Intent(getActivity(), MapActivity.class);
+                        startActivity(it10);
                         break;
                     case 9:
                         Intent it9=new Intent(getActivity(), LogActivity.class);

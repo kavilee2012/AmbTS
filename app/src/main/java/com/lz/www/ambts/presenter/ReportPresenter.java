@@ -32,6 +32,8 @@ public class ReportPresenter implements IReportPresenter {
 
     @Override
     public void loadAllList(String ym) {
+        mView.showLoading();
+
       final ArrayList<Fa> groupList = new ArrayList<Fa>();
       final ArrayList<ArrayList<Fa>> itemList = new ArrayList<ArrayList<Fa>>();
 

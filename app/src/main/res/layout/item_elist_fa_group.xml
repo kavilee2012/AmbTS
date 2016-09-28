@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="10dp"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="40dp">
 
     <TextView
         android:id="@+id/tvGroupName"
@@ -12,7 +12,7 @@
         android:textColor="@color/primary_text"
         android:text="AP"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/tvGroupMoney"
@@ -22,6 +22,6 @@
         android:textColor="@color/primary"
         android:text="合计：1000(2.1%)"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
 </RelativeLayout>

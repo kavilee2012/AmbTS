@@ -15,4 +15,6 @@ public interface IReportView {
 
     void showLoadError();
 
+    void showLoading();
+
 }

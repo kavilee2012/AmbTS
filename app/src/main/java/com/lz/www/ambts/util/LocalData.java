@@ -24,9 +24,10 @@ public class LocalData {
         AdDomain adDomain = new AdDomain();
         adDomain.setId("1");
         adDomain.setDate("3月4日");
-        adDomain.setTitle("中国阿米巴落地领导者--道成智聚");
+        adDomain.setTitle("阿米巴解决方案领导者");
         adDomain.setAd(false);
-        adDomain.setImgID(R.drawable.banner5);
+        adDomain.setImgID(R.drawable.banner6);
+        adDomain.setTargetUrl("http://www.simclouds.com/");
         adList.add(adDomain);
 
         AdDomain adDomain2 = new AdDomain();
@@ -35,6 +36,7 @@ public class LocalData {
         adDomain2.setTitle("【理念 + 算盘】经营实学创始人--田和喜");
         adDomain2.setAd(false);
         adDomain2.setImgID(R.drawable.banner3);
+        adDomain2.setTargetUrl("http://www.simchn.com/index.php?g=home&m=article&a=show&id=17");
         adList.add(adDomain2);
 
         AdDomain adDomain3 = new AdDomain();
@@ -43,6 +45,7 @@ public class LocalData {
         adDomain3.setTitle("什么是【理念 + 算盘】？");
         adDomain3.setAd(false);
         adDomain3.setImgID(R.drawable.banner2);
+        adDomain3.setTargetUrl("http://www.simchn.com/index.php?g=home&m=page&a=index&id=34");
         adList.add(adDomain3);
 
         AdDomain adDomain4 = new AdDomain();
@@ -51,6 +54,7 @@ public class LocalData {
         adDomain4.setTitle("金正大集团启动阿米巴项目");
         adDomain4.setAd(false);
         adDomain4.setImgID(R.drawable.banner4);
+        adDomain4.setTargetUrl("http://www.simchn.com/index.php?g=home&m=article&a=show&id=1130");
         adList.add(adDomain4);
 
         AdDomain adDomain5 = new AdDomain();
@@ -59,6 +63,7 @@ public class LocalData {
         adDomain5.setTitle("9月广州课程，期待你的加入！");
         adDomain5.setAd(true); // 代表是广告
         adDomain5.setImgID(R.drawable.banner1);
+        adDomain5.setTargetUrl("http://www.simchn.com/index.php?g=home&m=kecheng&a=show&id=7");
         adList.add(adDomain5);
 
         return adList;

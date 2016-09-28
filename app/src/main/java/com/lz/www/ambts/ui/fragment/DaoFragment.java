@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,8 @@ public class DaoFragment extends Fragment implements INewsView {
     Toolbar toolbar;
     @InjectView(R.id.toolTvTitle)
     TextView toolTvTitle;
+    @InjectView(R.id.pbNews)
+    ProgressBar progressBar;
 
     @InjectView(R.id.refreshNews)
     SwipeRefreshLayout refreshNews;
@@ -140,7 +143,7 @@ public class DaoFragment extends Fragment implements INewsView {
 
     private void InitListData() {
         List<News> mNewsList = new ArrayList<>();
-        mNewsList.add(new News(1, "内容加载中......", " "));
+//        mNewsList.add(new News(1, "内容加载中......", " "));
         rvNews.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -180,15 +183,16 @@ public class DaoFragment extends Fragment implements INewsView {
     @Override
     public void showNewsList(List<News> newNewsList) {
 //        Toast.makeText(getActivity(),"获取成功",Toast.LENGTH_SHORT).show();
-
         mAdapter.mDataList = newNewsList;
         mAdapter.notifyDataSetChanged();
+
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void showLoading() {
-        Toast.makeText(getActivity(),"加载中",Toast.LENGTH_SHORT).show();
-
+//        Toast.makeText(getActivity(),"加载中",Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.VISIBLE);
     }
 
 
@@ -196,6 +200,7 @@ public class DaoFragment extends Fragment implements INewsView {
     @Override
     public void showLoadingError(String msg) {
         Toast.makeText(getActivity(),"发生错误,原因:"+msg,Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
     }
 
 

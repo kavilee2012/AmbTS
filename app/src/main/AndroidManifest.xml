@@ -24,7 +24,8 @@
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo1"
+
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.MD">
@@ -49,7 +50,7 @@
             android:name=".ui.ScheduleSubActivity"
             android:label="新建日程" />
         <activity android:name=".ui.PhotoActivity" />
-        <!-- <activity android:name=".ui.DrawActivity"/> -->
+         <activity android:name=".ui.MapActivity"/>
         <activity android:name=".ui.AnimationActivity" />
         <activity android:name=".ui.HeadPhotoActivity" />
         <activity android:name=".ui.BannerActivity" />
@@ -93,7 +94,7 @@
         <!-- biadu apikey -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="bayihlMLHcG7QOdD9vnybz3sGsTBKjEm" />
+            android:value="GN1XbPYyaOHLcviiwcFx2SQH4hWsPadB" />
 
         <activity android:name=".LaunchActivity">
             <intent-filter>

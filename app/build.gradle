@@ -25,7 +25,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
-    compile files('libs/Volley.jar')
     // add dagger2
     compile 'com.google.dagger:dagger:2.0'
     apt 'com.google.dagger:dagger-compiler:2.0'
@@ -41,16 +40,16 @@ dependencies {
     //因为Dagger 2 中会用到@Generated注解，而javax.anotation.generated在Java 6及以上的版本中都有，在Android API 中是没有的，所以在Android项目中一定要加此句
     compile 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
-
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
-
-    compile 'de.hdodenhof:circleimageview:2.1.0'//圆形头像
-
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //圆形头像
     compile 'com.squareup.picasso:picasso:2.5.2'
-
     //add zxing
     compile 'com.journeyapps:zxing-android-embedded:2.0.1@aar'
     compile 'com.journeyapps:zxing-android-integration:2.0.1@aar'
     compile 'com.google.zxing:core:3.0.1'
+    compile files('libs/baidumapapi_util_v4_0_0.jar')
+    compile files('libs/baidumapapi_map_v4_0_0.jar')
+    compile files('libs/baidumapapi_base_v4_0_0.jar')
 }
